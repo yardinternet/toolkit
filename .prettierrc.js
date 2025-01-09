@@ -1,1 +1,1 @@
-module.exports = require('@yardinternet/prettier-config');
+export { default } from '@yardinternet/prettier-config';

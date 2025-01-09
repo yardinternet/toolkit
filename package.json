@@ -16,7 +16,8 @@
   "scripts": {
     "format:js": "wp-scripts format './packages/**/*.js'"
   },
-  "dependencies": {
+  "type": "module",
+  "devDependencies": {
     "@wordpress/scripts": "^30.8.1"
   }
 }

@@ -10,27 +10,25 @@ npm i @yardinternet/prettier-config`
 
 ## Usage
 
-`@yardinternet/prettier-config` can be required in the .prettierrc.js
+`@yardinternet/prettier-config` can be required in the `.prettierrc.js`
 
 ```js
-module.exports = require('@yardinternet/prettier-config');
+export { default } from '@yardinternet/prettier-config';
 ```
 
-If you want to add or override settings you can use tools like [deepmerge](https://www.npmjs.com/package/deepmerge).
+If you want to add or override settings you can use tools like [deepmerge](https://www.npmjs.com/package/@bundled-es-modules/deepmerge).
+
 
 ```js
-const merge = require('deepmerge')
+import merge from '@bundled-es-modules/deepmerge';
+import prettierConfig from '@yardinternet/prettier-config';
 
-const prettierSettings = merge(require('@yardinternet/prettier-config'), {
+export default merge(prettierConfig, {
     overrides: [
         {
-            files: ['*.ts'],
-            options: {
-                singleQuote: true,
-            }
+            files: ['*.js'],
+            options: { singleQuote: false },
         }
-    ]
-})
-
-module.exports = prettierSettings;
+    ],
+});
 ```
