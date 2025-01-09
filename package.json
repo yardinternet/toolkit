@@ -14,7 +14,7 @@
     "packages/eslint-config"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "format:js": "wp-scripts format './packages/**/*.js'"
   },
   "dependencies": {
     "@wordpress/scripts": "^30.8.1"
