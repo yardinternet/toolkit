@@ -1,0 +1,12 @@
+{
+  "name": "@yardinternet/eslint-config",
+  "version": "0.0.0",
+  "description": "Eslint configuration",
+  "main": "src/index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

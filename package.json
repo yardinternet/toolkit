@@ -1,0 +1,19 @@
+{
+  "name": "toolkit",
+  "version": "0.0.0",
+  "description": "Yard Toolkit monorepo",
+  "author": {
+    "name": "Yard | Digital Agency",
+    "email": "info@yard.nl",
+    "url": "https://www.yard.nl/"
+  },
+  "license": "ISC",
+  "workspaces": [
+    "packages/stylelint-config",
+    "packages/prettier-config",
+    "packages/eslint-config"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
