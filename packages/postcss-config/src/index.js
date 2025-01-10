@@ -1,8 +1,10 @@
-const { getPathToTheme } = require( './scripts/helpers' );
+const { getPathToTheme } = require( './scripts/helpers' ); //  @TODO: WERKT NIET
 const path = require( 'path' );
 
-module.exports = (pathToStyles = 'web/app/themes/sage/resources/styles', pathToTheme = getPathToTheme()) => {
-
+module.exports = (
+	pathToStyles = 'web/app/themes/sage/resources/styles',
+	pathToTheme = getPathToTheme()
+) => {
 	// Add alias paths for PostCSS imports
 	const resolveAliasPaths = ( id ) => {
 		if ( id.startsWith( '@sage' ) ) {
@@ -39,4 +41,4 @@ module.exports = (pathToStyles = 'web/app/themes/sage/resources/styles', pathToT
 
 		return { plugins };
 	};
-}
+};
