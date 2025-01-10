@@ -1,19 +1,18 @@
-import globals from "globals";
-import babelParser from "@babel/eslint-parser";
-import path from "node:path";
-import { fileURLToPath } from "node:url";
-import js from "@eslint/js";
-import { FlatCompat } from "@eslint/eslintrc";
+const globals = require("globals");
+const babelParser = require("@babel/eslint-parser");
+const js = require("@eslint/js");
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const {
+    FlatCompat,
+} = require("@eslint/eslintrc");
+
 const compat = new FlatCompat({
     baseDirectory: __dirname,
     recommendedConfig: js.configs.recommended,
     allConfig: js.configs.all
 });
 
-export default [
+module.exports = [
     ...compat.extends("plugin:@wordpress/eslint-plugin/recommended", "prettier"),
     {
         languageOptions: {
