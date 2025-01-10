@@ -1,9 +1,9 @@
 module.exports = {
-	...require('@wordpress/prettier-config'),
-	plugins: ['@shufo/prettier-plugin-blade', 'prettier-plugin-tailwindcss'],
+	...require( '@wordpress/prettier-config' ),
+	plugins: [ '@shufo/prettier-plugin-blade', 'prettier-plugin-tailwindcss' ],
 	overrides: [
 		{
-			files: ['*.css', '*.js', '*.jsx'],
+			files: [ '*.css', '*.js', '*.jsx' ],
 			options: {
 				useTabs: true,
 				printWidth: 80,
@@ -17,7 +17,7 @@ module.exports = {
 			},
 		},
 		{
-			files: ['*.blade.php'],
+			files: [ '*.blade.php' ],
 			options: {
 				parser: 'blade',
 				sortTailwindcssClasses: true,
