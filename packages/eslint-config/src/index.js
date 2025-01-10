@@ -1,4 +1,5 @@
 const globals = require("globals");
+// eslint-disable-next-line import/no-extraneous-dependencies
 const babelParser = require("@babel/eslint-parser");
 const js = require("@eslint/js");
 
