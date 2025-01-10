@@ -1,7 +1,5 @@
-import wordpressPrettierConfig from '@wordpress/prettier-config';
-
-const config = {
-	...wordpressPrettierConfig,
+module.exports = {
+	...require('@wordpress/prettier-config'),
 	plugins: ['@shufo/prettier-plugin-blade', 'prettier-plugin-tailwindcss'],
 	overrides: [
 		{
@@ -29,5 +27,3 @@ const config = {
 		},
 	],
 };
-
-export default config;
