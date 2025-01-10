@@ -3,11 +3,19 @@
   "version": "1.0.0",
   "description": "PostCSS settings",
   "main": "src/index.js",
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "type": "commonjs",
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "postcss": "^8.4.49",
+    "postcss-import": "^16.1.0",
+    "postcss-mixins": "^11.0.3",
+    "postcss-nested": "^7.0.2"
+  },
+  "devDependencies": {
+    "path": "^0.12.7"
+  }
 }
