@@ -11,7 +11,8 @@
   "workspaces": [
     "packages/stylelint-config",
     "packages/prettier-config",
-    "packages/eslint-config"
+    "packages/eslint-config",
+    "packages/postcss-config"
   ],
   "scripts": {
     "lint:js": "eslint './packages/**/*.js' --fix",

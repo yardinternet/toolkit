@@ -1,0 +1,13 @@
+{
+  "name": "@yardinternet/postcss-config",
+  "version": "1.0.0",
+  "description": "PostCSS settings",
+  "main": "src/index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "type": "commonjs",
+  "author": "",
+  "license": "ISC"
+}
