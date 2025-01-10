@@ -14,7 +14,7 @@
     "packages/eslint-config"
   ],
   "scripts": {
-    "lint:js": "wp-scripts lint-js './packages/**/*.js' --fix",
+    "lint:js": "eslint './packages/**/*.js' --fix",
     "format:js": "wp-scripts format './packages/**/*.js'"
   },
   "type": "commonjs",
