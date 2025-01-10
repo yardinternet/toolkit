@@ -28,5 +28,8 @@ export const run = (command) => {
 		// eslint-disable-next-line no-console
 		console.log(stdout);
 	});
+}
+
+export const filetypeFromString = (filetypeString) => {
 
 }

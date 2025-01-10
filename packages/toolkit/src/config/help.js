@@ -13,10 +13,9 @@ Actions
     ${actions.lint.name}          Runs linter for specified filetype
 
 Filetypes
-    ${filetypes.js}            JavaScript files (*.js)
-    ${filetypes.blade}         Laravel Blade files (*.blade.php)
-    ${filetypes.css}           Cascading Style Sheet files (*.css)
-    ${filetypes.scss}          Sass Cascading Style Sheet (*.scss)
+    ${filetypes.js.name}            JavaScript files (*${filetypes.js.extension})
+    ${filetypes.blade.name}         Laravel Blade files (*${filetypes.blade.extension})
+    ${filetypes.css.name}           Cascading Style Sheet files (*${filetypes.css.extension})
 
 Options
     -${options.mode.shortFlag}, --${options.mode.name} <${options.mode.choices.join('|')}>

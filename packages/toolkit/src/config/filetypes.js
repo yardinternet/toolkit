@@ -1,6 +1,14 @@
 export const filetypes = {
-	js: 'js',
-	blade: 'blade',
-	css: 'css',
-	scss: 'scss'
+	js: {
+		name: 'js',
+		extension: '.js',
+	},
+	blade: {
+		name: 'blade',
+		extension: '.blade.php',
+	},
+	css: {
+		name: 'css',
+		extension: '.css',
+	}
 }

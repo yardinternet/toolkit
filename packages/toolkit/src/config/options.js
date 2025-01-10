@@ -3,7 +3,7 @@ export const options = {
 		name: 'mode',
 		type: 'string',
 		shortFlag: 'm',
-		choices: [ 'brave', 'skeleton-package', 'fusion', 'custom' ],
+		choices: [ 'brave', 'skeleton-package', 'custom' ],
 		default: 'brave',
 	}
 }
