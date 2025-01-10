@@ -20,3 +20,4 @@ Install dependencies in package: `npm install [depname] -w [packagename]`
 ## 🎨 Formatting & Linting
 
 The linting in this monorepo uses the settings defined in the child packages.
+Husky (CaptainHook alternative) ensures that all files are automatically formatted and linted with each commit.
