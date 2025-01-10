@@ -10,7 +10,7 @@ npm i @yardinternet/eslint-configs`
 
 ## Usage
 
-`@yardinternet/eslint-config` can be required in the .eslint.config.js
+`@yardinternet/eslint-config` can be required in the `.eslint.config.js`
 
 ```js
 module.exports = require('@yardinternet/eslint-config');
@@ -19,7 +19,7 @@ module.exports = require('@yardinternet/eslint-config');
 If you want to add or override settings you can use tools like [deepmerge](https://www.npmjs.com/package/deepmerge).
 
 ```js
-const merge = require('deepmerge')
+const merge = require('deepmerge');
 const eslintSettings = merge(require('@yardinternet/eslint-config'), [
     {
         rules: {

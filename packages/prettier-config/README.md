@@ -10,7 +10,7 @@ npm i @yardinternet/prettier-config`
 
 ## Usage
 
-`@yardinternet/prettier-config` can be required in the .prettierrc.js
+`@yardinternet/prettier-config` can be required in the `.prettierrc.js`
 
 ```js
 module.exports = require('@yardinternet/prettier-config');
@@ -19,7 +19,7 @@ module.exports = require('@yardinternet/prettier-config');
 If you want to add or override settings you can use tools like [deepmerge](https://www.npmjs.com/package/deepmerge).
 
 ```js
-const merge = require('deepmerge')
+const merge = require('deepmerge');
 const prettierSettings = merge(require('@yardinternet/prettier-config'), {
     overrides: [
         {
