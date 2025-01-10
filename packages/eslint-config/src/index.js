@@ -24,8 +24,7 @@ module.exports = [
             },
 
             parser: babelParser,
-            ecmaVersion: 5,
-            sourceType: "commonjs",
+            ecmaVersion: 6,
 
             parserOptions: {
                 requireConfigFile: false,
@@ -50,3 +49,4 @@ module.exports = [
         },
     },
 ];
+s
