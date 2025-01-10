@@ -15,10 +15,15 @@
   ],
   "scripts": {
     "lint:js": "eslint './packages/**/*.js' --fix",
-    "format:js": "wp-scripts format './packages/**/*.js'"
+    "format:js": "wp-scripts format './packages/**/*.js'",
+    "prepare": "husky"
   },
   "type": "commonjs",
   "dependencies": {
     "@wordpress/scripts": "^30.8.1"
+  },
+  "devDependencies": {
+    "husky": "^9.1.7",
+    "lint-staged": "^15.3.0"
   }
 }
