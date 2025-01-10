@@ -1,9 +1,11 @@
+import {modes} from "./modes.js";
+
 export const options = {
 	mode: {
 		name: 'mode',
 		type: 'string',
 		shortFlag: 'm',
-		choices: [ 'brave', 'skeleton-package', 'custom' ],
-		default: 'brave',
+		choices: [ modes.brave.name, modes.custom.name ],
+		default: modes.brave.name,
 	}
 }

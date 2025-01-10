@@ -17,7 +17,7 @@ try {
 } catch ( errorMsg ) {
 	error( errorMsg.toString().replace( 'Error: ', '' ) );
 }
-
+console.log(cli.flags)
 const actionName = cli.input[ 0 ];
 
 if ( undefined === actionName ) {
@@ -36,4 +36,4 @@ if (undefined === currentAction) {
 	cli.showHelp( 5 );
 }
 
-currentAction.func(filetype, path);
+currentAction.func(cli.flags, filetype, path);

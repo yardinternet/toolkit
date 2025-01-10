@@ -6,7 +6,7 @@ import {options} from "./options.js";
 export const help = `
 Usage
 
-    $ toolkit [action] [filetype] [options] [file/dir/glob ...]
+    $ yard-toolkit [action] [filetype] [options] [file/dir/glob ...]
 
 Actions
     ${actions.format.name}        Runs formatter for specified filetype

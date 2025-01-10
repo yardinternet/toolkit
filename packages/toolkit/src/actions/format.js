@@ -1,8 +1,9 @@
-export const format = ( filetype, path ) => {
+import {filetypeFromString} from "../utils/helpers.js";
+
+export const format = ( options, filetypeString, path ) => {
+
+	const filetype = filetypeFromString(filetypeString);
 
 	const command = 'wp-scripts format';
 
-	if ( path ) {
-		info( 'hre' );
-	}
 };

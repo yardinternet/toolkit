@@ -1,6 +1,7 @@
 import chalk from 'chalk';
 import {exit} from 'node:process';
 import {exec} from "node:child_process";
+import {filetypes} from "../config/filetypes.js";
 
 export const error = (
 	msg = 'An error occurred',
@@ -31,5 +32,9 @@ export const run = (command) => {
 }
 
 export const filetypeFromString = (filetypeString) => {
-
+	for (const [key, value] of Object.entries(filetypes)) {
+		if (filetypeString === value.name) {
+			return filetypes[key];
+		}
+	}
 }
