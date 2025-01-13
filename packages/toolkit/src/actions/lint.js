@@ -1,6 +1,7 @@
 import {error, filetypeFromString, getGlobByFormatModeAndFiletype, modesFromString, run} from "../utils/helpers.js";
+import {filetypes} from "../config/filetypes.js";
 
-export const lint = ( options, filetype, userPath ) => {
+export const lint = ( options, filetypeString, userPath ) => {
 	const formatFiletype = filetypeFromString( filetypeString, true );
 	const formatMode = modesFromString( options.mode, true );
 
@@ -8,10 +9,10 @@ export const lint = ( options, filetype, userPath ) => {
 	let commandAction = '';
 
 	switch (formatFiletype.name) {
-		case formatFiletype.js.name:
+		case filetypes.js.name:
 			commandAction = 'lint-js';
 			break;
-		case formatFiletype.css.name:
+		case filetypes.css.name:
 			commandAction = 'lint-style';
 			break;
 		default:
