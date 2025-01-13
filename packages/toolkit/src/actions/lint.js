@@ -6,11 +6,12 @@ import {
 	run,
 } from '../utils/helpers.js';
 import { filetypes } from '../config/filetypes.js';
+import { options as configOptions } from '../config/options.js';
 
 export const lint = ( options, filetype, userPath ) => {
 	const formatFiletype = filetypeFromString( filetype, true );
 	const formatMode = modesFromString( options.mode, true );
-	const isFix = options[ options.fix.name ] ?? false;
+	const isFix = options[ configOptions.fix.name ] ?? false;
 
 	let command = '';
 	switch ( formatFiletype.name ) {
