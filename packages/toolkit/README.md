@@ -29,11 +29,14 @@ Filetypes
 Options
     -m, --mode <brave|custom>
                  Glob settings for different types of projects
-                 Defaults to brave.
+                 Defaults to 'brave'.
     --no-        Prefix to negate option
-                 Example: --no-m or --no-mode
+                 Example: --no-fix or --no-mode
+    -f, --fix
+                 Enables auto fix for linter action.
+                 Defaults to 'true'.
     --help       Show CLI usage
-    --version    Shows version****
+    --version    Shows version
 ```
 
 ### Format JavaScript

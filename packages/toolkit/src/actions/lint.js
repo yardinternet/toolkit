@@ -5,7 +5,7 @@ export const lint = ( options, filetypeString, userPath ) => {
 	const formatFiletype = filetypeFromString( filetypeString, true );
 	const formatMode = modesFromString( options.mode, true );
 
-	const command = 'wp-scripts';
+	const command = 'eslint';
 	let commandAction = '';
 
 	switch (formatFiletype.name) {
@@ -21,7 +21,7 @@ export const lint = ( options, filetypeString, userPath ) => {
 
 	const glob = getGlobByFormatModeAndFiletype(formatMode, formatFiletype.name);
 
-	run( `${ command } ${ commandAction } ${ glob?.path ?? '' } ${ userPath ?? '' }`, 'lint' );
+	run( `${ command } ${ commandAction } ${ glob?.path ?? '' } ${ userPath ?? '' } --fix`, 'lint' );
 };
 
 

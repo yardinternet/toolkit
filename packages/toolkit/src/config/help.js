@@ -28,9 +28,14 @@ Options
 		options.mode.name
 	} <${ options.mode.choices.join( '|' ) }>
                  Glob settings for different types of projects
-                 Defaults to ${ options.mode.default }.
+                 Defaults to '${ options.mode.default }'.
     --no-        Prefix to negate option
-                 Example: --no-m or --no-mode
+                 Example: --no-fix or --no-mode
+    -${ options.fix.shortFlag }, --${
+		options.fix.name
+    }
+                 Enables auto fix for linter action.
+                 Defaults to '${ options.fix.default }'.
     --help       Show CLI usage
     --version    Shows version
 `;

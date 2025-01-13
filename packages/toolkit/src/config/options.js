@@ -8,4 +8,10 @@ export const options = {
 		choices: [ modes.brave.name, modes.custom.name ],
 		default: modes.brave.name,
 	},
+	fix: {
+		name: 'fix',
+		type: 'boolean',
+		shortFlag: 'f',
+		default: true,
+	},
 };
