@@ -16,8 +16,8 @@
     "packages/toolkit"
   ],
   "scripts": {
-    "lint:js": "eslint './packages/**/*.js' --fix",
-    "format:js": "wp-scripts format './packages/**/*.js'",
+    "lint:js": "yard-toolkit lint js -m custom './packages/**/*.js'",
+    "format:js": "yard-toolkit format js -m custom './packages/**/*.js'",
     "prepare": "husky"
   },
   "type": "commonjs",
