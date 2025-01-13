@@ -3,17 +3,17 @@ import {
 	filetypeFromString,
 	getGlobByFormatModeAndFiletype,
 	modesFromString,
-	run
-} from "../utils/helpers.js";
-import {filetypes} from "../config/filetypes.js";
+	run,
+} from '../utils/helpers.js';
+import { filetypes } from '../config/filetypes.js';
 
 export const lint = ( options, filetype, userPath ) => {
 	const formatFiletype = filetypeFromString( filetype, true );
 	const formatMode = modesFromString( options.mode, true );
-	const isFix = options[options.fix.name] ?? false;
+	const isFix = options[ options.fix.name ] ?? false;
 
 	let command = '';
-	switch (formatFiletype.name) {
+	switch ( formatFiletype.name ) {
 		case filetypes.js.name:
 			command = 'eslint';
 			break;
@@ -21,12 +21,20 @@ export const lint = ( options, filetype, userPath ) => {
 			command = 'wp-scripts lint-style';
 			break;
 		default:
-			error(`Filetype '${formatFiletype.name}' not possible with lint action.`);
+			error(
+				`Filetype '${ formatFiletype.name }' not possible with lint action.`
+			);
 	}
 
-	const glob = getGlobByFormatModeAndFiletype(formatMode, formatFiletype.name);
+	const glob = getGlobByFormatModeAndFiletype(
+		formatMode,
+		formatFiletype.name
+	);
 
-	run( `${ command } ${ glob?.path ?? '' } ${ userPath ?? '' } ${isFix ? '--fix' : ''}`, 'lint' );
+	run(
+		`${ command } ${ glob?.path ?? '' } ${ userPath ?? '' } ${
+			isFix ? '--fix' : ''
+		}`,
+		'lint'
+	);
 };
-
-

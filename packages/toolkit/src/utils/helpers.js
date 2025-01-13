@@ -3,7 +3,6 @@ import { exit } from 'node:process';
 import { exec } from 'node:child_process';
 import { filetypes } from '../config/filetypes.js';
 import { modes } from '../config/modes.js';
-import {options} from "../config/options.js";
 
 export const error = (
 	msg = 'An error occurred',
@@ -34,8 +33,7 @@ export const run = ( command, commandLabel = 'external script' ) => {
 
 		if ( isError ) commandOutputLog( commandLabel, commandError );
 
-		if ( commandOutput != '' )
-			commandOutputLog( commandLabel, commandOutput );
+		if ( commandOutput ) commandOutputLog( commandLabel, commandOutput );
 	} );
 };
 
@@ -45,7 +43,7 @@ const fromString = (
 	errorWhenNotFound,
 	errorSearchName
 ) => {
-	if ( nameString == null ) error( `${ errorSearchName } was not set!` );
+	if ( ! nameString ) error( `${ errorSearchName } was not set!` );
 
 	const result = filterObjectByName( nameString, configObject );
 
@@ -81,8 +79,6 @@ export const filterObjectByName = ( name, object ) => {
 	return null;
 };
 
-export const getGlobByFormatModeAndFiletype = (formatMode, filetype) => {
-	return formatMode.paths?.find(
-		( path ) => path.filetype === filetype
-	);
-}
+export const getGlobByFormatModeAndFiletype = ( formatMode, filetype ) => {
+	return formatMode.paths?.find( ( path ) => path.filetype === filetype );
+};
