@@ -1,19 +1,24 @@
-import {error, filetypeFromString, getGlobByFormatModeAndFiletype, modesFromString, run} from "../utils/helpers.js";
+import {
+	error,
+	filetypeFromString,
+	getGlobByFormatModeAndFiletype,
+	modesFromString,
+	run
+} from "../utils/helpers.js";
 import {filetypes} from "../config/filetypes.js";
 
 export const lint = ( options, filetypeString, userPath ) => {
 	const formatFiletype = filetypeFromString( filetypeString, true );
 	const formatMode = modesFromString( options.mode, true );
+	const isFix = options[options.fix.name] ?? false;
 
-	const command = 'eslint';
-	let commandAction = '';
-
+	let command = '';
 	switch (formatFiletype.name) {
 		case filetypes.js.name:
-			commandAction = 'lint-js';
+			command = 'eslint';
 			break;
 		case filetypes.css.name:
-			commandAction = 'lint-style';
+			command = 'wp-scripts lint-style';
 			break;
 		default:
 			error(`Filetype '${formatFiletype.name}' not possible with lint action.`);
@@ -21,7 +26,7 @@ export const lint = ( options, filetypeString, userPath ) => {
 
 	const glob = getGlobByFormatModeAndFiletype(formatMode, formatFiletype.name);
 
-	run( `${ command } ${ commandAction } ${ glob?.path ?? '' } ${ userPath ?? '' } --fix`, 'lint' );
+	run( `${ command } ${ glob?.path ?? '' } ${ userPath ?? '' } ${isFix ? '--fix' : ''}`, 'lint' );
 };
 
 

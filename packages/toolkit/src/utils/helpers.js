@@ -3,6 +3,7 @@ import { exit } from 'node:process';
 import { exec } from 'node:child_process';
 import { filetypes } from '../config/filetypes.js';
 import { modes } from '../config/modes.js';
+import {options} from "../config/options.js";
 
 export const error = (
 	msg = 'An error occurred',
