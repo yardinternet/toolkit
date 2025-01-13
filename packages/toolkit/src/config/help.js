@@ -1,8 +1,8 @@
-// prettier-ignore
-import {actions} from "./actions.js";
+import { actions } from './actions.js';
 import { filetypes } from './filetypes.js';
 import { options } from './options.js';
 
+// prettier-ignore
 export const help = `
 Usage
 

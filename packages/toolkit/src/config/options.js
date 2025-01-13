@@ -1,4 +1,4 @@
-import {modes} from "./modes.js";
+import { modes } from './modes.js';
 
 export const options = {
 	mode: {
@@ -7,5 +7,5 @@ export const options = {
 		shortFlag: 'm',
 		choices: [ modes.brave.name, modes.custom.name ],
 		default: modes.brave.name,
-	}
-}
+	},
+};

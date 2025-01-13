@@ -1,3 +1,1 @@
-export const lint = (options, filetype, path) => {
-
-}
+export const lint = ( options, filetype, path ) => {};

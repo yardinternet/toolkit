@@ -10,5 +10,5 @@ export const filetypes = {
 	css: {
 		name: 'css',
 		extension: '.css',
-	}
-}
+	},
+};
