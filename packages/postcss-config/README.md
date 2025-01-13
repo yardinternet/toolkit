@@ -19,7 +19,7 @@ module.exports = postcssSettings();
 ```
 
 The default path to the styles is `web/app/themes/sage/resources/styles`.
-The theme path gets set by the getPathToTheme() function from Yard scripts.
+The theme path gets set to `web/app/themes/` by default.
 You can change these values by passing the paths as an parameter.
 
 ```js

@@ -1,9 +1,8 @@
-const { getPathToTheme } = require( './scripts/helpers' ); //  @TODO: WERKT NIET
 const path = require( 'path' );
 
 module.exports = (
 	pathToStyles = 'web/app/themes/sage/resources/styles',
-	pathToTheme = getPathToTheme()
+	pathToTheme = 'web/app/themes/'
 ) => {
 	// Add alias paths for PostCSS imports
 	const resolveAliasPaths = ( id ) => {
