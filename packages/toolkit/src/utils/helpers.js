@@ -1,8 +1,8 @@
 import chalk from 'chalk';
-import {exit} from 'node:process';
-import {exec} from "node:child_process";
-import {filetypes} from "../config/filetypes.js";
-import {modes} from "../config/modes.js";
+import { exit } from 'node:process';
+import { exec } from 'node:child_process';
+import { filetypes } from '../config/filetypes.js';
+import { modes } from '../config/modes.js';
 
 export const error = (
 	msg = 'An error occurred',
@@ -10,61 +10,72 @@ export const error = (
 	exitCode = 1
 ) => {
 	// eslint-disable-next-line no-console
-	console.error(`[${chalk.red('error')}] ${msg}`);
+	console.error( `[${ chalk.red( 'error' ) }] ${ msg }` );
 
-	if (die) {
-		exit(exitCode);
+	if ( die ) {
+		exit( exitCode );
 	}
 };
 
-export const info = (msg) => {
+export const info = ( msg ) => {
 	// eslint-disable-next-line no-console
-	console.info(`[${chalk.blue('info')}] ${msg}`);
+	console.info( `[${ chalk.blue( 'info' ) }] ${ msg }` );
 };
 
-export const commandOutputLog = (commandLabel, msg) => {
+export const commandOutputLog = ( commandLabel, msg ) => {
 	// eslint-disable-next-line no-console
-	console.log(`[${chalk.green(commandLabel)}] ${msg}`);
-}
+	console.log( `[${ chalk.green( commandLabel ) }]\n${ msg }` );
+};
 
-export const run = (command, commandLabel = 'external script') => {
-	exec(command, (isError, commandOutput, commandError) => {
-		info(`Running: '${command}'`);
+export const run = ( command, commandLabel = 'external script' ) => {
+	exec( command, ( isError, commandOutput, commandError ) => {
+		info( `Running: '${ command }'` );
 
-		if (isError) {
-			commandOutputLog(commandLabel, commandError);
-		}
+		if ( isError ) commandOutputLog( commandLabel, commandError );
 
-		commandOutputLog(commandLabel, commandOutput);
-	});
-}
+		if ( commandOutput != '' )
+			commandOutputLog( commandLabel, commandOutput );
+	} );
+};
 
-const fromString = (configObject, nameString, errorWhenNotFound, errorSearchName) => {
+const fromString = (
+	configObject,
+	nameString,
+	errorWhenNotFound,
+	errorSearchName
+) => {
+	if ( nameString == null ) error( `${ errorSearchName } was not set!` );
 
-	if (nameString == null) error(`${errorSearchName} was not set!`);
+	const result = filterObjectByName( nameString, configObject );
 
-	const result = filterObjectByName(nameString, configObject);
-
-	if (errorWhenNotFound && result === null) error(`${errorSearchName} ${nameString} was not found!`);
+	if ( errorWhenNotFound && result === null )
+		error( `${ errorSearchName } ${ nameString } was not found!` );
 
 	return result;
-}
+};
 
-export const filetypeFromString = (filetypeString, errorWhenNotFound = false) => {
-	return fromString(filetypes, filetypeString, errorWhenNotFound, 'Filetype');
-}
+export const filetypeFromString = (
+	filetypeString,
+	errorWhenNotFound = false
+) => {
+	return fromString(
+		filetypes,
+		filetypeString,
+		errorWhenNotFound,
+		'Filetype'
+	);
+};
 
-export const modesFromString = (modesString, errorWhenNotFound = false) => {
-	return fromString(modes, modesString, errorWhenNotFound, 'Mode');
-}
+export const modesFromString = ( modesString, errorWhenNotFound = false ) => {
+	return fromString( modes, modesString, errorWhenNotFound, 'Mode' );
+};
 
-export const filterObjectByName = (name, object) => {
-	for (const [key, value] of Object.entries(object)) {
-		if (name === value.name) {
-			return object[key];
+export const filterObjectByName = ( name, object ) => {
+	for ( const [ key, value ] of Object.entries( object ) ) {
+		if ( name === value.name ) {
+			return object[ key ];
 		}
 	}
 
 	return null;
-}
-
+};
