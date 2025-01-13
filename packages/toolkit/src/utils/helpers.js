@@ -2,6 +2,7 @@ import chalk from 'chalk';
 import {exit} from 'node:process';
 import {exec} from "node:child_process";
 import {filetypes} from "../config/filetypes.js";
+import {modes} from "../config/modes.js";
 
 export const error = (
 	msg = 'An error occurred',
@@ -21,20 +22,49 @@ export const info = (msg) => {
 	console.info(`[${chalk.blue('info')}] ${msg}`);
 };
 
-export const run = (command) => {
-	exec(command, (isError, stdout, stderr) => {
+export const commandOutputLog = (commandLabel, msg) => {
+	// eslint-disable-next-line no-console
+	console.log(`[${chalk.green(commandLabel)}] ${msg}`);
+}
+
+export const run = (command, commandLabel = 'external script') => {
+	exec(command, (isError, commandOutput, commandError) => {
+		info(`Running: '${command}'`);
+
 		if (isError) {
-			error(stderr)
+			commandOutputLog(commandLabel, commandError);
 		}
-		// eslint-disable-next-line no-console
-		console.log(stdout);
+
+		commandOutputLog(commandLabel, commandOutput);
 	});
 }
 
-export const filetypeFromString = (filetypeString) => {
-	for (const [key, value] of Object.entries(filetypes)) {
-		if (filetypeString === value.name) {
-			return filetypes[key];
+const fromString = (configObject, nameString, errorWhenNotFound, errorSearchName) => {
+
+	if (nameString == null) error(`${errorSearchName} was not set!`);
+
+	const result = filterObjectByName(nameString, configObject);
+
+	if (errorWhenNotFound && result === null) error(`${errorSearchName} ${nameString} was not found!`);
+
+	return result;
+}
+
+export const filetypeFromString = (filetypeString, errorWhenNotFound = false) => {
+	return fromString(filetypes, filetypeString, errorWhenNotFound, 'Filetype');
+}
+
+export const modesFromString = (modesString, errorWhenNotFound = false) => {
+	return fromString(modes, modesString, errorWhenNotFound, 'Mode');
+}
+
+export const filterObjectByName = (name, object) => {
+	for (const [key, value] of Object.entries(object)) {
+		if (name === value.name) {
+			return object[key];
 		}
 	}
+
+	return null;
 }
+

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import meow from 'meow';
-import {error, run} from './utils/helpers.js';
+import {error} from './utils/helpers.js';
 import { help } from './config/help.js';
 import {actions} from "./config/actions.js";
 import {options} from "./config/options.js";
@@ -17,7 +17,7 @@ try {
 } catch ( errorMsg ) {
 	error( errorMsg.toString().replace( 'Error: ', '' ) );
 }
-console.log(cli.flags)
+
 const actionName = cli.input[ 0 ];
 
 if ( undefined === actionName ) {
