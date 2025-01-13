@@ -7,8 +7,8 @@ import {
 } from "../utils/helpers.js";
 import {filetypes} from "../config/filetypes.js";
 
-export const lint = ( options, filetypeString, userPath ) => {
-	const formatFiletype = filetypeFromString( filetypeString, true );
+export const lint = ( options, filetype, userPath ) => {
+	const formatFiletype = filetypeFromString( filetype, true );
 	const formatMode = modesFromString( options.mode, true );
 	const isFix = options[options.fix.name] ?? false;
 

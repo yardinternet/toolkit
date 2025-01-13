@@ -1,7 +1,7 @@
 import {filetypeFromString, getGlobByFormatModeAndFiletype, modesFromString, run} from '../utils/helpers.js';
 
-export const format = ( options, filetypeString, userPath ) => {
-	const formatFiletype = filetypeFromString( filetypeString, true );
+export const format = ( options, filetype, userPath ) => {
+	const formatFiletype = filetypeFromString( filetype, true );
 	const formatMode = modesFromString( options.mode, true );
 
 	const command = 'wp-scripts format';
