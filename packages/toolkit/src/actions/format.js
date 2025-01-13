@@ -10,8 +10,5 @@ export const format = ( options, filetypeString, userPath ) => {
 		( path ) => path.filetype === formatFiletype.name
 	);
 
-	run(
-		`${ command } ${ glob?.path ?? '' } ${ userPath ?? '' }`,
-		'wp-scripts format'
-	);
+	run( `${ command } ${ glob?.path ?? '' } ${ userPath ?? '' }`, 'format' );
 };
