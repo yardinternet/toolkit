@@ -13,16 +13,16 @@ npm i @yardinternet/postcss-config`
 `@yardinternet/postcss-config` can be required in the `postcss.config.js`
 
 ```js
+const { getPathToTheme } = require( './scripts/helpers' );
 const postcssSettings = require('@yardinternet/postcss-config');
 
-module.exports = postcssSettings();
+module.exports = postcssSettings(getPathToTheme());
 ```
 
 The default path to the styles is `web/app/themes/sage/resources/styles`.
-The theme path gets set to `web/app/themes/` by default.
-You can change these values by passing the paths as an parameter.
+You can change this values by passing the paths as an parameter.
 
 ```js
 const postcssSettings = require('@yardinternet/postcss-config');
-module.exports = postcssSettings('resources/styles', 'src/theme');
+module.exports = postcssSettings('src/theme', 'resources/styles');
 ```

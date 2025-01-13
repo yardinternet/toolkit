@@ -1,8 +1,8 @@
 const path = require( 'path' );
 
 module.exports = (
-	pathToStyles = 'web/app/themes/sage/resources/styles',
-	pathToTheme = 'web/app/themes/'
+	pathToTheme,
+	pathToStyles = 'web/app/themes/sage/resources/styles'
 ) => {
 	// Add alias paths for PostCSS imports
 	const resolveAliasPaths = ( id ) => {
