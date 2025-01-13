@@ -79,3 +79,9 @@ export const filterObjectByName = ( name, object ) => {
 
 	return null;
 };
+
+export const getGlobByFormatModeAndFiletype = (formatMode, filetype) => {
+	return formatMode.paths?.find(
+		( path ) => path.filetype === filetype
+	);
+}

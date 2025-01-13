@@ -1,4 +1,4 @@
-import { filetypeFromString, modesFromString, run } from '../utils/helpers.js';
+import {filetypeFromString, getGlobByFormatModeAndFiletype, modesFromString, run} from '../utils/helpers.js';
 
 export const format = ( options, filetypeString, userPath ) => {
 	const formatFiletype = filetypeFromString( filetypeString, true );
@@ -6,9 +6,7 @@ export const format = ( options, filetypeString, userPath ) => {
 
 	const command = 'wp-scripts format';
 
-	const glob = formatMode.paths?.find(
-		( path ) => path.filetype === formatFiletype.name
-	);
+	const glob = getGlobByFormatModeAndFiletype(formatMode, formatFiletype.name);
 
 	run( `${ command } ${ glob?.path ?? '' } ${ userPath ?? '' }`, 'format' );
 };
