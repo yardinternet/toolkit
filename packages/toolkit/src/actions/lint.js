@@ -1,6 +1,6 @@
 import {error, filetypeFromString, getGlobByFormatModeAndFiletype, modesFromString, run} from "../utils/helpers.js";
 
-export const lint = ( options, filetype, path ) => {
+export const lint = ( options, filetype, userPath ) => {
 	const formatFiletype = filetypeFromString( filetypeString, true );
 	const formatMode = modesFromString( options.mode, true );
 
@@ -20,7 +20,7 @@ export const lint = ( options, filetype, path ) => {
 
 	const glob = getGlobByFormatModeAndFiletype(formatMode, formatFiletype.name);
 
-	run( `${ command } ${ glob?.path ?? '' } ${ userPath ?? '' }`, 'format' );
+	run( `${ command } ${ commandAction } ${ glob?.path ?? '' } ${ userPath ?? '' }`, 'lint' );
 };
 
 
