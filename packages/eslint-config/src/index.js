@@ -26,7 +26,6 @@ module.exports = [
 			},
 
 			parser: babelParser,
-			ecmaVersion: 6,
 
 			parserOptions: {
 				requireConfigFile: false,
