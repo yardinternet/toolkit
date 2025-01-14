@@ -1,11 +1,11 @@
-# @yardinternet/scripts
+# @yardinternet/toolkit
 
 CLI Scripts used by the WordPress team for sites and packages.
 
 ## Installation
 
 ```bash
-npm i @yardinternet/scripts`
+npm i @yardinternet/toolkit`
 ```
 
 ## Usage
