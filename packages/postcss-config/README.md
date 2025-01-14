@@ -5,7 +5,7 @@ Postcss settings used by the WordPress team.
 ## Installation
 
 ```bash
-npm i @yardinternet/postcss-config`
+npm i @yardinternet/postcss-config
 ```
 
 ## Usage
