@@ -1,0 +1,18 @@
+{
+  "name": "@yardinternet/toolkit",
+  "version": "1.0.0",
+  "description": "Yard toolkit CLI scripts",
+  "bin": {
+    "yard-toolkit": "./src/index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "type": "module",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^5.4.1",
+    "meow": "^13.2.0"
+  }
+}

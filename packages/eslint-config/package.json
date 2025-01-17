@@ -1,12 +1,19 @@
 {
   "name": "@yardinternet/eslint-config",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Eslint configuration",
   "main": "src/index.js",
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "type": "commonjs",
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@eslint/eslintrc": "^3.2.0",
+    "@eslint/js": "^9.17.0",
+    "@wordpress/eslint-plugin": "^22.1.1",
+    "eslint-config-prettier": "^9.1.0",
+    "globals": "^15.14.0"
+  }
 }
