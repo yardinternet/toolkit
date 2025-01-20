@@ -12,7 +12,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@wordpress/scripts": "^30.9.0",
     "chalk": "^5.4.1",
     "meow": "^13.2.0"
+  },
+  "optionalDependencies": {
+    "@yardinternet/eslint-config": "^1.0.0",
+    "@yardinternet/prettier-config": "^1.0.0",
+    "@yardinternet/stylelint-config": "^1.0.0"
   }
 }
