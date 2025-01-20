@@ -20,7 +20,12 @@ Install dependencies in package: `npm install [depname] -w [packagename]`
 
 1. Create a new version for the workspace
 ```bash
-npm version minor --workspace ./packages/prettier-config 
+npm version minor --workspace ./packages/prettier-config --include-workspace-root
+```
+3. Commit the version changes
+```bash
+git add .
+git commit -m '[yourmsg]'
 ```
 2. Publish the workspace to the registry
 ```bash
@@ -30,12 +35,18 @@ npm publish --workspace ./packages/prettier-config
 ### Versioning
 
 ```bash
-npm version [<newversion> | major | minor | patch ] --workspace ./packages/prettier-config 
+npm version [<newversion> | major | minor | patch ] --workspace ./packages/prettier-config --include-workspace-root
 ```
+
+`--include-workspace-root` will include the workspace root versio. 
 
 #### Example
 
-Current version is `1.0.0`. After running `npm version patch` it is `1.0.1` (npm version will automatically commit it to git)
+Current version of /packages/prettier-config is `1.0.0` and the root is `1.1.0`. 
+After running `npm version minor --workspace ./packages/prettier-config --include-workspace-root` it is `1.1.0`.
+The workspace root version now is `1.1.0`. 
+
+NPM automatically created a tag `v1.1.0`. Now you need to commit and push the changes.
 
 ### Publishing
 
