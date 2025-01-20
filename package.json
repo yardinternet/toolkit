@@ -22,7 +22,11 @@
   },
   "type": "commonjs",
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com/@yardinternet"
+    "registry": "https://npm.pkg.github.com/@yardinternet",
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:yardinternet/toolkit.git"
   },
   "devDependencies": {
     "husky": "^9.1.7",
