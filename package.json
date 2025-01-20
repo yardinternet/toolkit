@@ -8,6 +8,7 @@
     "url": "https://www.yard.nl/"
   },
   "license": "ISC",
+  "private": true,
   "workspaces": [
     "packages/stylelint-config",
     "packages/prettier-config",

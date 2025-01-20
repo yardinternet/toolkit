@@ -10,6 +10,11 @@
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yardinternet/toolkit.git",
+    "directory": "packages/stylelint-config"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {

@@ -9,6 +9,11 @@
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yardinternet/toolkit.git",
+    "directory": "packages/eslint-config"
+  },
   "type": "commonjs",
   "author": "",
   "license": "ISC",
