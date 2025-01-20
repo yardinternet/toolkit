@@ -21,6 +21,9 @@
     "prepare": "husky"
   },
   "type": "commonjs",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/@yardinternet"
+  },
   "devDependencies": {
     "husky": "^9.1.7",
     "lint-staged": "^15.3.0"
