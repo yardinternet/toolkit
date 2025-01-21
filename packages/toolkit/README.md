@@ -5,7 +5,7 @@ CLI Scripts used by the WordPress team for sites and packages.
 ## Installation
 
 ```bash
-npm i @yardinternet/toolkit`
+npm i @yardinternet/toolkit
 ```
 
 ## Usage
@@ -44,7 +44,7 @@ Options
 For default for brave sites:
 
 ```bash 
-yard-toolkit format js'
+yard-toolkit format js
 ```
 
 For other sites or packages use `custom` mode:
@@ -58,13 +58,13 @@ yard-toolkit format js -m custom './packages/**/*.js'
 For default for brave sites:
 
 ```bash 
-yard-toolkit lint js'
+yard-toolkit lint js
 ```
 
 If you don't want auto fix
 
 ```bash 
-yard-toolkit lint js --no-fix'
+yard-toolkit lint js --no-fix
 ```
 
 For other sites or packages use `custom` mode:
