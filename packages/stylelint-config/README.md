@@ -5,7 +5,7 @@ Stylelint settings used by the WordPress team for sites and packages.
 ## Installation
 
 ```bash
-npm i @yardinternet/stylelint-config`
+npm i @yardinternet/stylelint-config
 ```
 
 ## Usage
