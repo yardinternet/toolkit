@@ -5,7 +5,7 @@ ESlint settings used by the WordPress team for sites and packages.
 ## Installation
 
 ```bash
-npm i @yardinternet/eslint-config`
+npm i @yardinternet/eslint-config
 ```
 
 ## Usage

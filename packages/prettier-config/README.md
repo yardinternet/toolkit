@@ -5,7 +5,7 @@ Prettier settings used by the WordPress team for sites and packages.
 ## Installation
 
 ```bash
-npm i @yardinternet/prettier-config`
+npm i @yardinternet/prettier-config
 ```
 
 ## Usage
