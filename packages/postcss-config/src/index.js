@@ -2,6 +2,7 @@ const path = require( 'path' );
 
 module.exports = (
 	pathToTheme,
+	basePath,
 	pathToStyles = 'web/app/themes/sage/resources/styles'
 ) => {
 	// Add alias paths for PostCSS imports
@@ -10,7 +11,7 @@ module.exports = (
 			const relativePath = id.replace( '@sage', '' ).trimStart( '/' );
 
 			const sageParentThemeStylesPath = path.join(
-				__dirname,
+				basePath,
 				pathToStyles
 			);
 			return path.join( sageParentThemeStylesPath, relativePath );
