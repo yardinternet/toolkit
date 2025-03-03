@@ -11,4 +11,8 @@ export const filetypes = {
 		name: 'css',
 		extension: '.css',
 	},
+	scss: {
+		name: 'scss',
+		extension: '.scss',
+	},
 };

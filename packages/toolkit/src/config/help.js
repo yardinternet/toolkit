@@ -22,6 +22,9 @@ Filetypes
     ${ filetypes.css.name }           Cascading Style Sheet files (*${
 		filetypes.css.extension
 	})
+		${ filetypes.scss.name }          SCSS files (custom mode only) (*${
+		filetypes.scss.extension
+	})
 
 Options
     -${ options.mode.shortFlag }, --${
