@@ -18,6 +18,7 @@ export const lint = ( options, filetype, userPath ) => {
 		case filetypes.js.name:
 			command = 'eslint';
 			break;
+		case filetypes.scss.name:
 		case filetypes.css.name:
 			command = 'wp-scripts lint-style';
 			break;
