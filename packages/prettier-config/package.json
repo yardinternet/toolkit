@@ -1,6 +1,6 @@
 {
   "name": "@yardinternet/prettier-config",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Prettier configuration",
   "main": "src/index.js",
   "type": "commonjs",
