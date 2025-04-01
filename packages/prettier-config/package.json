@@ -22,5 +22,8 @@
     "@wordpress/prettier-config": "^4.15.0",
     "prettier": "npm:wp-prettier@^3.0.3",
     "prettier-plugin-tailwindcss": "^0.6.9"
+  },
+  "overrides": {
+    "prettier": "npm:wp-prettier@^3.0.3"
   }
 }

@@ -14,7 +14,7 @@ It is used by the WordPress team for sites and packages.
 ## 👷‍♀️ Package Development
 
 Register package: `npm init -w ./packages/[packagename]`
-Install dependencies in package: `npm install [depname] -w [packagename]`
+Install dependencies in package: `npm install [depname] -w ./packages/[packagename]`
 
 ## 🚀 Releasing packages
 
