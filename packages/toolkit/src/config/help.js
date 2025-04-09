@@ -16,6 +16,9 @@ Filetypes
     ${ filetypes.js.name }            JavaScript files (*${
 		filetypes.js.extension
 	})
+    ${ filetypes.jsx.name }           JSX files (*${
+		filetypes.jsx.extension
+	})
     ${ filetypes.blade.name }         Laravel Blade files (*${
 		filetypes.blade.extension
 	})

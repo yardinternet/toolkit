@@ -9,6 +9,10 @@ export const modes = {
 				path: './web/app/themes/**/resources/scripts/**/*.js',
 			},
 			{
+				filetype: filetypes.jsx.name,
+				path: './web/app/themes/**/resources/scripts/**/*.jsx',
+			},
+			{
 				filetype: filetypes.blade.name,
 				path: './web/app/themes/**/resources/views/**/*.blade.php',
 			},
