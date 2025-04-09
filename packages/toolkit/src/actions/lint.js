@@ -16,6 +16,7 @@ export const lint = ( options, filetype, userPath ) => {
 	let command = '';
 	switch ( formatFiletype.name ) {
 		case filetypes.js.name:
+		case filetypes.jsx.name:
 			command = 'eslint';
 			break;
 		case filetypes.scss.name:
