@@ -1,0 +1,20 @@
+{
+	"name": "@yardinternet/vite-config",
+	"version": "1.0.0",
+	"description": "Vite configuration",
+	"main": "src/index.js",
+	"publishConfig": {
+		"registry": "https://npm.pkg.github.com/"
+	},
+	"type": "module",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/yardinternet/toolkit.git",
+		"directory": "packages/toolkit"
+	},
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/yardinternet/toolkit/issues"
+	},
+	"devDependencies": {}
+}

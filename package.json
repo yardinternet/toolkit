@@ -14,7 +14,8 @@
     "packages/prettier-config",
     "packages/eslint-config",
     "packages/postcss-config",
-    "packages/toolkit"
+    "packages/toolkit",
+    "packages/vite-config"
   ],
   "scripts": {
     "lint:js": "yard-toolkit lint js -m custom './packages/**/*.js'",
