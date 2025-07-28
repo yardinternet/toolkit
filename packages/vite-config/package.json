@@ -1,0 +1,30 @@
+{
+	"name": "@yardinternet/vite-config",
+	"version": "1.0.0",
+	"main": "src/index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"publishConfig": {
+		"registry": "https://npm.pkg.github.com/"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/yardinternet/toolkit.git",
+		"directory": "packages/vite-config"
+	},
+	"type": "module",
+	"author": "YvetteNikolov",
+	"license": "ISC",
+	"description": "Vite configuration used by the WordPress team for sites and packages.",
+	"devDependencies": {
+		"@roots/vite-plugin": "^1.0.6",
+		"@tailwindcss/vite": "^4.1.11",
+		"@vitejs/plugin-react": "^4.7.0",
+		"laravel-vite-plugin": "^1.3.0",
+		"vite-plugin-gutenberg-blocks": "^2.5.0"
+	},
+	"peerDependencies": {
+		"vite": "^6.3.5"
+	}
+}
