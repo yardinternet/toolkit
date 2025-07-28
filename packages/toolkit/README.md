@@ -43,33 +43,33 @@ Options
 
 For default for brave sites:
 
-```bash 
+```bash
 yard-toolkit format js
 ```
 
 For other sites or packages use `custom` mode:
 
-```bash 
+```bash
 yard-toolkit format js -m custom './packages/**/*.js'
 ```
 
-### Lint 
+### Lint
 
 For default for brave sites:
 
-```bash 
+```bash
 yard-toolkit lint js
 ```
 
 If you don't want auto fix
 
-```bash 
+```bash
 yard-toolkit lint js --no-fix
 ```
 
 For other sites or packages use `custom` mode:
 
-```bash 
+```bash
 yard-toolkit lint js './packages/**/*.js' -m custom --no-fix
 ```
 
@@ -85,13 +85,12 @@ actions/format.js
 
 2. Create an function export function with the name of your action inside the JS file.
    This function must have the parameters: `options` (object with set [options](./src/config/options.js)), `filetype` (string containing [filetype](./src/config/options.js)), `userPath` (file/dir/glob ... passed by user)
-   
+
 ```js
 export const format = ( options, filetype, userPath ) => {
     
 };
 ```
-
 
 3. Add your action to the [actions](./src/config/actions.js) config file.
 
@@ -105,6 +104,7 @@ export const actions = {
     },
 };
 ```
+
 4. Add a discription of your action to the [help.js](./src/config/help.js) file
 
 ```js
@@ -125,7 +125,7 @@ Don't forget to also add it to the [help.js](./src/config/help.js) file.
 
 ```js
 export const filetypes = {
-	blade: {
+ blade: {
         name: 'blade',
         extension: '.blade.php',
     },
@@ -141,13 +141,12 @@ The filetype field must link to an name of an filetype in the [filetypes.js](./s
 
 After you added a new mode add the mode to the `choices` list of the option called `mode`
 
- 
 ```js
 import { filetypes } from './filetypes.js';
 
 export const modes = {
-	examplemode: {
-		name: 'custom',
+ examplemode: {
+  name: 'custom',
         paths: [
             {
                 filetype: filetypes.js.name,
@@ -158,11 +157,10 @@ export const modes = {
                 path: './web/app/themes/**/resources/views/**/*.blade.php',
             }
             // this mode does not have an path for css './web/app/themes/**/resources/styles/**/*.css'
-	    ],
-	},
+     ],
+ },
 };
 ```
-
 
 ```js
 import { modes } from './modes.js';
