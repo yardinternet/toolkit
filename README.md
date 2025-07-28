@@ -1,6 +1,6 @@
 # Yard Toolkit
 
-Yard Toolkit centralizes configuration files for formatting and linting, among other things.
+Yard Toolkit centralizes configuration files for building, formatting and linting, among other things.
 It is used by the WordPress team for sites and packages.
 
 ## Packages
@@ -10,6 +10,7 @@ It is used by the WordPress team for sites and packages.
 - [@yardinternet/stylelint-config](packages/stylelint-config/README.md)
 - [@yardinternet/postcss-config](packages/postcss-config/README.md)
 - [@yardinternet/toolkit](packages/toolkit/README.md)
+- [@yardinternet/vite-config](packages/vite-config/README.md)
 
 ## 👷‍♀️ Package Development
 
