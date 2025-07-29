@@ -11,6 +11,8 @@ Usage
 Actions
     ${ actions.format.name }        Runs formatter for specified filetype
     ${ actions.lint.name }          Runs linter for specified filetype
+    ${ actions.watch.name }         Runs Vite watcher
+    ${ actions.build.name }         Runs Vite build
 
 Filetypes
     ${ filetypes.js.name }            JavaScript files (*${
@@ -25,7 +27,7 @@ Filetypes
     ${ filetypes.css.name }           Cascading Style Sheet files (*${
 		filetypes.css.extension
 	})
-		${ filetypes.scss.name }          SCSS files (custom mode only) (*${
+    ${ filetypes.scss.name }          SCSS files (custom mode only) (*${
 		filetypes.scss.extension
 	})
 
