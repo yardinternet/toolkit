@@ -1,9 +1,10 @@
+import { spawn } from 'child_process';
+
 import {
 	error,
 	filetypeFromString,
 	getGlobByFormatModeAndFiletype,
 	modesFromString,
-	run,
 } from '../utils/helpers.js';
 import { filetypes } from '../config/filetypes.js';
 import { options as configOptions } from '../config/options.js';
@@ -21,7 +22,7 @@ export const lint = ( options, filetype, userPath ) => {
 			break;
 		case filetypes.scss.name:
 		case filetypes.css.name:
-			command = 'wp-scripts lint-style';
+			command = 'stylelint';
 			break;
 		default:
 			error(
@@ -34,10 +35,20 @@ export const lint = ( options, filetype, userPath ) => {
 		formatFiletype.name
 	);
 
-	run(
-		`${ command } ${ glob?.path ?? '' } ${ userPath ?? '' } ${
-			isFix ? '--fix' : ''
-		}`,
-		'lint'
-	);
+	const args = [
+		...( glob?.path ? [ glob.path ] : [] ),
+		...( userPath ? [ userPath ] : [] ),
+		...( isFix ? [ '--fix' ] : [] ),
+	];
+
+	const child = spawn( command, args, {
+		stdio: 'inherit',
+		shell: true, // Required for glob support
+	} );
+
+	child.on( 'exit', ( code ) => {
+		if ( code !== 0 ) {
+			error( `${ command } exited with code ${ code }` );
+		}
+	} );
 };
