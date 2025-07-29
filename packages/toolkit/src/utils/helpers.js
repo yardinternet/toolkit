@@ -1,39 +1,28 @@
-import chalk from 'chalk';
-import { exit } from 'node:process';
-import { exec } from 'node:child_process';
+/**
+ * External dependencies
+ */
+import fs from 'fs';
+import util from 'util';
+import { exec } from 'child_process';
+
+/**
+ * Internal dependences
+ */
 import { filetypes } from '../config/filetypes.js';
 import { modes } from '../config/modes.js';
-
-export const error = (
-	msg = 'An error occurred',
-	die = true,
-	exitCode = 1
-) => {
-	// eslint-disable-next-line no-console
-	console.error( `[${ chalk.red( 'error' ) }] ${ msg }` );
-
-	if ( die ) {
-		exit( exitCode );
-	}
-};
-
-export const info = ( msg ) => {
-	// eslint-disable-next-line no-console
-	console.info( `[${ chalk.blue( 'info' ) }] ${ msg }` );
-};
-
-export const commandOutputLog = ( commandLabel, msg ) => {
-	// eslint-disable-next-line no-console
-	console.log( `[${ chalk.green( commandLabel ) }]\n${ msg }` );
-};
+import log from './logger.js';
 
 export const run = ( command, commandLabel = 'external script' ) => {
 	exec( command, ( isError, commandOutput, commandError ) => {
-		info( `Running: '${ command }'` );
+		log.info( `Running: '${ command }'` );
 
-		if ( isError ) commandOutputLog( commandLabel, commandError );
+		if ( isError ) {
+			log.error( `[${ commandLabel }] ${ commandError }`, false );
+		}
 
-		if ( commandOutput ) commandOutputLog( commandLabel, commandOutput );
+		if ( commandOutput ) {
+			log.info( `[${ commandLabel }]\n${ commandOutput }` );
+		}
 	} );
 };
 
@@ -43,12 +32,12 @@ const fromString = (
 	errorWhenNotFound,
 	errorSearchName
 ) => {
-	if ( ! nameString ) error( `${ errorSearchName } was not set!` );
+	if ( ! nameString ) log.error( `${ errorSearchName } was not set!` );
 
 	const result = filterObjectByName( nameString, configObject );
 
 	if ( errorWhenNotFound && result === null )
-		error( `${ errorSearchName } ${ nameString } was not found!` );
+		log.error( `${ errorSearchName } ${ nameString } was not found!` );
 
 	return result;
 };
@@ -81,4 +70,36 @@ export const filterObjectByName = ( name, object ) => {
 
 export const getGlobByFormatModeAndFiletype = ( formatMode, filetype ) => {
 	return formatMode.paths?.find( ( path ) => path.filetype === filetype );
+};
+
+export const ensureFileExists = ( filePath, errorMsg = null ) => {
+	if ( ! fs.existsSync( filePath ) ) {
+		log.error( errorMsg || `${ filePath } not found.`, true, 1 );
+	}
+};
+
+export const handleParallelResults = ( results, itemType = 'item' ) => {
+	const failed = results.filter( ( r ) => r.status === 'rejected' );
+	if ( failed.length > 0 ) {
+		log.error( `❌ ${ failed.length } ${ itemType }(s) failed.`, true, 1 );
+	} else {
+		log.success( `✅ All ${ itemType }s processed successfully!` );
+	}
+};
+
+export const execWithEnv = async ( command, env = {}, options = {} ) => {
+	const execAsync = util.promisify( exec );
+	return execAsync( command, {
+		env: { ...process.env, ...env },
+		...options,
+	} );
+};
+
+export const setupGracefulShutdown = ( children ) => {
+	process.on( 'SIGINT', () => {
+		children.forEach( ( child ) => {
+			if ( child && ! child.killed ) child.kill( 'SIGINT' );
+		} );
+		process.exit( 0 );
+	} );
 };
