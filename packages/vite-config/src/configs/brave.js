@@ -45,9 +45,13 @@ export const braveConfig = ( { theme, projectConfig = {} } ) => {
 		 * Named host required for CSP whitelisting in dev mode.
 		 */
 		server: {
-			host: 'localhost',
-			cors: true,
+			hmr: {
+				host: 'localhost',
+			},
 		},
+		/**
+		 * Generates the aliases for each theme to use like `@theme-name`.
+		 */
 		resolve: {
 			alias: generateAliases(),
 		},
