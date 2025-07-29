@@ -18,7 +18,7 @@ export const modes = {
 			},
 			{
 				filetype: filetypes.css.name,
-				path: './web/app/themes/**/resources/styles/**/*.css',
+				path: './web/app/themes/**/resources/styles/{*,**/*}.css',
 			},
 		],
 	},

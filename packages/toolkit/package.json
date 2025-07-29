@@ -1,32 +1,38 @@
 {
-  "name": "@yardinternet/toolkit",
-  "version": "1.0.3",
-  "description": "Yard toolkit CLI scripts",
-  "bin": {
-    "yard-toolkit": "./src/index.js"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/yardinternet/toolkit.git",
-    "directory": "packages/toolkit"
-  },
-  "type": "module",
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "@wordpress/scripts": "^30.9.0",
-    "chalk": "^5.4.1",
-    "meow": "^13.2.0"
-  },
-  "optionalDependencies": {
-    "@yardinternet/eslint-config": "^1.0.1",
-    "@yardinternet/prettier-config": "^1.0.2",
-    "@yardinternet/stylelint-config": "^1.0.1"
-  }
+	"name": "@yardinternet/toolkit",
+	"version": "1.0.3",
+	"description": "Yard toolkit CLI scripts",
+	"bin": {
+		"yard-toolkit": "./src/index.js"
+	},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"publishConfig": {
+		"registry": "https://npm.pkg.github.com/"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/yardinternet/toolkit.git",
+		"directory": "packages/toolkit"
+	},
+	"type": "module",
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"@babel/preset-react": "^7.27.1",
+		"chalk": "^5.4.1",
+		"eslint": "^9.32.0",
+		"meow": "^13.2.0",
+		"prettier": "npm:wp-prettier@^3.0.3",
+		"stylelint": "^16.23.0"
+	},
+	"optionalDependencies": {
+		"@yardinternet/eslint-config": "*",
+		"@yardinternet/prettier-config": "*",
+		"@yardinternet/stylelint-config": "*"
+	},
+	"overrides": {
+		"prettier": "npm:wp-prettier@^3.0.3"
+	}
 }
