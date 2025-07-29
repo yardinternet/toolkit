@@ -4,7 +4,7 @@ Vite configuration used by the WordPress team for sites and packages.
 
 **To do:**
 
-- Update Vite to 7.0.0 (check all dev dependencies)
+- Update Vite to 7.0.0 (check all dev dependencies for compatibility).
 
 ## Installation
 
