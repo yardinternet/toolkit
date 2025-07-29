@@ -1,12 +1,19 @@
+/**
+ * External dependencies
+ */
 import { spawn } from 'child_process';
 
+/**
+ * Internal dependencies
+ */
+import log from '../utils/logger.js';
+
 export const watchThemes = () => {
-	// Simply run 'vite' to watch themes
 	const child = spawn( 'vite', [], {
 		stdio: 'inherit',
 		shell: true,
 	} );
 	child.on( 'error', ( err ) => {
-		console.error( '❌ Failed to start vite:', err.message );
+		log.error( `❌ Failed to start vite: ${ err.message }` );
 	} );
 };

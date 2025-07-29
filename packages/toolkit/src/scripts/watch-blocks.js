@@ -2,36 +2,35 @@
  * External dependencies
  */
 import { spawn } from 'child_process';
-import chalk from 'chalk';
-import fs from 'fs';
+import path from 'path';
 
 /**
  * Internal dependencies
  */
 import { getBlockPaths } from '../utils/get-block-paths.js';
+import { ensureFileExists, setupGracefulShutdown } from '../utils/helpers.js';
+import log from '../utils/logger.js';
 
 export const watchBlocks = async ( configFile = 'vite-blocks.config.js' ) => {
-	if ( ! fs.existsSync( configFile ) ) {
-		console.error(
-			chalk.red( `❌ ${ configFile } not found in the project root.` )
-		);
-		process.exit( 1 );
-	}
+	ensureFileExists(
+		configFile,
+		`❌ ${ configFile } not found in the project root.`
+	);
 
 	const blocks = await getBlockPaths();
 
 	if ( blocks.length === 0 ) {
-		console.log( chalk.red( 'No blocks found to watch.' ) );
-		process.exit( 0 );
+		log.error( 'No blocks found to watch.', true, 0 );
 	}
-	console.log(
-		chalk.blue( `\n🔍 Detected blocks:\n${ blocks.join( '\n' ) }\n` )
-	);
+	log.info( `Detected blocks:\n${ blocks.join( '\n' ) }\n` );
 
 	const children = [];
 
-	blocks.forEach( ( block ) => {
-		console.log( chalk.bold.blue( `[●] Watching block: ${ block }` ) );
+	blocks.forEach( ( blockPath ) => {
+		const blockName = path.basename( blockPath );
+		const themeName = blockPath.split( path.sep ).at( 3 ); // web/app/themes/<themeName>...
+
+		log.info( `Watching block: ${ blockName } (${ themeName })` );
 
 		const child = spawn(
 			'vite',
@@ -45,7 +44,7 @@ export const watchBlocks = async ( configFile = 'vite-blocks.config.js' ) => {
 			{
 				env: {
 					...process.env,
-					BLOCK_PATH: block,
+					BLOCK_PATH: blockPath,
 					FORCE_COLOR: true,
 				},
 				stdio: 'inherit', // stream output directly to terminal
@@ -56,22 +55,11 @@ export const watchBlocks = async ( configFile = 'vite-blocks.config.js' ) => {
 		children.push( child );
 
 		child.on( 'error', ( err ) => {
-			console.error(
-				chalk.red(
-					`❌ Failed to start watcher for ${ block }: ${ err.message }`
-				)
+			log.error(
+				`Failed to start watcher for ${ blockPath }: ${ err.message }`
 			);
 		} );
 	} );
 
-	// Gracefully handle SIGINT (Ctrl+C) to avoid zombie processes
-	process.on( 'SIGINT', () => {
-		children.forEach( ( child ) => {
-			if ( child && ! child.killed ) {
-				child.kill( 'SIGINT' );
-			}
-		} );
-
-		process.exit( 0 );
-	} );
+	setupGracefulShutdown( children );
 };
