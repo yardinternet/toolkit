@@ -20,7 +20,6 @@ export const buildThemes = async ( configFile = 'vite.config.js' ) => {
 	if ( themes.length === 0 ) {
 		log.error( 'No themes found to build.', true, 0 );
 	}
-	log.info( `Detected themes: ${ themes.join( ', ' ) }\n` );
 
 	Promise.allSettled(
 		themes.map( async ( theme ) => {
