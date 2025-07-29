@@ -25,7 +25,6 @@ export const buildBlocks = async ( configFile = 'vite-blocks.config.js' ) => {
 	if ( blocks.length === 0 ) {
 		log.error( 'No blocks found to build.', true, 0 );
 	}
-	log.info( `Detected blocks:\n${ blocks.join( '\n' ) }\n` );
 
 	Promise.allSettled(
 		blocks.map( async ( blockPath ) => {
