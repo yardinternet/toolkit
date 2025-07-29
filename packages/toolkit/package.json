@@ -31,8 +31,5 @@
 		"@yardinternet/eslint-config": "*",
 		"@yardinternet/prettier-config": "*",
 		"@yardinternet/stylelint-config": "*"
-	},
-	"overrides": {
-		"prettier": "npm:wp-prettier@^3.0.3"
 	}
 }
