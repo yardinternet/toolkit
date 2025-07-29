@@ -5,11 +5,12 @@ import { buildThemes } from '../scripts/build-themes.js';
 import { buildBlocks } from '../scripts/build-blocks.js';
 
 export const build = ( options, mode ) => {
-	if ( mode === 'themes' ) {
-		buildThemes();
-	}
-
-	if ( mode === 'blocks' ) {
-		buildBlocks();
+	switch ( mode ) {
+		case 'themes':
+			buildThemes();
+			break;
+		case 'blocks':
+			buildBlocks();
+			break;
 	}
 };
