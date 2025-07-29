@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import meow from 'meow';
-import { error } from './utils/helpers.js';
+import log from './utils/logger.js';
 import { help } from './config/help.js';
 import { actions } from './config/actions.js';
 import { options } from './config/options.js';
@@ -15,13 +15,13 @@ try {
 		helpIndent: 0,
 	} );
 } catch ( errorMsg ) {
-	error( errorMsg.toString().replace( 'Error: ', '' ) );
+	log.error( errorMsg.toString().replace( 'Error: ', '' ) );
 }
 
 const actionName = cli.input[ 0 ];
 
 if ( undefined === actionName ) {
-	error( 'Please specify an action', false );
+	log.error( 'Please specify an action', false );
 	cli.showHelp( 5 );
 }
 

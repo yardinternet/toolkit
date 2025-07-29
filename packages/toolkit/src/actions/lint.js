@@ -1,11 +1,11 @@
 import { spawn } from 'child_process';
 
 import {
-	error,
 	filetypeFromString,
 	getGlobByFormatModeAndFiletype,
 	modesFromString,
 } from '../utils/helpers.js';
+import log from '../utils/logger.js';
 import { filetypes } from '../config/filetypes.js';
 import { options as configOptions } from '../config/options.js';
 
@@ -25,7 +25,7 @@ export const lint = ( options, filetype, userPath ) => {
 			command = 'stylelint';
 			break;
 		default:
-			error(
+			log.error(
 				`Filetype '${ formatFiletype.name }' not possible with lint action.`
 			);
 	}
