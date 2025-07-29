@@ -51,5 +51,16 @@ module.exports = [
 				},
 			],
 		},
+
+		settings: {
+			'import/resolver': {
+				alias: [
+					[
+						'@sage/scripts',
+						'./web/app/themes/sage-child/resources/scripts',
+					],
+				],
+			},
+		},
 	},
 ];

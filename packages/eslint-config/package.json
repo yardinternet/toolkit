@@ -1,27 +1,30 @@
 {
-  "name": "@yardinternet/eslint-config",
-  "version": "1.0.1",
-  "description": "Eslint configuration",
-  "main": "src/index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/yardinternet/toolkit.git",
-    "directory": "packages/eslint-config"
-  },
-  "type": "commonjs",
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "@eslint/eslintrc": "^3.2.0",
-    "@eslint/js": "^9.17.0",
-    "@wordpress/eslint-plugin": "^22.1.1",
-    "eslint-config-prettier": "^9.1.0",
-    "globals": "^15.14.0"
-  }
+	"name": "@yardinternet/eslint-config",
+	"version": "1.0.1",
+	"description": "Eslint configuration",
+	"main": "src/index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"publishConfig": {
+		"registry": "https://npm.pkg.github.com/"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/yardinternet/toolkit.git",
+		"directory": "packages/eslint-config"
+	},
+	"type": "commonjs",
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"@babel/preset-react": "^7.27.1",
+		"@eslint/eslintrc": "^3.2.0",
+		"@eslint/js": "^9.17.0",
+		"@wordpress/eslint-plugin": "^22.1.1",
+		"eslint-config-prettier": "^9.1.0",
+		"eslint-import-resolver-alias": "^1.1.2",
+		"eslint-plugin-import": "^2.32.0",
+		"globals": "^15.14.0"
+	}
 }
