@@ -1,5 +1,5 @@
 /**
- * Vite configuration for a Bedrock multisite project using Sage.
+ * Vite configuration for Brave multi site theme development.
  *
  * Behavior depends on the mode:
  *
