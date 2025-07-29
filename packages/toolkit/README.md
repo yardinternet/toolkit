@@ -20,6 +20,8 @@ Usage
 Actions
     format        Runs formatter for specified filetype
     lint          Runs linter for specified filetype
+    watch         Runs Vite watcher
+    build         Runs Vite build
 
 Filetypes
     js            JavaScript files (*.js)
@@ -71,6 +73,34 @@ For other sites or packages use `custom` mode:
 
 ```bash
 yard-toolkit lint js './packages/**/*.js' -m custom --no-fix
+```
+
+### Watch
+
+Run Vite watcher for Brave themes:
+
+```bash
+yard-toolkit watch themes
+```
+
+Run Vite watcher for Brave blocks:
+
+```bash
+yard-toolkit watch blocks
+```
+
+### Build
+
+Run Vite build for Brave themes:
+
+```bash
+yard-toolkit build themes
+```
+
+Run Vite build for Brave blocks:
+
+```bash
+yard-toolkit build blocks
 ```
 
 ## Development
