@@ -55,6 +55,33 @@ const config = braveConfig({ theme: process.env.THEME, projectConfig });
 export default defineConfig(config);
 ```
 
+#### Using Vite `mergeConfig`
+
+You can add extra config to the `braveConfig` by using Vite's `mergeConfig()` function. This is useful for adding custom server settings or plugins.
+
+```js
+/**
+ * External dependencies
+ */
+import { defineConfig, mergeConfig } from 'vite';
+import { braveConfig } from '@yardinternet/vite-config';
+
+const braveConfig = braveConfig({ theme: process.env.THEME });
+
+export default defineConfig(
+ mergeConfig(braveConfig, {
+  // Change server settings
+  server: {
+   hmr: {
+    host: 'localhost',
+   },
+  },
+  // Add extra plugins
+  plugins: [],
+ })
+);
+```
+
 ### Brave theme blocks Vite config
 
 In the `vite-blocks.config.js` in the root of your block project:

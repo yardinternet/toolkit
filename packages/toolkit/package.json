@@ -30,6 +30,7 @@
 	"optionalDependencies": {
 		"@yardinternet/eslint-config": "*",
 		"@yardinternet/prettier-config": "*",
-		"@yardinternet/stylelint-config": "*"
+		"@yardinternet/stylelint-config": "*",
+		"@yardinternet/vite-config": "*"
 	}
 }
