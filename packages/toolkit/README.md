@@ -25,6 +25,7 @@ Actions
 
 Filetypes
     js            JavaScript files (*.js)
+    jsx           JavaScript files (*.jsx)
     blade         Laravel Blade files (*.blade.php)
     css           Cascading Style Sheet files (*.css)
 
@@ -101,6 +102,29 @@ Run Vite build for Brave blocks:
 
 ```bash
 yard-toolkit build blocks
+```
+
+### Example package.json with all scripts
+
+```json
+{
+ "scripts": {
+  "watch": "npm run watch:themes & npm run watch:blocks",
+  "watch:themes": "yard-toolkit watch themes",
+  "watch:blocks": "yard-toolkit watch blocks",
+  "build": "npm run build:themes && npm run build:blocks",
+  "build:themes": "yard-toolkit build themes",
+  "build:blocks": "yard-toolkit build blocks",
+  "lint:css": "yard-toolkit lint css",
+  "lint:js": "yard-toolkit lint js",
+  "format:css": "yard-toolkit format css",
+  "format:js": "yard-toolkit format js",
+  "format:blade": "yard-toolkit format blade",
+  "start": "npm run watch", // alias 
+  "prod-all": "npm run build", // alias
+  "yard-toolkit": "yard-toolkit" // needed for Captain Hook to work properly
+ },
+}
 ```
 
 ## Development
