@@ -4,6 +4,7 @@
 import fs from 'fs';
 import util from 'util';
 import { exec } from 'child_process';
+import { spawn } from 'child_process';
 
 /**
  * Internal dependences
@@ -12,16 +13,20 @@ import { filetypes } from '../config/filetypes.js';
 import { modes } from '../config/modes.js';
 import log from './logger.js';
 
-export const run = ( command, commandLabel = 'external script' ) => {
-	exec( command, ( isError, commandOutput, commandError ) => {
-		log.info( `Running: '${ command }'` );
+export const runCommand = async (
+	command,
+	args = [],
+	options = { stdio: 'inherit', shell: true }
+) => {
+	log.info( `Running: ${ command } ${ args.join( ' ' ) }` );
 
-		if ( isError ) {
-			log.error( `[${ commandLabel }] ${ commandError }`, false );
-		}
+	const child = spawn( command, args, options );
 
-		if ( commandOutput ) {
-			log.info( `[${ commandLabel }]\n${ commandOutput }` );
+	child.on( 'exit', ( code ) => {
+		if ( code === 0 ) {
+			log.success( `Completed ${ command } successfully.` );
+		} else {
+			log.error( `Exited ${ command } with code ${ code }` );
 		}
 	} );
 };
