@@ -1,9 +1,8 @@
-import { spawn } from 'child_process';
-
 import {
 	filetypeFromString,
 	getGlobByFormatModeAndFiletype,
 	modesFromString,
+	runCommand,
 } from '../utils/helpers.js';
 import log from '../utils/logger.js';
 import { filetypes } from '../config/filetypes.js';
@@ -14,20 +13,18 @@ export const lint = ( options, filetype, userPath ) => {
 	const formatMode = modesFromString( options.mode, true );
 	const isFix = options[ configOptions.fix.name ] ?? false;
 
-	let command = '';
-	switch ( formatFiletype.name ) {
-		case filetypes.js.name:
-		case filetypes.jsx.name:
-			command = 'eslint';
-			break;
-		case filetypes.scss.name:
-		case filetypes.css.name:
-			command = 'stylelint';
-			break;
-		default:
-			log.error(
-				`Filetype '${ formatFiletype.name }' not possible with lint action.`
-			);
+	let command = {
+		[ filetypes.js.name ]: 'eslint',
+		[ filetypes.jsx.name ]: 'eslint',
+		[ filetypes.scss.name ]: 'stylelint',
+		[ filetypes.css.name ]: 'stylelint',
+	}[ formatFiletype.name ];
+
+	if ( ! command ) {
+		log.error(
+			`Filetype '${ formatFiletype.name }' not supported for linting.`
+		);
+		return;
 	}
 
 	const glob = getGlobByFormatModeAndFiletype(
@@ -41,14 +38,5 @@ export const lint = ( options, filetype, userPath ) => {
 		...( isFix ? [ '--fix' ] : [] ),
 	];
 
-	const child = spawn( command, args, {
-		stdio: 'inherit',
-		shell: true, // Required for glob support
-	} );
-
-	child.on( 'exit', ( code ) => {
-		if ( code !== 0 ) {
-			error( `${ command } exited with code ${ code }` );
-		}
-	} );
+	runCommand( command, args );
 };
