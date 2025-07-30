@@ -1,29 +1,26 @@
 {
-  "name": "@yardinternet/prettier-config",
-  "version": "1.0.2",
-  "description": "Prettier configuration",
-  "main": "src/index.js",
-  "type": "commonjs",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/yardinternet/toolkit.git",
-    "directory": "packages/prettier-config"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "@shufo/prettier-plugin-blade": "^1.15.1",
-    "@wordpress/prettier-config": "^4.15.0",
-    "prettier": "npm:wp-prettier@^3.0.3",
-    "prettier-plugin-tailwindcss": "^0.6.9"
-  },
-  "overrides": {
-    "prettier": "npm:wp-prettier@^3.0.3"
-  }
+	"name": "@yardinternet/prettier-config",
+	"version": "1.0.2",
+	"description": "Prettier configuration",
+	"main": "src/index.js",
+	"type": "commonjs",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"publishConfig": {
+		"registry": "https://npm.pkg.github.com/"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/yardinternet/toolkit.git",
+		"directory": "packages/prettier-config"
+	},
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"@shufo/prettier-plugin-blade": "^1.15.1",
+		"@wordpress/prettier-config": "^4.15.0",
+		"prettier": "npm:wp-prettier@^3.0.3",
+		"prettier-plugin-tailwindcss": "^0.6.9"
+	}
 }
