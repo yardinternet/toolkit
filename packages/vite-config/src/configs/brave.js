@@ -27,18 +27,18 @@ import tailwindcss from '@tailwindcss/vite';
  */
 import { generateAliases } from '../utils/generate-aliases.js';
 import { generateEntryPoints } from '../utils/generate-entry-points.js';
-import { getThemeNames } from '../utils/get-theme-names.js';
+import { getAllThemeNames } from '../utils/get-all-theme-names.js';
 
-export const braveConfig = ( { theme, projectConfig = {} } ) => {
+export const braveConfig = ( { theme, entryPoints } ) => {
 	const isDev = ! process.argv.includes( 'build' );
-	const baseDir = process.cwd();
+	const allThemes = getAllThemeNames();
 
 	/**
 	 * Determine which themes to process:
 	 * - In dev mode: include all themes for a unified dev server
 	 * - In build mode: only process the single specified theme
 	 */
-	const themeNames = isDev ? getThemeNames() : [ theme ];
+	const themesToProcess = isDev ? allThemes : [ theme ];
 
 	return defineConfig( {
 		/**
@@ -53,7 +53,7 @@ export const braveConfig = ( { theme, projectConfig = {} } ) => {
 		 * Generates the aliases for each theme to use like `@theme-name`.
 		 */
 		resolve: {
-			alias: generateAliases(),
+			alias: generateAliases( allThemes ),
 		},
 		/**
 		 * Do not pre-bundle these packages and serve as-is. If we do not do this, Vite pre-bundles these dependencies, causing issues with the import of @wordpress/* packages.
@@ -76,9 +76,8 @@ export const braveConfig = ( { theme, projectConfig = {} } ) => {
 				 * - Build mode: only the theme passed to this config
 				 */
 				input: generateEntryPoints( {
-					themeNames,
-					baseDir,
-					projectConfig,
+					themesToProcess,
+					entryPoints,
 				} ),
 				/**
 				 * Public directory:

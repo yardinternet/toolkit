@@ -18,15 +18,17 @@ import path from 'path';
  * Internal dependencies
  */
 import { generateAliases } from '../utils/generate-aliases.js';
+import { getAllThemeNames } from '../utils/get-all-theme-names.js';
 
 export const braveBlocksConfig = ( { blockPath } ) => {
 	const entryDir = blockPath;
 	const themeName = blockPath.split( path.sep ).at( 3 ); // assumes: web/app/themes/<theme>/...
 	const outDir = path.join( 'web/app/themes', themeName, 'public' );
+	const allThemes = getAllThemeNames();
 
 	return defineConfig( {
 		resolve: {
-			alias: generateAliases(),
+			alias: generateAliases( allThemes ),
 		},
 		plugins: [
 			createViteBlock( {
