@@ -4,18 +4,16 @@
 import path from 'path';
 
 /**
- * Internal dependencies
- */
-import { getThemeNames } from './get-theme-names.js';
-
-/**
  * Generates the aliases for each theme to use like `@theme-name`.
  * Example: `background-image: url('@sage/images/logo.svg')`; or `import '@sage-child/scripts/frontend/frontend.js';`
  */
-const generateAliases = () => {
+const generateAliases = ( themeNames ) => {
 	const themesDir = path.resolve( process.cwd(), 'web/app/themes' );
-	const themeNames = getThemeNames();
 	const aliases = {};
+
+	if ( ! themeNames || themeNames.length === 0 ) {
+		throw new Error( 'No theme names provided for alias generation.' );
+	}
 
 	themeNames.forEach( ( themeName ) => {
 		const sanitizedThemeName = themeName.replace( /[^a-zA-Z0-9-_]/g, '-' );

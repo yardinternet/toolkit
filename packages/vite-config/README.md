@@ -22,37 +22,17 @@ In the `vite.config.js` in the root of your project:
 /**
  * External dependencies
  */
-import { defineConfig } from 'vite';
-import { braveConfig } from '@yardinternet/vite-config'; 
+import { braveConfig } from '@yardinternet/vite-config';
 
-export default defineConfig(braveConfig({ theme: process.env.THEME }));
-```
-
-#### Extra entry points
-
-Add extra entry points to the `braveConfig` function:
-
-```js
-/**
- * External dependencies
- */
-import { defineConfig } from 'vite';
-import { braveConfig } from '@yardinternet/vite-config'; 
-
-const projectConfig = {
- themes: {
-  sage: {
-   add: ['styles/admin.css'],
-  },
-  werkenbij: {
-   add: ['styles/admin.css'],
-  },
- },
-};
-
-const config = braveConfig({ theme: process.env.THEME, projectConfig });
-
-export default defineConfig(config);
+export default braveConfig( {
+ theme: process.env.THEME,
+ entryPoints: [
+  'resources/scripts/editor/editor.js',
+  'resources/scripts/frontend/frontend.js',
+  'resources/styles/editor.css',
+  'resources/styles/frontend.css',
+ ],
+} );
 ```
 
 #### Using Vite `mergeConfig`
@@ -66,10 +46,17 @@ You can add extra config to the `braveConfig` by using Vite's `mergeConfig()` fu
 import { defineConfig, mergeConfig } from 'vite';
 import { braveConfig } from '@yardinternet/vite-config';
 
-const braveConfig = braveConfig({ theme: process.env.THEME });
-
-export default defineConfig(
- mergeConfig(braveConfig, {
+export default mergeConfig(
+ braveConfig( {
+  theme: process.env.THEME,
+  entryPoints: [
+  'resources/scripts/editor/editor.js',
+  'resources/scripts/frontend/frontend.js',
+  'resources/styles/editor.css',
+  'resources/styles/frontend.css',
+  ],
+ } ),
+ defineConfig( {
   // Change server settings
   server: {
    hmr: {
@@ -78,7 +65,7 @@ export default defineConfig(
   },
   // Add extra plugins
   plugins: [],
- })
+ } )
 );
 ```
 

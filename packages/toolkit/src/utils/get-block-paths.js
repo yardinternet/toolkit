@@ -7,10 +7,10 @@ import path from 'path';
 /**
  * Internal dependencies
  */
-import { getThemeNames } from './get-theme-names.js';
+import { getAllThemeNames } from './get-all-theme-names.js';
 
 export const getBlockPaths = async () => {
-	const themeNames = getThemeNames();
+	const themeNames = getAllThemeNames();
 
 	const blockPathsPerTheme = await Promise.all(
 		themeNames.map( async ( themeName ) => {
