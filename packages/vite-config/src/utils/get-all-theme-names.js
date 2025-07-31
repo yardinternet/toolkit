@@ -4,7 +4,10 @@
 import fs from 'fs';
 import path from 'path';
 
-export const getThemeNames = () => {
+/**
+ * Returns an array of all theme names in the `web/app/themes` directory.
+ */
+export const getAllThemeNames = () => {
 	const themesDir = path.resolve( 'web/app/themes' );
 
 	if ( ! fs.existsSync( themesDir ) ) {

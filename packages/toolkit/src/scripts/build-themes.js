@@ -1,7 +1,7 @@
 /**
  * Internal dependencies
  */
-import { getThemeNames } from '../utils/get-theme-names.js';
+import { getAllThemeNames } from '../utils/get-all-theme-names.js';
 import {
 	ensureFileExists,
 	execWithEnv,
@@ -15,7 +15,7 @@ export const buildThemes = async ( configFile = 'vite.config.js' ) => {
 		`❌ ${ configFile } not found in the project root.`
 	);
 
-	const themes = getThemeNames();
+	const themes = getAllThemeNames();
 
 	if ( themes.length === 0 ) {
 		log.error( 'No themes found to build.', true, 0 );
