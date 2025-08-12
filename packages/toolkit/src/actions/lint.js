@@ -13,7 +13,6 @@ export const lint = ( options, filetype, userPath ) => {
 
 	const command = {
 		[ filetypes.js.name ]: 'eslint',
-		[ filetypes.jsx.name ]: 'eslint',
 		[ filetypes.scss.name ]: 'stylelint',
 		[ filetypes.css.name ]: 'stylelint',
 	}[ formatFiletype.name ];

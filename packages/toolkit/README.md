@@ -25,9 +25,9 @@ Actions
 
 Filetypes
     js            JavaScript files (*.js)
-    jsx           JavaScript files (*.jsx)
     blade         Laravel Blade files (*.blade.php)
     css           Cascading Style Sheet files (*.css)
+    scss          SCSS files (custom mode only) (*.scss)
 
 Options
     -m, --mode <brave|custom>
@@ -204,7 +204,10 @@ export const modes = {
         paths: [
             {
                 filetype: filetypes.js.name,
-                path: './web/app/themes/**/resources/scripts/**/*.js',
+                path: [
+                    './web/app/themes/**/resources/scripts/**/*.js',
+                    './web/app/themes/**/resources/scripts/**/*.jsx',
+                ], // filetype with multiple glob paths
             },
             {
                 filetype: filetypes.blade.name,
