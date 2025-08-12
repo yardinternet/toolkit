@@ -29,13 +29,11 @@ export const lint = ( options, filetype, userPath ) => {
 
 	const globs = getPathByFormatModeAndFiletype(
 		formatMode,
-		formatFiletype.name
+		formatFiletype.name,
+		userPath
 	);
 
-	const args = [
-		...( userPath ? [ userPath ] : [] ),
+	runCommandForEveryPath( command, globs, [
 		...( isFix ? [ '--fix' ] : [] ),
-	];
-
-	runCommandForEveryPath( command, globs, args );
+	] );
 };

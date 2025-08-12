@@ -12,10 +12,9 @@ export const format = ( options, filetype, userPath ) => {
 	const command = 'prettier';
 	const globs = getPathByFormatModeAndFiletype(
 		formatMode,
-		formatFiletype.name
+		formatFiletype.name,
+		userPath
 	);
 
-	const args = [ ...( userPath ? [ userPath ] : [] ), '--check', '--write' ];
-
-	runCommandForEveryPath( command, globs, args );
+	runCommandForEveryPath( command, globs, [ '--check', '--write' ] );
 };

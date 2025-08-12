@@ -18,8 +18,8 @@
 		"packages/vite-config"
 	],
 	"scripts": {
-		"lint:js": "yard-toolkit lint js -m custom './packages/**/*.js'",
-		"format:js": "yard-toolkit format js -m custom './packages/**/*.js'",
+		"lint:js": "yard-toolkit lint js -m custom ./packages/**/*.js",
+		"format:js": "yard-toolkit format js -m custom ./packages/**/*.js",
 		"prepare": "husky"
 	},
 	"type": "commonjs",
