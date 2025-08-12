@@ -1,4 +1,9 @@
 /**
+ * Internal dependencies
+ */
+import log from './logger.js';
+
+/**
  * External dependencies
  */
 import fs from 'fs';
@@ -11,7 +16,7 @@ export const getAllThemeNames = () => {
 	const themesDir = path.resolve( 'web/app/themes' );
 
 	if ( ! fs.existsSync( themesDir ) ) {
-		console.error( 'Themes directory does not exist' );
+		log.error('Themes directory does not exist' );
 		return [];
 	}
 
@@ -29,7 +34,7 @@ export const getAllThemeNames = () => {
 			);
 			return hasStyleCss;
 		} catch {
-			console.error( `Error checking directory: ${ fullPath }` );
+			log.error( `Error checking directory: ${ fullPath }` );
 			return false;
 		}
 	} );

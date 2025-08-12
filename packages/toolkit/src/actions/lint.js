@@ -10,8 +10,6 @@ import { options as configOptions } from '../config/options.js';
 
 export const lint = ( options, filetype, userPath ) => {
 	const formatFiletype = filetypeFromString( filetype, true );
-	const formatMode = modesFromString( options.mode, true );
-	const isFix = options[ configOptions.fix.name ] ?? false;
 
 	const command = {
 		[ filetypes.js.name ]: 'eslint',
@@ -27,11 +25,15 @@ export const lint = ( options, filetype, userPath ) => {
 		return;
 	}
 
+	const formatMode = modesFromString( options.mode, true );
+
 	const globs = getPathByFormatModeAndFiletype(
 		formatMode,
 		formatFiletype.name,
 		userPath
 	);
+
+	const isFix = options[ configOptions.fix.name ] ?? false;
 
 	runCommandForEveryPath( command, globs, [
 		...( isFix ? [ '--fix' ] : [] ),

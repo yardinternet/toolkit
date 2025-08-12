@@ -11,7 +11,7 @@ export const getAllThemeNames = () => {
 	const themesDir = path.resolve( 'web/app/themes' );
 
 	if ( ! fs.existsSync( themesDir ) ) {
-		console.error( 'Themes directory does not exist' );
+		console.error( 'Themes directory does not exist' ) // eslint-disable-line no-console
 		return [];
 	}
 
@@ -29,7 +29,7 @@ export const getAllThemeNames = () => {
 			);
 			return hasStyleCss;
 		} catch {
-			console.error( `Error checking directory: ${ fullPath }` );
+			console.error( `Error checking directory: ${ fullPath }` ); // eslint-disable-line no-console
 			return false;
 		}
 	} );
