@@ -1,6 +1,4 @@
 const globals = require( 'globals' );
-// eslint-disable-next-line import/no-extraneous-dependencies
-const babelParser = require( '@babel/eslint-parser' );
 const js = require( '@eslint/js' );
 
 const { FlatCompat } = require( '@eslint/eslintrc' );
@@ -25,14 +23,8 @@ module.exports = [
 				wp: 'readonly',
 			},
 
-			parser: babelParser,
-
 			parserOptions: {
 				requireConfigFile: false,
-
-				babelOptions: {
-					presets: [ '@babel/preset-react' ],
-				},
 
 				ecmaFeatures: {
 					jsx: true,
