@@ -1,4 +1,2 @@
-import { braveConfig } from './configs/brave.js';
-import { braveBlocksConfig } from './configs/brave-theme-blocks.js';
-
-export { braveConfig, braveBlocksConfig };
+import './configs/brave.js';
+import './configs/brave-theme-blocks.js';
