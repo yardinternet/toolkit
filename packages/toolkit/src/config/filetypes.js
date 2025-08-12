@@ -3,10 +3,6 @@ export const filetypes = {
 		name: 'js',
 		extension: '.js',
 	},
-	jsx: {
-		name: 'jsx',
-		extension: '.jsx',
-	},
 	blade: {
 		name: 'blade',
 		extension: '.blade.php',

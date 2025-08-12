@@ -32,12 +32,13 @@ export const runCommand = async (
 
 export const runCommandForEveryPath = async ( command, paths, args = [] ) => {
 	paths?.forEach( ( path ) => {
+		if ( ! path ) return;
 		runCommand( command, [ addQuotsToStrings( path ), ...args ] );
 	} );
 };
 
 export const addQuotsToStrings = ( item ) => {
-	if ( item.startsWith( "'" ) || item.startsWith( '"' ) ) return item;
+	if ( item?.startsWith( "'" ) || item?.startsWith( '"' ) ) return item;
 	return "'" + item + "'";
 };
 
@@ -84,7 +85,6 @@ export const filterObjectByName = ( name, object ) => {
 };
 
 export const getPathByFormatModeAndFiletype = (
-	// TODO: path moeten '' hebben! Check of JSX werkt. Babel deps in Eslint config niet nodig.
 	formatMode,
 	filetype,
 	defaultPath = ''
@@ -92,12 +92,14 @@ export const getPathByFormatModeAndFiletype = (
 	const pathObj =
 		formatMode.paths?.find( ( path ) => path.filetype === filetype ) ?? {};
 
-	if ( ! pathObj?.path ) return [ defaultPath ];
+	const paths = pathObj?.path ?? null;
+
+	if ( ! paths ) return [ defaultPath ];
 
 	// check if single value
-	if ( ! Array.isArray( pathObj ) ) return [ pathObj.path ];
+	if ( ! Array.isArray( paths ) ) return [ paths ];
 
-	return pathObj.path;
+	return paths;
 };
 
 export const ensureFileExists = ( filePath, errorMsg = null ) => {
