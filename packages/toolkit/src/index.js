@@ -32,7 +32,7 @@ const path = cli.input[ 2 ];
 const currentAction = actions[ actionName ];
 
 if ( undefined === currentAction ) {
-	error( `Action "${ actionName }" not defined.`, false );
+	log.error( `Action "${ actionName }" not defined.`, false );
 	cli.showHelp( 5 );
 }
 
