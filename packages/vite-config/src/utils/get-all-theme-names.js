@@ -11,7 +11,7 @@ export const getAllThemeNames = () => {
 	const themesDir = path.resolve( 'web/app/themes' );
 
 	if ( ! fs.existsSync( themesDir ) ) {
-		console.error( 'Themes directory does not exist' ) // eslint-disable-line no-console
+		console.error( 'Themes directory does not exist' ); // eslint-disable-line no-console
 		return [];
 	}
 
