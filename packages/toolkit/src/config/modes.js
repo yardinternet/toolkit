@@ -6,11 +6,10 @@ export const modes = {
 		paths: [
 			{
 				filetype: filetypes.js.name,
-				path: './web/app/themes/**/resources/scripts/**/*.js',
-			},
-			{
-				filetype: filetypes.jsx.name,
-				path: './web/app/themes/**/resources/scripts/**/*.jsx',
+				path: [
+					'./web/app/themes/**/resources/scripts/**/*.js',
+					'./web/app/themes/**/resources/scripts/**/*.jsx',
+				],
 			},
 			{
 				filetype: filetypes.blade.name,

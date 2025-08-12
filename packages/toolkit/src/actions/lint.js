@@ -1,8 +1,8 @@
 import {
 	filetypeFromString,
-	getGlobByFormatModeAndFiletype,
+	getPathByFormatModeAndFiletype,
 	modesFromString,
-	runCommand,
+	runCommandForEveryPath,
 } from '../utils/helpers.js';
 import log from '../utils/logger.js';
 import { filetypes } from '../config/filetypes.js';
@@ -13,7 +13,7 @@ export const lint = ( options, filetype, userPath ) => {
 	const formatMode = modesFromString( options.mode, true );
 	const isFix = options[ configOptions.fix.name ] ?? false;
 
-	let command = {
+	const command = {
 		[ filetypes.js.name ]: 'eslint',
 		[ filetypes.jsx.name ]: 'eslint',
 		[ filetypes.scss.name ]: 'stylelint',
@@ -27,16 +27,15 @@ export const lint = ( options, filetype, userPath ) => {
 		return;
 	}
 
-	const glob = getGlobByFormatModeAndFiletype(
+	const globs = getPathByFormatModeAndFiletype(
 		formatMode,
 		formatFiletype.name
 	);
 
 	const args = [
-		...( glob?.path ? [ glob.path ] : [] ),
 		...( userPath ? [ userPath ] : [] ),
 		...( isFix ? [ '--fix' ] : [] ),
 	];
 
-	runCommand( command, args );
+	runCommandForEveryPath( command, globs, args );
 };
