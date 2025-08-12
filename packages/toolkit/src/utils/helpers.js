@@ -31,6 +31,12 @@ export const runCommand = async (
 	} );
 };
 
+export const runCommandForEveryPath = async ( command, paths, args = [] ) => {
+	paths?.forEach( ( path ) => {
+		runCommand( command, [ path, ...args ] );
+	} );
+};
+
 const fromString = (
 	configObject,
 	nameString,
@@ -73,8 +79,16 @@ export const filterObjectByName = ( name, object ) => {
 	return null;
 };
 
-export const getGlobByFormatModeAndFiletype = ( formatMode, filetype ) => {
-	return formatMode.paths?.find( ( path ) => path.filetype === filetype );
+export const getPathByFormatModeAndFiletype = ( formatMode, filetype ) => {
+	const pathObj =
+		formatMode.paths?.find( ( path ) => path.filetype === filetype ) ?? {};
+
+	if ( ! pathObj?.path ) return [];
+
+	// check if single value
+	if ( ! Array.isArray( pathObj ) ) return [ pathObj.path ];
+
+	return pathObj.path;
 };
 
 export const ensureFileExists = ( filePath, errorMsg = null ) => {

@@ -1,8 +1,8 @@
 import {
 	filetypeFromString,
-	getGlobByFormatModeAndFiletype,
+	getPathByFormatModeAndFiletype,
 	modesFromString,
-	runCommand,
+	runCommandForEveryPath,
 } from '../utils/helpers.js';
 
 export const format = ( options, filetype, userPath ) => {
@@ -10,16 +10,12 @@ export const format = ( options, filetype, userPath ) => {
 	const formatMode = modesFromString( options.mode, true );
 
 	const command = 'prettier';
-	const glob = getGlobByFormatModeAndFiletype(
+	const globs = getPathByFormatModeAndFiletype(
 		formatMode,
 		formatFiletype.name
 	);
 
-	const args = [
-		...( glob?.path ? [ glob.path ] : [] ),
-		...( userPath ? [ userPath ] : [] ),
-		'--check',
-		'--write',
-	];
-	runCommand( command, args );
+	const args = [ ...( userPath ? [ userPath ] : [] ), '--check', '--write' ];
+
+	runCommandForEveryPath( command, globs, args );
 };
