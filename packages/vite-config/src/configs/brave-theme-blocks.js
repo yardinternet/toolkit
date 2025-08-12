@@ -11,7 +11,7 @@
  */
 import { defineConfig } from 'vite';
 import { createViteBlock } from 'vite-plugin-gutenberg-blocks';
-import tailwindcss from '@tailwindcss/vite';
+import tailwindcss from '@tailwindcss/vite/dist/index.mjs';
 import path from 'path';
 
 /**
