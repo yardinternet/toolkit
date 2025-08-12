@@ -3,8 +3,7 @@
  */
 import fs from 'fs';
 import util from 'util';
-import { exec } from 'child_process';
-import { spawn } from 'child_process';
+import { exec, spawn } from 'child_process';
 
 /**
  * Internal dependences
