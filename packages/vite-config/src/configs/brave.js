@@ -20,7 +20,7 @@
 import { defineConfig } from 'vite';
 import { wordpressPlugin } from '@roots/vite-plugin';
 import laravel from 'laravel-vite-plugin';
-import tailwindcss from '@tailwindcss/vite/dist/index.mjs';
+import tailwindcss from '@tailwindcss/vite';
 
 /**
  * Internal dependencies
