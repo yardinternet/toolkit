@@ -32,14 +32,14 @@ export const runCommand = async (
 
 export const runCommandForEveryPath = async ( command, paths, args = [] ) => {
 	paths?.forEach( ( path ) => {
-		runCommand( command, [ addQuotsToStrings(path), ...args ] );
+		runCommand( command, [ addQuotsToStrings( path ), ...args ] );
 	} );
 };
 
-export const addQuotsToStrings = (item) => {
-	if (item.startsWith("'") || item.startsWith('"')) return item;
-	return "'"+item+"'";
-}
+export const addQuotsToStrings = ( item ) => {
+	if ( item.startsWith( "'" ) || item.startsWith( '"' ) ) return item;
+	return "'" + item + "'";
+};
 
 const fromString = (
 	configObject,
@@ -83,7 +83,8 @@ export const filterObjectByName = ( name, object ) => {
 	return null;
 };
 
-export const getPathByFormatModeAndFiletype = ( // TODO: path moeten '' hebben! Check of JSX werkt. Babel deps in Eslint config niet nodig.
+export const getPathByFormatModeAndFiletype = (
+	// TODO: path moeten '' hebben! Check of JSX werkt. Babel deps in Eslint config niet nodig.
 	formatMode,
 	filetype,
 	defaultPath = ''
