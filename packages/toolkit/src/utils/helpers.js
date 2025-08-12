@@ -79,11 +79,15 @@ export const filterObjectByName = ( name, object ) => {
 	return null;
 };
 
-export const getPathByFormatModeAndFiletype = ( formatMode, filetype ) => {
+export const getPathByFormatModeAndFiletype = (
+	formatMode,
+	filetype,
+	defaultPath = ''
+) => {
 	const pathObj =
 		formatMode.paths?.find( ( path ) => path.filetype === filetype ) ?? {};
 
-	if ( ! pathObj?.path ) return [];
+	if ( ! pathObj?.path ) return [ defaultPath ];
 
 	// check if single value
 	if ( ! Array.isArray( pathObj ) ) return [ pathObj.path ];
