@@ -33,13 +33,7 @@ export const watchBlocks = async ( configFile = 'vite-blocks.config.js' ) => {
 
 		const child = spawn(
 			'vite',
-			[
-				'build',
-				'--emptyOutDir',
-				'--watch',
-				'--config',
-				'vite-blocks.config.js',
-			],
+			[ 'build', '--emptyOutDir', '--watch', '--config', configFile ],
 			{
 				env: {
 					...process.env,

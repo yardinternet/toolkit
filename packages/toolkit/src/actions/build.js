@@ -4,13 +4,13 @@
 import { buildThemes } from '../scripts/build-themes.js';
 import { buildBlocks } from '../scripts/build-blocks.js';
 
-export const build = ( options, mode ) => {
+export const build = ( options, mode, configFile = undefined ) => {
 	switch ( mode ) {
 		case 'themes':
-			buildThemes();
+			buildThemes( configFile );
 			break;
 		case 'blocks':
-			buildBlocks();
+			buildBlocks( configFile );
 			break;
 	}
 };
