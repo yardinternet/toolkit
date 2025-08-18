@@ -1,8 +1,8 @@
 const globals = require( 'globals' );
 // eslint-disable-next-line import/no-extraneous-dependencies
 const babelParser = require( '@babel/eslint-parser' );
+const { fixupConfigRules } = require( '@eslint/compat' );
 const js = require( '@eslint/js' );
-
 const { FlatCompat } = require( '@eslint/eslintrc' );
 
 const compat = new FlatCompat( {
@@ -12,11 +12,14 @@ const compat = new FlatCompat( {
 } );
 
 module.exports = [
-	...compat.extends(
-		'plugin:@wordpress/eslint-plugin/recommended',
-		'prettier'
+	...fixupConfigRules(
+		compat.extends(
+			'plugin:@wordpress/eslint-plugin/recommended',
+			'prettier'
+		)
 	),
 	{
+		files: [ '**/*.js', '**/*.jsx' ],
 		languageOptions: {
 			globals: {
 				...globals.browser,
@@ -33,7 +36,6 @@ module.exports = [
 				babelOptions: {
 					presets: [ '@babel/preset-react' ],
 				},
-
 				ecmaFeatures: {
 					jsx: true,
 				},
@@ -43,7 +45,6 @@ module.exports = [
 		rules: {
 			'prettier/prettier': 0,
 			'jsdoc/require-param': 0,
-
 			'no-unused-expressions': [
 				'error',
 				{
@@ -53,6 +54,9 @@ module.exports = [
 		},
 
 		settings: {
+			react: {
+				version: '19.0',
+			},
 			'import/resolver': {
 				alias: [
 					[
