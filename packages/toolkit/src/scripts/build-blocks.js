@@ -35,7 +35,7 @@ export const buildBlocks = async ( configFile = 'vite-blocks.config.js' ) => {
 
 			try {
 				const { stdout } = await execWithEnv(
-					`vite build --emptyOutDir --config vite-blocks.config.js`,
+					`vite build --emptyOutDir --config ${ configFile }`,
 					{
 						BLOCK_PATH: blockPath,
 						FORCE_COLOR: true,

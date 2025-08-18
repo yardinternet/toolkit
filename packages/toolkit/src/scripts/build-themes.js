@@ -25,10 +25,13 @@ export const buildThemes = async ( configFile = 'vite.config.js' ) => {
 		themes.map( async ( theme ) => {
 			log.info( `Building theme: ${ theme }` );
 			try {
-				const { stdout } = await execWithEnv( `vite build`, {
-					THEME: theme,
-					FORCE_COLOR: true,
-				} );
+				const { stdout } = await execWithEnv(
+					`vite build --config ${ configFile }`,
+					{
+						THEME: theme,
+						FORCE_COLOR: true,
+					}
+				);
 				log.info( stdout );
 				log.info( `Theme ${ theme } built successfully.` );
 			} catch ( err ) {
