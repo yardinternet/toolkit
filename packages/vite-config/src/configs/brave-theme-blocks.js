@@ -10,7 +10,7 @@
  * External dependencies
  */
 import { defineConfig } from 'vite';
-import { createViteBlock } from 'vite-plugin-gutenberg-blocks';
+import { createViteBlock } from '@yardinternet/vite-plugin-gutenberg-blocks';
 import tailwindcss from '@tailwindcss/vite';
 import path from 'path';
 
