@@ -17,7 +17,7 @@
 /**
  * External dependencies
  */
-import { defineConfig } from 'vite';
+import { defineConfig, loadEnv } from 'vite';
 import { wordpressPlugin } from '@roots/vite-plugin';
 import laravel from 'laravel-vite-plugin';
 import tailwindcss from '@tailwindcss/vite';
@@ -29,7 +29,8 @@ import { generateAliases } from '../utils/generate-aliases.js';
 import { generateEntryPoints } from '../utils/generate-entry-points.js';
 import { getAllThemeNames } from '../utils/get-all-theme-names.js';
 
-export const braveConfig = ( { theme, entryPoints } ) => {
+export const braveConfig = ( { theme, entryPoints, mode } ) => {
+	const env = loadEnv( mode, process.cwd(), '' );
 	const isDev = ! process.argv.includes( 'build' );
 	const allThemes = getAllThemeNames();
 
@@ -47,6 +48,9 @@ export const braveConfig = ( { theme, entryPoints } ) => {
 		server: {
 			hmr: {
 				host: 'localhost',
+			},
+			cors: {
+				origin: env.WP_HOME,
 			},
 		},
 		/**
