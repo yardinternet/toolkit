@@ -94,5 +94,8 @@ export const braveConfig = ( { theme, entryPoints, mode } ) => {
 				refresh: isDev,
 			} ),
 		],
+		css: {
+			devSourcemap: true,
+		},
 	} );
 };
