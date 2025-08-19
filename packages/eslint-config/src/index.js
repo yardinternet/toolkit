@@ -61,7 +61,7 @@ module.exports = [
 				alias: [
 					[
 						'@sage/scripts',
-						'./web/app/themes/sage-child/resources/scripts',
+						'./web/app/themes/sage/resources/scripts',
 					],
 				],
 			},
