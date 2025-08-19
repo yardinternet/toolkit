@@ -42,6 +42,7 @@ export const braveConfig = ( { theme, entryPoints, mode } ) => {
 	const themesToProcess = isDev ? allThemes : [ theme ];
 
 	return defineConfig( {
+		base: isDev ? '' : `/app/themes/${ theme }/public/build/`,
 		/**
 		 * Named host required for CSP whitelisting in dev mode.
 		 */
