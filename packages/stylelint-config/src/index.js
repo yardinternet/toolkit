@@ -10,6 +10,8 @@ module.exports = {
 		'no-descending-specificity': null,
 		'no-invalid-position-at-import-rule': null,
 		'selector-pseudo-element-colon-notation': 'double',
+		'nesting-selector-no-missing-scoping-root': null,
+		'declaration-property-value-keyword-no-deprecated': null,
 		'font-family-no-missing-generic-family-keyword': [
 			true,
 			{
