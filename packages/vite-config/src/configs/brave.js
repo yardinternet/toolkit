@@ -49,8 +49,16 @@ export const braveConfig = ( { theme, entryPoints, mode } ) => {
 			hmr: {
 				host: 'localhost',
 			},
+			/**
+			 * Allow CORS requests from the WordPress WP_HOME env variable. Regex to allow subdomains.
+			 */
 			cors: {
-				origin: env.WP_HOME,
+				origin: new RegExp(
+					`https?:\/\/(.*\\.)?${ env.WP_HOME.replace(
+						/^https?:\/\//,
+						''
+					) }$`
+				),
 			},
 		},
 		/**
