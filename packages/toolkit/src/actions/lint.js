@@ -2,22 +2,23 @@ import {
 	filetypeFromString,
 	getPathByFormatModeAndFiletype,
 	modesFromString,
-	runCommandForEveryPath,
+	runCommand,
+	resolveFiles,
 } from '../utils/helpers.js';
 import log from '../utils/logger.js';
 import { filetypes } from '../config/filetypes.js';
 import { options as configOptions } from '../config/options.js';
 
-export const lint = ( options, filetype, userPath ) => {
+export const lint = async ( options, filetype, userPath ) => {
 	const formatFiletype = filetypeFromString( filetype, true );
 
-	const command = {
+	const tool = {
 		[ filetypes.js.name ]: 'eslint',
 		[ filetypes.scss.name ]: 'stylelint',
 		[ filetypes.css.name ]: 'stylelint',
 	}[ formatFiletype.name ];
 
-	if ( ! command ) {
+	if ( ! tool ) {
 		log.error(
 			`Filetype '${ formatFiletype.name }' not supported for linting.`
 		);
@@ -31,10 +32,11 @@ export const lint = ( options, filetype, userPath ) => {
 		formatFiletype.name,
 		userPath
 	);
+	const filesToFormat = await resolveFiles( globs );
 
 	const isFix = options[ configOptions.fix.name ] ?? false;
 
-	runCommandForEveryPath( command, globs, [
+	runCommand( tool, filesToFormat, globs, [
 		...( isFix ? [ '--fix' ] : [] ),
 	] );
 };

@@ -2,19 +2,21 @@ import {
 	filetypeFromString,
 	getPathByFormatModeAndFiletype,
 	modesFromString,
-	runCommandForEveryPath,
+	resolveFiles,
+	runCommand,
 } from '../utils/helpers.js';
 
-export const format = ( options, filetype, userPath ) => {
+export const format = async ( options, filetype, userPath ) => {
 	const formatFiletype = filetypeFromString( filetype, true );
 	const formatMode = modesFromString( options.mode, true );
 
-	const command = 'prettier';
+	const tool = 'prettier';
 	const globs = getPathByFormatModeAndFiletype(
 		formatMode,
 		formatFiletype.name,
 		userPath
 	);
+	const filesToFormat = await resolveFiles( globs );
 
-	runCommandForEveryPath( command, globs, [ '--check', '--write' ] );
+	runCommand( tool, filesToFormat, globs, [ '--check', '--write' ] );
 };

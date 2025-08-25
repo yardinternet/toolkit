@@ -4,6 +4,7 @@
 import fs from 'fs';
 import util from 'util';
 import { exec, spawn } from 'child_process';
+import { globby } from 'globby';
 
 /**
  * Internal dependences
@@ -12,32 +13,35 @@ import { filetypes } from '../config/filetypes.js';
 import { modes } from '../config/modes.js';
 import log from './logger.js';
 
-export const runCommand = async (
-	command,
-	args = [],
-	options = { stdio: 'inherit', shell: true }
-) => {
-	log.info( `Running: ${ command } ${ args.join( ' ' ) }` );
+export const runCommand = ( tool, files, globs, args = [] ) => {
+	log.info(
+		`Running: ${ tool } ${ globs.join( ' ' ) } ${ args.join( ' ' ) }`
+	);
 
-	const child = spawn( command, args, options );
+	const child = spawn(
+		tool,
+		[ ...files.map( addQuotesToStrings ), ...args ],
+		{
+			stdio: 'inherit',
+			shell: true,
+		}
+	);
 
 	child.on( 'exit', ( code ) => {
 		if ( code === 0 ) {
-			log.success( `Completed ${ command } successfully.` );
+			log.success( `Completed ${ tool } successfully.` );
 		} else {
-			log.error( `Exited ${ command } with code ${ code }` );
+			log.error( `Exited ${ tool } with code ${ code }` );
 		}
 	} );
 };
 
-export const runCommandForEveryPath = async ( command, paths, args = [] ) => {
-	paths?.forEach( ( path ) => {
-		if ( ! path ) return;
-		runCommand( command, [ addQuotsToStrings( path ), ...args ] );
-	} );
+export const resolveFiles = async ( globs ) => {
+	const files = await globby( globs.filter( Boolean ) );
+	return files;
 };
 
-export const addQuotsToStrings = ( item ) => {
+export const addQuotesToStrings = ( item ) => {
 	if ( item?.startsWith( "'" ) || item?.startsWith( '"' ) ) return item;
 	return "'" + item + "'";
 };
