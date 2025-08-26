@@ -29,7 +29,7 @@ import { generateAliases } from '../utils/generate-aliases.js';
 import { generateEntryPoints } from '../utils/generate-entry-points.js';
 import { getAllThemeNames } from '../utils/get-all-theme-names.js';
 
-export const braveConfig = ( { theme, entryPoints, mode } ) => {
+export const braveConfig = ( { theme = 'sage', entryPoints, mode } ) => {
 	const env = loadEnv( mode, process.cwd(), '' );
 	const isDev = ! process.argv.includes( 'build' );
 	const allThemes = getAllThemeNames();
@@ -94,13 +94,18 @@ export const braveConfig = ( { theme, entryPoints, mode } ) => {
 				} ),
 				/**
 				 * Public directory:
-				 * - Dev mode: fixed to Sage (assumes it hosts the dev server)
+				 * - Dev mode: Sage (assumes it hosts the dev server)
 				 * - Build mode: output to the specific theme directory
 				 */
-				publicDirectory: isDev
-					? `web/app/themes/sage/public`
-					: `web/app/themes/${ theme }/public`,
-				refresh: isDev,
+				publicDirectory: `web/app/themes/${ theme }/public`,
+				/**
+				 * Files to watch for changes and trigger a refresh
+				 */
+				refresh: [
+					`web/app/themes/**/resources/views/**/*.blade.php`,
+					`web/app/themes/**/app/**/*.php`,
+					`web/app/themes/**/config/**/*.php`,
+				],
 			} ),
 		],
 		css: {
