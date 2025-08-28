@@ -101,11 +101,7 @@ export const braveConfig = ( { theme = 'sage', entryPoints, mode } ) => {
 				/**
 				 * Files to watch for changes and trigger a refresh
 				 */
-				refresh: [
-					`web/app/themes/**/resources/views/**/*.blade.php`,
-					`web/app/themes/**/app/**/*.php`,
-					`web/app/themes/**/config/**/*.php`,
-				],
+				refresh: [ `web/app/themes/**/resources/views/**/*.blade.php` ],
 			} ),
 		],
 		css: {
