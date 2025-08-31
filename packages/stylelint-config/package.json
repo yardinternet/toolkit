@@ -1,25 +1,25 @@
 {
-  "name": "@yardinternet/stylelint-config",
-  "version": "1.1.1",
-  "description": "Stylint configuration",
-  "main": "src/index.js",
-  "type": "commonjs",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/yardinternet/toolkit.git",
-    "directory": "packages/stylelint-config"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "stylelint": "^16.23.1",
-    "stylelint-config-idiomatic-order": "^10.0.0",
-    "stylelint-config-recommended": "^17.0.0"
-  }
+	"name": "@yardinternet/stylelint-config",
+	"version": "1.1.1",
+	"description": "Stylint configuration",
+	"main": "src/index.js",
+	"type": "commonjs",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"publishConfig": {
+		"registry": "https://npm.pkg.github.com/"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/yardinternet/toolkit.git",
+		"directory": "packages/stylelint-config"
+	},
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"stylelint": "^16.23.1",
+		"stylelint-config-idiomatic-order": "^10.0.0",
+		"stylelint-config-recommended": "^17.0.0"
+	}
 }
