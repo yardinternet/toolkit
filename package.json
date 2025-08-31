@@ -20,13 +20,18 @@
 	"scripts": {
 		"lint:js": "yard-toolkit lint js -m custom ./packages/**/*.js",
 		"format:js": "yard-toolkit format js -m custom ./packages/**/*.js",
+		"dep:check": "syncpack list-mismatches",
+		"dep:fix": "syncpack fix-mismatches",
+		"dep:outdated": "npm outdated --workspaces",
+		"dep:update": "ncu --deep -u && npm install",
 		"prepare": "husky"
 	},
 	"type": "commonjs",
 	"devDependencies": {
 		"husky": "^9.1.7",
 		"lerna": "^8.2.3",
-		"lint-staged": "^16.1.5"
-	},
-	"packageManager": "pnpm@10.14.0+sha512.ad27a79641b49c3e481a16a805baa71817a04bbe06a38d17e60e2eaee83f6a146c6a688125f5792e48dd5ba30e7da52a5cda4c3992b9ccf333f9ce223af84748"
+		"lint-staged": "^16.1.5",
+		"npm-check-updates": "^18.0.3",
+		"syncpack": "^13.0.4"
+	}
 }
