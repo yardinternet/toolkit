@@ -17,10 +17,23 @@ It is used by the WordPress team for sites and packages.
 Register package: `npm init -w ./packages/[packagename]`
 Install dependencies in package: `npm install [depname] -w ./packages/[packagename]`
 
+> ℹ️ **Note on pnpm**  
+> The `./packages/toolkit` package requires *all* dependencies from all used configs/packages to be explicitly declared.  
+> Unlike npm, pnpm does not automatically hoist undeclared dependencies.
+
 ## 🚀 Releasing packages
 
 ```bash
 lerna publish --no-private
+```
+
+## 📦 Dependency Management
+
+```bash
+npm run dep:check     # List mismatched versions across workspaces
+npm run dep:fix       # Fix mismatched versions
+npm run dep:outdated  # Check for outdated dependencies across workspaces
+npm run dep:update    # Update all dependencies and reinstall
 ```
 
 ## 🎨 Formatting & Linting
