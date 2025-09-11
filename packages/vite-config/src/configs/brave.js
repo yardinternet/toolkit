@@ -21,6 +21,7 @@ import { defineConfig, loadEnv } from 'vite';
 import { wordpressPlugin } from '@roots/vite-plugin';
 import laravel from 'laravel-vite-plugin';
 import tailwindcss from '@tailwindcss/vite';
+import { viteExternalsPlugin } from 'vite-plugin-externals';
 
 /**
  * Internal dependencies
@@ -102,6 +103,14 @@ export const braveConfig = ( { theme = 'sage', entryPoints, mode } ) => {
 				 * Files to watch for changes and trigger a refresh
 				 */
 				refresh: [ `web/app/themes/**/resources/views/**/*.blade.php` ],
+			} ),
+			/**
+			 * Externalizes React and ReactDOM so they reference the global versions provided by WordPress' wp-element (window.React, window.ReactDOM).
+			 * This prevents bundling a duplicate React instance, which would break hooks and cause "Invalid hook call" errors.
+			 */
+			viteExternalsPlugin( {
+				react: 'React',
+				'react-dom': 'ReactDOM',
 			} ),
 		],
 		css: {
