@@ -18,7 +18,7 @@
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
-		"stylelint": "^16.23.1",
+		"stylelint": "^16.24.0",
 		"stylelint-config-idiomatic-order": "^10.0.0",
 		"stylelint-config-recommended": "^17.0.0"
 	}

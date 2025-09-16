@@ -19,7 +19,7 @@
 	"description": "Vite configuration used by the WordPress team for sites and packages.",
 	"dependencies": {
 		"@roots/vite-plugin": "^1.1.0",
-		"@tailwindcss/vite": "^4.1.12",
+		"@tailwindcss/vite": "^4.1.13",
 		"@vitejs/plugin-react": "^5.0.2",
 		"@yardinternet/vite-plugin-gutenberg-blocks": "^2.5.0",
 		"laravel-vite-plugin": "^2.0.1",
@@ -29,6 +29,6 @@
 		"vite": "^7.1.2"
 	},
 	"optionalDependencies": {
-		"@rollup/rollup-linux-x64-gnu": "^4.50.0"
+		"@rollup/rollup-linux-x64-gnu": "^4.50.2"
 	}
 }
