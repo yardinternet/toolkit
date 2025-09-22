@@ -1,6 +1,6 @@
 {
 	"name": "@yardinternet/stylelint-config",
-	"version": "1.1.1",
+	"version": "1.1.2",
 	"description": "Stylint configuration",
 	"main": "src/index.js",
 	"type": "commonjs",
