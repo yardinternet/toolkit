@@ -18,8 +18,7 @@ Register package: `npm init -w ./packages/[packagename]`
 Install dependencies in package: `npm install [depname] -w ./packages/[packagename]`
 
 > ℹ️ **Note on pnpm**  
-> The `./packages/toolkit` package requires *all* dependencies from all used configs/packages to be explicitly declared.  
-> Unlike npm, pnpm does not automatically hoist undeclared dependencies.
+> The `./packages/toolkit` package requires *all* dependencies from all used configs/packages to be explicitly declared. Unlike npm, pnpm does not automatically hoist undeclared dependencies. More details in the [README of the toolkit package](./packages/toolkit/README.md#note-on-dependencies).
 
 ## 🚀 Releasing packages
 
