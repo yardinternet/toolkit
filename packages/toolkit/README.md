@@ -256,3 +256,11 @@ export const options = {
 };
 
 ```
+
+## Note on dependencies
+
+The `./packages/toolkit` package is the central place for developer tools (e.g. `npm run format`, `npm run lint`).
+
+Because it consumes configs and utilities from other packages (like `@yardinternet/prettier-config`, `@yardinternet/eslint-config`, etc.), **it must explicitly declare all their dependencies** — including prettier, eslint, plugins, and any other tools they require.
+
+This is a quirk of **pnpm**: unlike npm or yarn, pnpm uses strict, isolated `node_modules` and does not automatically hoist undeclared dependencies. Declaring them here ensures that all CLI commands work reliably, regardless of where they’re run.
