@@ -1,6 +1,9 @@
 module.exports = {
 	...require( '@wordpress/prettier-config' ),
-	plugins: [ '@shufo/prettier-plugin-blade', 'prettier-plugin-tailwindcss' ],
+	plugins: [
+		require.resolve( '@shufo/prettier-plugin-blade' ),
+		require.resolve( 'prettier-plugin-tailwindcss' ),
+	],
 	overrides: [
 		{
 			files: [ '*.css', '*.js', '*.jsx' ],
