@@ -76,8 +76,10 @@ export const braveConfig = ( { theme = 'sage', entryPoints, mode } ) => {
 		 */
 		optimizeDeps: {
 			exclude: [
+				'@yardinternet/block-extensions',
 				'@yardinternet/gutenberg-components',
 				'@yardinternet/gutenberg-hooks',
+				'@yardinternet/pre-publish-checklist',
 			],
 		},
 		plugins: [
