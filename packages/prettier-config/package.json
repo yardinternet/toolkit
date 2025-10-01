@@ -19,7 +19,7 @@
 	"license": "ISC",
 	"dependencies": {
 		"@shufo/prettier-plugin-blade": "^1.16.1",
-		"@wordpress/prettier-config": "^4.30.0",
+		"@wordpress/prettier-config": "^4.31.0",
 		"prettier": "npm:wp-prettier@^3.0.3",
 		"prettier-plugin-tailwindcss": "^0.6.14"
 	}
