@@ -4,6 +4,8 @@ module.exports = {
 		require.resolve( '@shufo/prettier-plugin-blade' ),
 		require.resolve( 'prettier-plugin-tailwindcss' ),
 	],
+	tailwindStylesheet:
+		'./web/app/themes/sage/resources/styles/base/config.css',
 	overrides: [
 		{
 			files: [ '*.css', '*.js', '*.jsx' ],
