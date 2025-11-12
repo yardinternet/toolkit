@@ -22,6 +22,7 @@ import { wordpressPlugin } from '@roots/vite-plugin';
 import laravel from 'laravel-vite-plugin';
 import tailwindcss from '@tailwindcss/vite';
 import { viteExternalsPlugin } from 'vite-plugin-externals';
+import postcssPrefixWrap from 'postcss-prefixwrap';
 
 /**
  * Internal dependencies
@@ -30,7 +31,12 @@ import { generateAliases } from '../utils/generate-aliases.js';
 import { generateEntryPoints } from '../utils/generate-entry-points.js';
 import { getAllThemeNames } from '../utils/get-all-theme-names.js';
 
-export const braveConfig = ( { theme = 'sage', entryPoints, mode } ) => {
+export const braveConfig = ( {
+	theme = 'sage',
+	entryPoints,
+	mode,
+	editorStylesPrefixWrap,
+} ) => {
 	const env = loadEnv( mode, process.cwd(), '' );
 	const isDev = ! process.argv.includes( 'build' );
 	const allThemes = getAllThemeNames();
@@ -104,7 +110,7 @@ export const braveConfig = ( { theme = 'sage', entryPoints, mode } ) => {
 				/**
 				 * Files to watch for changes and trigger a refresh
 				 */
-				refresh: [ `web/app/themes/**/resources/views/**/*.blade.php` ],
+				refresh: [ 'web/app/themes/**/resources/views/**/*.blade.php' ],
 			} ),
 			/**
 			 * Externalizes React and ReactDOM so they reference the global versions provided by WordPress' wp-element (window.React, window.ReactDOM).
@@ -117,6 +123,24 @@ export const braveConfig = ( { theme = 'sage', entryPoints, mode } ) => {
 		],
 		css: {
 			devSourcemap: true,
+			postcss: {
+				plugins: [
+					...( Array.isArray( editorStylesPrefixWrap?.entryPoints )
+						? [
+								postcssPrefixWrap( '.editor-styles-wrapper', {
+									ignoredSelectors: [
+										':root',
+										/^(body)(.+)$/,
+										/^(.editor-styles-wrapper)(.+)$/,
+									],
+									prefixRootTags: false,
+									whitelist:
+										editorStylesPrefixWrap.entryPoints,
+								} ),
+						  ]
+						: [] ),
+				],
+			},
 		},
 	} );
 };
