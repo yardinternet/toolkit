@@ -22,7 +22,6 @@ import { wordpressPlugin } from '@roots/vite-plugin';
 import laravel from 'laravel-vite-plugin';
 import tailwindcss from '@tailwindcss/vite';
 import { viteExternalsPlugin } from 'vite-plugin-externals';
-import postcssPrefixWrap from 'postcss-prefixwrap';
 
 /**
  * Internal dependencies
@@ -30,6 +29,7 @@ import postcssPrefixWrap from 'postcss-prefixwrap';
 import { generateAliases } from '../utils/generate-aliases.js';
 import { generateEntryPoints } from '../utils/generate-entry-points.js';
 import { getAllThemeNames } from '../utils/get-all-theme-names.js';
+import { getPostCssPrefixWrapPlugin } from '../utils/get-postcss-prefixwrap-plugin.js';
 
 export const braveConfig = ( {
 	theme = 'sage',
@@ -125,20 +125,7 @@ export const braveConfig = ( {
 			devSourcemap: true,
 			postcss: {
 				plugins: [
-					...( Array.isArray( editorStylesPrefixWrap?.entryPoints )
-						? [
-								postcssPrefixWrap( '.editor-styles-wrapper', {
-									ignoredSelectors: [
-										':root',
-										/^(body)(.+)$/,
-										/^(.editor-styles-wrapper)(.+)$/,
-									],
-									prefixRootTags: false,
-									whitelist:
-										editorStylesPrefixWrap.entryPoints,
-								} ),
-						  ]
-						: [] ),
+					...getPostCssPrefixWrapPlugin( editorStylesPrefixWrap ),
 				],
 			},
 		},
