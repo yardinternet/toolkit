@@ -56,10 +56,10 @@ export const braveConfig = ( { theme = 'sage', entryPoints, mode } ) => {
 			 */
 			cors: {
 				origin: new RegExp(
-					`https?:\/\/(.*\\.)?${ env.WP_HOME.replace(
-						/^https?:\/\//,
-						''
-					) }$`
+					`https?:\/\/(.*\\.)?${
+						env?.WP_HOME?.replace( /^https?:\/\//, '' ) ||
+						'localhost'
+					}$`
 				),
 			},
 		},
