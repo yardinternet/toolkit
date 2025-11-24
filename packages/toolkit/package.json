@@ -1,6 +1,6 @@
 {
 	"name": "@yardinternet/toolkit",
-	"version": "2.0.0",
+	"version": "2.0.1",
 	"description": "Yard toolkit CLI scripts",
 	"bin": {
 		"yard-toolkit": "./src/index.js"
@@ -47,6 +47,6 @@
 		"@yardinternet/eslint-config": "^1.1.6",
 		"@yardinternet/prettier-config": "^2.0.0",
 		"@yardinternet/stylelint-config": "^1.1.2",
-		"@yardinternet/vite-config": "^1.0.8"
+		"@yardinternet/vite-config": "^1.0.9"
 	}
 }
