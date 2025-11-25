@@ -25,6 +25,7 @@
 		"@eslint/eslintrc": "^3.3.1",
 		"@eslint/js": "^9.36.0",
 		"@shufo/prettier-plugin-blade": "^1.16.1",
+		"@shufo/tailwindcss-class-sorter": "^3.0.1",
 		"@typescript-eslint/eslint-plugin": "^8.45.0",
 		"@wordpress/eslint-plugin": "^22.17.0",
 		"@wordpress/prettier-config": "^4.31.0",
