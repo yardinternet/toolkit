@@ -1,6 +1,6 @@
 {
 	"name": "@yardinternet/prettier-config",
-	"version": "2.0.0",
+	"version": "2.0.1",
 	"description": "Prettier configuration",
 	"main": "src/index.js",
 	"type": "commonjs",
@@ -19,6 +19,7 @@
 	"license": "ISC",
 	"dependencies": {
 		"@shufo/prettier-plugin-blade": "^1.16.1",
+		"@shufo/tailwindcss-class-sorter": "^3.0.1",
 		"@wordpress/prettier-config": "^4.31.0",
 		"prettier": "npm:wp-prettier@^3.0.3",
 		"prettier-plugin-tailwindcss": "^0.6.14"

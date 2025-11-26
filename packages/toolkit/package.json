@@ -1,6 +1,6 @@
 {
 	"name": "@yardinternet/toolkit",
-	"version": "2.0.0",
+	"version": "2.0.2",
 	"description": "Yard toolkit CLI scripts",
 	"bin": {
 		"yard-toolkit": "./src/index.js"
@@ -25,6 +25,7 @@
 		"@eslint/eslintrc": "^3.3.1",
 		"@eslint/js": "^9.36.0",
 		"@shufo/prettier-plugin-blade": "^1.16.1",
+		"@shufo/tailwindcss-class-sorter": "^3.0.1",
 		"@typescript-eslint/eslint-plugin": "^8.45.0",
 		"@wordpress/eslint-plugin": "^22.17.0",
 		"@wordpress/prettier-config": "^4.31.0",
@@ -45,8 +46,8 @@
 	},
 	"optionalDependencies": {
 		"@yardinternet/eslint-config": "^1.1.6",
-		"@yardinternet/prettier-config": "^2.0.0",
+		"@yardinternet/prettier-config": "^2.0.1",
 		"@yardinternet/stylelint-config": "^1.1.2",
-		"@yardinternet/vite-config": "^1.0.8"
+		"@yardinternet/vite-config": "^1.0.9"
 	}
 }
