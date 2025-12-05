@@ -39,3 +39,7 @@ npm run dep:update    # Update all dependencies and reinstall
 
 The linting in this monorepo uses the settings defined in the child packages.
 Husky (CaptainHook alternative) ensures that all files are automatically formatted and linted with each commit.
+
+## About us
+
+[![banner](https://raw.githubusercontent.com/yardinternet/.github/refs/heads/main/profile/assets/small-banner-github.svg)](https://www.yard.nl/werken-bij/)
