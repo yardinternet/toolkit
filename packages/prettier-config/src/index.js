@@ -8,7 +8,7 @@ module.exports = {
 		'./web/app/themes/sage/resources/styles/base/config.css',
 	overrides: [
 		{
-			files: [ '*.css', '*.js', '*.jsx' ],
+			files: [ '*.css', '*.js', '*.jsx', '*.ts', '*.tsx' ],
 			options: {
 				useTabs: true,
 				printWidth: 80,

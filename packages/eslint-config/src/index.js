@@ -1,5 +1,4 @@
 const globals = require( 'globals' );
-// eslint-disable-next-line import/no-extraneous-dependencies
 const babelParser = require( '@babel/eslint-parser' );
 const { fixupConfigRules } = require( '@eslint/compat' );
 const js = require( '@eslint/js' );
@@ -19,7 +18,7 @@ module.exports = [
 		)
 	),
 	{
-		files: [ '**/*.js', '**/*.jsx' ],
+		files: [ '**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx' ],
 		languageOptions: {
 			globals: {
 				...globals.browser,
