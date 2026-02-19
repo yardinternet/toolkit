@@ -50,6 +50,10 @@ module.exports = [
 					allowTernary: true,
 				},
 			],
+			'import/no-unresolved': [
+				'error',
+				{ ignore: ['^@wordpress/'] },
+			],
 		},
 
 		settings: {
