@@ -19,14 +19,12 @@
 	"license": "ISC",
 	"dependencies": {
 		"@babel/preset-react": "^7.28.5",
-		"@eslint/compat": "^2.0.2",
-		"@eslint/eslintrc": "^3.3.3",
-		"@eslint/js": "^9.39.1",
 		"@typescript-eslint/eslint-plugin": "^8.56.0",
 		"@wordpress/eslint-plugin": "^24.2.0",
-		"eslint-config-prettier": "^10.1.8",
+		"eslint": "^9.39.2",
 		"eslint-import-resolver-alias": "^1.1.2",
 		"eslint-plugin-import": "^2.32.0",
+		"eslint-plugin-prettier": "^5.5.5",
 		"eslint-plugin-react-hooks": "^7.0.1",
 		"globals": "^17.3.0"
 	}
