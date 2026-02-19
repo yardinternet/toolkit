@@ -18,18 +18,18 @@
 	"license": "ISC",
 	"description": "Vite configuration used by the WordPress team for sites and packages.",
 	"dependencies": {
-		"@roots/vite-plugin": "^1.2.1",
-		"@tailwindcss/vite": "^4.1.13",
-		"@vitejs/plugin-react": "^5.0.4",
+		"@roots/vite-plugin": "^1.2.3",
+		"@tailwindcss/vite": "^4.2.0",
+		"@vitejs/plugin-react": "^5.1.4",
 		"@yardinternet/vite-plugin-gutenberg-blocks": "^2.5.0",
-		"laravel-vite-plugin": "^2.0.1",
-		"postcss-prefixwrap": "^1.57.0",
+		"laravel-vite-plugin": "^2.1.0",
+		"postcss-prefixwrap": "^1.57.2",
 		"vite-plugin-externals": "^0.6.2"
 	},
 	"peerDependencies": {
 		"vite": "^7.1.2"
 	},
 	"optionalDependencies": {
-		"@rollup/rollup-linux-x64-gnu": "^4.52.3"
+		"@rollup/rollup-linux-x64-gnu": "^4.57.1"
 	}
 }
