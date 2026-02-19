@@ -29,9 +29,9 @@
 	"type": "commonjs",
 	"devDependencies": {
 		"husky": "^9.1.7",
-		"lerna": "^9.0.0",
-		"lint-staged": "^16.2.3",
-		"npm-check-updates": "^19.0.0",
-		"syncpack": "^13.0.4"
+		"lerna": "^9.0.4",
+		"lint-staged": "^16.2.7",
+		"npm-check-updates": "^19.4.0",
+		"syncpack": "^14.0.0"
 	}
 }
