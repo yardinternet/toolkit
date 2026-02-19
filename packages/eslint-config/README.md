@@ -10,23 +10,21 @@ npm i @yardinternet/eslint-config
 
 ## Usage
 
-`@yardinternet/eslint-config` can be required in the `.eslint.config.js`
+`@yardinternet/eslint-config` can be required in the `.eslint.config.cjs`
 
 ```js
 module.exports = require('@yardinternet/eslint-config');
 ```
-
-If you want to add or override settings you can use tools like [deepmerge](https://www.npmjs.com/package/deepmerge).
+You can merge or override rules by spreading this config and adding your own objects:
 
 ```js
-const merge = require('deepmerge');
-const eslintSettings = merge(require('@yardinternet/eslint-config'), [
+module.exports = [
+    ...require('@yardinternet/eslint-config'),
     {
         rules: {
+            // Your overrides here
             "jsdoc/require-param": 0,
         },
     },
-])
-
-module.exports = eslintSettings;
+];
 ```

@@ -20,8 +20,8 @@
 	"scripts": {
 		"lint:js": "yard-toolkit lint js -m custom ./packages/**/src/**/*.js",
 		"format:js": "yard-toolkit format js -m custom ./packages/**/*.js",
-		"dep:check": "syncpack list-mismatches",
-		"dep:fix": "syncpack fix-mismatches",
+		"dep:check": "syncpack lint",
+		"dep:fix": "syncpack fix",
 		"dep:outdated": "npm outdated --workspaces",
 		"dep:update": "ncu --deep -u && npm install",
 		"prepare": "husky"
