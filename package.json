@@ -15,7 +15,8 @@
 		"packages/eslint-config",
 		"packages/postcss-config",
 		"packages/toolkit",
-		"packages/vite-config"
+		"packages/vite-config",
+		"packages/ts-config"
 	],
 	"scripts": {
 		"lint:js": "yard-toolkit lint js -m custom ./packages/**/src/**/*.js",

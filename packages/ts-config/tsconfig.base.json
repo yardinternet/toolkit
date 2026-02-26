@@ -1,0 +1,30 @@
+{
+	"$schema": "https://json.schemastore.org/tsconfig",
+	// Shared base config for all TypeScript projects
+	"compilerOptions": {
+		// Base
+		"esModuleInterop": true, // Allow default imports from CommonJS
+		"jsx": "react", // Classic in stead of react-jsx, allows JSX without react installed as dependency.
+		"module": "ESNext", // Use ESNext for bundler/tree-shaking support
+		"moduleResolution": "Node",
+		"skipLibCheck": true, // Skips checking the types of .d.ts files. This is important for performance.
+		"target": "es2022", // Version of JS to output.
+		"moduleDetection": "force", // Forces TypeScript to consider all files as modules. Helps avoiding 'cannot redeclare block-scoped variable' errors
+		"isolatedModules": true, // Prevents a few TS features which are unsafe when treating modules as isolated files
+		"verbatimModuleSyntax": true, // Force to use import type and export type
+		"allowJs": true, // Allows you to import .js and .json files.
+		"resolveJsonModule": true, // Allows you to import .js and .json files.
+
+		// Strict Type checking options
+		"strict": true, // Enable all strict type-checking options
+		"forceConsistentCasingInFileNames": true, // Prevent case-related import bugs
+		"noUncheckedIndexedAccess": true, // Prevents accessing an array or object without first checking if it's defined
+		"noImplicitOverride": true, // Only allow method overrides when explicitly marked with 'override'
+
+		// Include the DOM types
+		"lib": [ "es2022", "dom", "dom.iterable" ],
+	},
+	"exclude": [
+		"node_modules", "dist", "build", "vendor", "public", "plugins"
+	]
+}
