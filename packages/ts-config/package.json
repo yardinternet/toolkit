@@ -16,5 +16,13 @@
 		"url": "git+https://github.com/yardinternet/toolkit.git",
 		"directory": "packages/vite-config"
 	},
-	"devDependencies": {}
+	"dependencies": {
+		"@types/wordpress__block-editor": "^15.0.3",
+		"@types/wordpress__blocks": "^15.10.0",
+		"@types/wordpress__components": "^23.0.12",
+		"@types/wordpress__dom-ready": "^2.3.0",
+		"@types/wordpress__element": "^2.4.1",
+		"@types/wordpress__hooks": "^2.4.1",
+		"@types/wordpress__server-side-render": "^6.15.0"
+	}
 }
