@@ -1,0 +1,12 @@
+{
+  // TypeScript config for library / npm packages
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "declaration": true, // Generate .d.ts files
+    "declarationMap": true, // Helpful for debugging type issues
+    "emitDeclarationOnly": false, // Emit JS and types
+    "outDir": "dist", // Output directory for compiled files
+    "rootDir": "src", // Source directory
+  },
+  "include": ["src/**/*"]
+}
