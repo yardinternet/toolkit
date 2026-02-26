@@ -54,6 +54,7 @@ module.exports = [
 				'error',
 				{ ignore: ['^@wordpress/'] },
 			],
+			'import/no-extraneous-dependencies': 0,
 		},
 
 		settings: {
