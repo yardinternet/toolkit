@@ -25,6 +25,6 @@
 		"lib": [ "es2022", "dom", "dom.iterable" ],
 	},
 	"exclude": [
-		"node_modules", "dist", "build", "vendor", "public", "plugins"
+		"${configDir}/node_modules"
 	]
 }

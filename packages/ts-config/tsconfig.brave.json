@@ -2,6 +2,5 @@
 	// TypeScript config for Brave sites with TypeScript
 	"extends": "./tsconfig.base.json",
 	"compilerOptions": {},
-	"include": [ "web/app/themes/sage/resources/scripts/**/*" ],
-	"exclude": [ "node_modules", "vendor", "public", "plugins" ]
+	"include": [ "${configDir}/web/app/themes/sage/resources/scripts/**/*" ],
 }
