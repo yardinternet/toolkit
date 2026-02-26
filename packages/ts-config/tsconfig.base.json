@@ -4,7 +4,7 @@
 	"compilerOptions": {
 		// Base
 		"esModuleInterop": true, // Allow default imports from CommonJS
-		"jsx": "react", // Classic in stead of react-jsx, allows JSX without react installed as dependency.
+		"jsx": "react-jsx",
 		"module": "ESNext", // Use ESNext for bundler/tree-shaking support
 		"moduleResolution": "Node",
 		"skipLibCheck": true, // Skips checking the types of .d.ts files. This is important for performance.
@@ -17,13 +17,13 @@
 
 		// Strict Type checking options
 		"strict": true, // Enable all strict type-checking options
-		"forceConsistentCasingInFileNames": true, // Prevent case-related import bugs
-		"noUncheckedIndexedAccess": true, // Prevents accessing an array or object without first checking if it's defined
-		"noImplicitOverride": true, // Only allow method overrides when explicitly marked with 'override'
-
 		"allowUnreachableCode": false,
+		"forceConsistentCasingInFileNames": true, // Prevent case-related import bugs
 		"noFallthroughCasesInSwitch": true,
+		"noImplicitAny": true,
+		"noImplicitOverride": true,
 		"noImplicitReturns": true,
+		"noUncheckedIndexedAccess": true,
 		"noUnusedLocals": true,
 		"noUnusedParameters": true,
 
