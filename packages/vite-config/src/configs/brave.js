@@ -121,10 +121,10 @@ export const braveConfig = ( {
 				react: 'React',
 				'react-dom': 'ReactDOM',
 			} ),
-			checker({
+			checker( {
 				// Add type checking support for TypeScript files.
 				typescript: true,
-			}),
+			} ),
 		],
 		css: {
 			devSourcemap: true,

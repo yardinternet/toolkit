@@ -1,11 +1,22 @@
+const fs = require( 'fs' );
+const path = require( 'path' );
+
+const tailwindPath = path.resolve(
+	process.cwd(),
+	'web/app/themes/sage/resources/styles/base/config.css'
+);
+
+const hasTailwindConfig = fs.existsSync( tailwindPath );
+
 module.exports = {
 	...require( '@wordpress/prettier-config' ),
 	plugins: [
 		require.resolve( '@shufo/prettier-plugin-blade' ),
 		require.resolve( 'prettier-plugin-tailwindcss' ),
 	],
-	tailwindStylesheet:
-		'./web/app/themes/sage/resources/styles/base/config.css',
+	...( hasTailwindConfig && {
+		tailwindStylesheet: tailwindPath,
+	} ),
 	overrides: [
 		{
 			files: [ '*.css', '*.js', '*.jsx', '*.ts', '*.tsx' ],
