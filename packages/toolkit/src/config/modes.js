@@ -9,8 +9,6 @@ export const modes = {
 				path: [
 					'./web/app/themes/**/resources/scripts/**/*.js',
 					'./web/app/themes/**/resources/scripts/**/*.jsx',
-					'./web/app/themes/**/resources/scripts/**/*.ts',
-					'./web/app/themes/**/resources/scripts/**/*.tsx',
 				],
 			},
 			{
