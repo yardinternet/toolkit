@@ -3,8 +3,5 @@
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
   },
-  "include": [
-    "resources/scripts/**/*",
-  ],
   "exclude": ["node_modules", "vendor", "public", "plugins"]
 }
