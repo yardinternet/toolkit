@@ -9,11 +9,6 @@ Brave:
 ```jsonc
 {
  "extends": "@yardinternet/ts-config/tsconfig.brave.json",
- "include": [
-  "web/app/themes/sage/resources/scripts/**/*.ts",
-  "web/app/themes/sage/resources/scripts/**/*.tsx",
-  "web/app/themes/sage/resources/scripts/**/*.d.ts"
- ]
 }
 ```
 
