@@ -21,6 +21,12 @@
 		"noUncheckedIndexedAccess": true, // Prevents accessing an array or object without first checking if it's defined
 		"noImplicitOverride": true, // Only allow method overrides when explicitly marked with 'override'
 
+		"allowUnreachableCode": false,
+		"noFallthroughCasesInSwitch": true,
+		"noImplicitReturns": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+
 		// Include the DOM types
 		"lib": [ "es2022", "dom", "dom.iterable" ],
 	},
