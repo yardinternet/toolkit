@@ -19,7 +19,6 @@
  */
 import { defineConfig, loadEnv } from 'vite';
 import { wordpressPlugin } from '@roots/vite-plugin';
-import checker from 'vite-plugin-checker';
 import laravel from 'laravel-vite-plugin';
 import tailwindcss from '@tailwindcss/vite';
 import { viteExternalsPlugin } from 'vite-plugin-externals';
@@ -120,10 +119,6 @@ export const braveConfig = ( {
 			viteExternalsPlugin( {
 				react: 'React',
 				'react-dom': 'ReactDOM',
-			} ),
-			checker( {
-				// Add type checking support for TypeScript files.
-				typescript: true,
 			} ),
 		],
 		css: {
