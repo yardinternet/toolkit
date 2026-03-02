@@ -18,10 +18,10 @@
  * External dependencies
  */
 import { defineConfig, loadEnv } from 'vite';
+import { viteExternalsPlugin } from 'vite-plugin-externals';
 import { wordpressPlugin } from '@roots/vite-plugin';
 import laravel from 'laravel-vite-plugin';
 import tailwindcss from '@tailwindcss/vite';
-import { viteExternalsPlugin } from 'vite-plugin-externals';
 
 /**
  * Internal dependencies
@@ -29,13 +29,15 @@ import { viteExternalsPlugin } from 'vite-plugin-externals';
 import { generateAliases } from '../utils/generate-aliases.js';
 import { generateEntryPoints } from '../utils/generate-entry-points.js';
 import { getAllThemeNames } from '../utils/get-all-theme-names.js';
+import { getCheckerPlugin } from '../utils/get-checker-plugin.js';
 import { getPostCssPrefixWrapPlugin } from '../utils/get-postcss-prefixwrap-plugin.js';
 
 export const braveConfig = ( {
-	theme = 'sage',
+	checker: checkerOption = null,
+	editorStylesPrefixWrap,
 	entryPoints,
 	mode,
-	editorStylesPrefixWrap,
+	theme = 'sage',
 } ) => {
 	const env = loadEnv( mode, process.cwd(), '' );
 	const isDev = ! process.argv.includes( 'build' );
@@ -120,6 +122,10 @@ export const braveConfig = ( {
 				react: 'React',
 				'react-dom': 'ReactDOM',
 			} ),
+			/**
+			 * Runs the vite-plugin-checker (for e.g. TypeScript) to check for errors and display them in the terminal.
+			 */
+			...getCheckerPlugin( { checkerOption } ),
 		],
 		css: {
 			devSourcemap: true,
