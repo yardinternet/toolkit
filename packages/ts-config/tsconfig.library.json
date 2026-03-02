@@ -5,5 +5,7 @@
     "declaration": true, // Generate .d.ts files for types
     "declarationMap": true, // Helpful for debugging type issues
     "emitDeclarationOnly": false, // Emit JS and types
+		"noEmit": false, // Override base config to allow emitting files
   },
+	"include": [ "${configDir}/src/**/*" ],
 }

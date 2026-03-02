@@ -4,8 +4,9 @@
 	"compilerOptions": {
 		// Base
 		"esModuleInterop": true, // Allow default imports from CommonJS
-		"jsx": "react-jsx",
-		"module": "ESNext", // Use ESNext for bundler/tree-shaking support
+		"jsx": "react-jsx", // Use the new JSX transform for React 17+
+		"module": "preserve", // Keep the module syntax as-is (e.g. import/export) for bundlers to handle
+		"noEmit": true, // Don't emit any output files. We're only using TypeScript for type-checking, Vite does the bundling.
 		"moduleResolution": "Node",
 		"skipLibCheck": true, // Skips checking the types of .d.ts files. This is important for performance.
 		"target": "es2022", // Version of JS to output.
