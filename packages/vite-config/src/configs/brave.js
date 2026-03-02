@@ -115,12 +115,13 @@ export const braveConfig = ( {
 				refresh: [ 'web/app/themes/**/resources/views/**/*.blade.php' ],
 			} ),
 			/**
-			 * Externalizes React and ReactDOM so they reference the global versions provided by WordPress' wp-element (window.React, window.ReactDOM).
+			 * Externalizes React, ReactDOM and ReactJSXRuntime so they reference the global versions provided by WordPress' wp-element (window.React, window.ReactDOM).
 			 * This prevents bundling a duplicate React instance, which would break hooks and cause "Invalid hook call" errors.
 			 */
 			viteExternalsPlugin( {
 				react: 'React',
 				'react-dom': 'ReactDOM',
+				'react/jsx-runtime': 'ReactJSXRuntime', // Needed for TypeScript projects using JSX transform
 			} ),
 			/**
 			 * Runs the vite-plugin-checker (for e.g. TypeScript) to check for errors and display them in the terminal.
