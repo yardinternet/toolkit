@@ -85,6 +85,7 @@ export const braveConfig = ( {
 		optimizeDeps: {
 			exclude: [
 				'@yardinternet/block-extensions',
+				'@yardinternet/gutenberg-block-restrictions',
 				'@yardinternet/gutenberg-components',
 				'@yardinternet/gutenberg-hooks',
 				'@yardinternet/pre-publish-checklist',
