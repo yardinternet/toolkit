@@ -18,7 +18,7 @@
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
-		"@shufo/prettier-plugin-blade": "^1.16.1",
+		"@shufo/prettier-plugin-blade": "^1.16.2",
 		"@shufo/tailwindcss-class-sorter": "^3.0.1",
 		"@wordpress/prettier-config": "^4.40.0",
 		"prettier": "npm:wp-prettier@^3.0.3",
