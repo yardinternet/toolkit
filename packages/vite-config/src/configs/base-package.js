@@ -6,8 +6,7 @@ import { getPackageExternals } from '../utils/get-package-externals.js';
 import { getPackageJson } from '../utils/get-package-json.js';
 import { validatePackageOutputFields } from '../utils/validate-package-output-fields.js';
 
-const TS_FILE_EXTENSIONS = [ '.ts', '.tsx', '.mts', '.cts' ];
-
+// TODO: just inline this. Wait a minute, format.js? css.js? Let's check this.
 const defaultFileName = ( format, entryName ) =>
 	`${ entryName }.${ format }.js`;
 
@@ -32,6 +31,7 @@ const toEntryObject = ( entryPoints ) => {
 	);
 };
 
+// TODO simplify to one function, move to helper file
 const toAbsoluteEntries = ( entryPoints, cwd ) =>
 	Object.fromEntries(
 		Object.entries( entryPoints ).map( ( [ entryName, entryPath ] ) => [
@@ -39,6 +39,9 @@ const toAbsoluteEntries = ( entryPoints, cwd ) =>
 			path.resolve( cwd, entryPath ),
 		] )
 	);
+
+// TODO: move to TypeScript utils
+const TS_FILE_EXTENSIONS = [ '.ts', '.tsx', '.mts', '.cts' ];
 
 const hasTypeScriptEntry = ( entryPoints ) =>
 	Object.values( entryPoints ).some( ( entryPath ) =>
@@ -55,6 +58,7 @@ const canUseDeclarationPlugin = async () => {
 	}
 };
 
+// Todo: simplify this because vite-plugin-dts is always a dependency of this package.
 const createDeclarationPlugin = async ( { enabled, entryRoot, outDir } ) => {
 	if ( ! enabled ) {
 		return [];
@@ -83,6 +87,7 @@ const createDeclarationPlugin = async ( { enabled, entryRoot, outDir } ) => {
 const normalizeFormats = ( formats = [ 'es', 'cjs' ] ) =>
 	Array.isArray( formats ) && formats.length > 0 ? formats : [ 'es', 'cjs' ];
 
+// Todo: simplify, one line function.
 const hasWatchFlag = () =>
 	process.env.WATCH === 'true' || process.argv.includes( '--watch' );
 
@@ -138,18 +143,24 @@ export const createBasePackageConfig = ( {
 
 	return defineConfig( async () => {
 		const { packageJson } = getPackageJson( cwd );
+		// Todo: simplify externals,
+		// Todo: use the wordPress plugin to convert WordPress dependencies to window globals
+		// Todo: React and ReactDOM and @wordpress/element should be externalized by default (see BraveConfig)
 		const { isExternal } = getPackageExternals( {
 			externals,
 			autoExternal,
 			wpExternals,
 			packageJson,
 		} );
+
+		// Todo: simplify this because vite-plugin-dts is always a dependency of this package.
 		const declarationPlugins = await createDeclarationPlugin( {
 			enabled: shouldGenerateTypes,
 			entryRoot: 'src',
 			outDir,
 		} );
 
+		// Todo: check if packageJsonValidation is only npm based
 		if ( packageJsonValidation ) {
 			validatePackageOutputFields( {
 				entryName: primaryEntryName,
@@ -181,7 +192,7 @@ export const createBasePackageConfig = ( {
 				emptyOutDir: ! isWatchMode,
 				watch: isWatchMode
 					? {
-							include: 'src/**',
+							include: 'src/**', // TODO: this should be entryoints?
 					  }
 					: undefined,
 				rollupOptions: {
