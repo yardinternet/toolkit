@@ -15,12 +15,7 @@ export const validatePackageOutputFields = ( {
 		Array.isArray( entryNames ) && entryNames.length > 0
 			? entryNames
 			: [ entryName ];
-	const expectedImportFor = ( name ) =>
-		formats.includes( 'es' ) ? `${ normalizedOutDir }/${ name }.js` : null;
-	const expectedRequireFor = ( name ) =>
-		formats.includes( 'cjs' )
-			? `${ normalizedOutDir }/${ name }.cjs.js`
-			: null;
+	const expectedImportFor = ( name ) => `${ normalizedOutDir }/${ name }.js`;
 
 	const exportsMap = toExportsMap( packageJson.exports );
 
@@ -38,16 +33,13 @@ export const validatePackageOutputFields = ( {
 		const exportKey =
 			currentEntryName === entryName ? '.' : `./${ currentEntryName }`;
 		const expectedImport = expectedImportFor( currentEntryName );
-		const expectedRequire = expectedRequireFor( currentEntryName );
 		const exportValue = exportsMap[ exportKey ];
 
 		if ( typeof exportValue === 'undefined' ) {
 			warnMismatch( {
 				fieldName: `exports["${ exportKey }"]`,
 				actual: '(missing)',
-				expected: expectedRequire
-					? `{ "import": "${ expectedImport }", "require": "${ expectedRequire }" }`
-					: expectedImport,
+				expected: expectedImport,
 				packageName,
 			} );
 			continue;
@@ -57,7 +49,6 @@ export const validatePackageOutputFields = ( {
 			exportKey,
 			exportValue,
 			expectedImport,
-			expectedRequire,
 			packageName,
 		} );
 	}
@@ -92,7 +83,6 @@ const validateExportValue = ( {
 	exportKey,
 	exportValue,
 	expectedImport,
-	expectedRequire,
 	packageName,
 } ) => {
 	if ( typeof exportValue === 'string' ) {
@@ -128,18 +118,6 @@ const validateExportValue = ( {
 				fieldName: `exports["${ exportKey }"].import`,
 				actual: exportValue.import || exportValue.default,
 				expected: expectedImport,
-				packageName,
-			} );
-		}
-	}
-
-	if ( expectedRequire ) {
-		const actualExportRequire = normalizePath( exportValue.require );
-		if ( actualExportRequire !== expectedRequire ) {
-			warnMismatch( {
-				fieldName: `exports["${ exportKey }"].require`,
-				actual: exportValue.require,
-				expected: expectedRequire,
 				packageName,
 			} );
 		}
