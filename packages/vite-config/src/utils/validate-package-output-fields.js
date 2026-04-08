@@ -1,19 +1,3 @@
-const normalizePath = ( value ) => {
-	if ( typeof value !== 'string' ) {
-		return null;
-	}
-
-	return value.replace( /^\.\//, '' ).replaceAll( '\\', '/' );
-};
-
-const warnMismatch = ( { fieldName, actual, expected, packageName } ) => {
-	process.emitWarning(
-		`[vite-config] ${ packageName } package.json "${ fieldName }" is "${
-			actual || '(missing)'
-		}", expected "${ expected }".`
-	);
-};
-
 export const validatePackageOutputFields = ( {
 	entryName,
 	formats,
@@ -104,4 +88,20 @@ export const validatePackageOutputFields = ( {
 			} );
 		}
 	}
+};
+
+const normalizePath = ( value ) => {
+	if ( typeof value !== 'string' ) {
+		return null;
+	}
+
+	return value.replace( /^\.\//, '' ).replaceAll( '\\', '/' );
+};
+
+const warnMismatch = ( { fieldName, actual, expected, packageName } ) => {
+	process.emitWarning(
+		`[vite-config] ${ packageName } package.json "${ fieldName }" is "${
+			actual || '(missing)'
+		}", expected "${ expected }".`
+	);
 };

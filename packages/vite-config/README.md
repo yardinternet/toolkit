@@ -87,11 +87,13 @@ Use package-focused presets for npm and Laravel packages. Both wrappers use `cre
 
 ### Scripts in package.json
 
+TODO: add format scripts
 ```json
 {
   "scripts": {
     "start": "vite build --watch",
-    "build": "vite build"
+    "build": "vite build",
+    "test": "vitest",
   }
 }
 ```
@@ -149,24 +151,6 @@ Wrapper defaults:
 - `npmPackageConfig`: `outDir: 'dist'`, `formats: [ 'es', 'cjs' ]`, `manifest: false`
 - `laravelPackageConfig`: `outDir: 'public/build'`, `formats: [ 'es', 'cjs' ]`, `manifest: true`
 
-### createBasePackageConfig
-
-Both wrappers use `createBasePackageConfig` internally.
-
-```js
-import { createBasePackageConfig } from '@yardinternet/vite-config/packages';
-
-export default createBasePackageConfig( {
-    entryPoints: {
-        gallery: 'src/gallery.ts',
-        slider: 'src/slider.ts',
-    },
-    outDir: 'dist',
-    // Optional
-    formats: [ 'es', 'cjs' ],
-} );
-```
-
 ### Opinionated defaults
 
 | Feature | Watch mode | Build mode |
@@ -188,6 +172,3 @@ export default createBasePackageConfig( {
 - Vitest default: `test.environment = 'jsdom'`
 - Package metadata validation: warns when `main`, `module`, or `exports` do not match output naming
 
-### Backward compatibility
-
-`braveConfig` and `braveBlocksConfig` remain unchanged and can still be imported from `@yardinternet/vite-config`.

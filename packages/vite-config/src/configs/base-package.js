@@ -105,17 +105,17 @@ export const createBasePackageConfig = ( {
 	entryPoints,
 	outDir = 'dist',
 	externals = [],
-	autoExternal = false,
+	autoExternal = false, // TODO: Remove auto externals
 	wpExternals = false,
 	formats = [ 'es', 'cjs' ],
 	fileName = defaultFileName,
 	sourcemap,
-	dts,
+	dts, // TODO: remove this because it auto detects
 	packageJsonValidation = true,
 	test = {},
-	manifest = false,
-	watch,
-	name,
+	manifest = false, // TODO: do I really need this? check in Laravel package
+	watch, // TODO: remove, since it auto detects?
+	name, // TODO: remove maybe
 } = {} ) => {
 	const normalizedEntries = toEntryObject( entryPoints );
 	const cwd = process.cwd();

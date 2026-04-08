@@ -7,7 +7,7 @@ import path from 'path';
  * Generates the aliases for each theme to use like `@theme-name`.
  * Example: `background-image: url('@sage/images/logo.svg')`; or `import '@sage-child/scripts/frontend/frontend.js';`
  */
-const generateAliases = ( themeNames ) => {
+export const generateAliases = ( themeNames ) => {
 	const themesDir = path.resolve( process.cwd(), 'web/app/themes' );
 	const aliases = {};
 
@@ -27,5 +27,3 @@ const generateAliases = ( themeNames ) => {
 
 	return aliases;
 };
-
-export { generateAliases };
