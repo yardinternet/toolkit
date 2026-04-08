@@ -2,10 +2,6 @@
 
 Vite configuration used by the WordPress team for sites and packages.
 
-**To do:**
-
-- Update Vite to 7.0.0 (check all dev dependencies for compatibility).
-
 ## Installation
 
 ```bash
@@ -30,7 +26,7 @@ export default braveConfig( {
   'resources/scripts/editor/editor.js',
   'resources/scripts/frontend/frontend.js',
   'resources/styles/editor.css',
-  'resources/styles/frontend.css',
+  'resources/styles/frontend.css'
  ],
 } );
 ```
@@ -84,3 +80,114 @@ export default defineConfig(
  braveBlocksConfig({ blockPath: process.env.BLOCK_PATH })
 );
 ```
+
+## Package Vite configs
+
+Use package-focused presets for npm and Laravel packages. Both wrappers use `createBasePackageConfig` internally.
+
+### Scripts in package.json
+
+```json
+{
+  "scripts": {
+    "start": "vite build --watch",
+    "build": "vite build"
+  }
+}
+```
+
+### npmPackageConfig
+
+```js
+import { npmPackageConfig } from '@yardinternet/vite-config/packages';
+
+export default npmPackageConfig( {
+    entryPoints: {
+        gallery: 'src/gallery.ts',
+        slider: 'src/slider.ts',
+    },
+    outDir: 'dist',
+} );
+```
+
+### laravelPackageConfig
+
+```js
+import { laravelPackageConfig } from '@yardinternet/vite-config/packages';
+
+export default laravelPackageConfig( {
+    entryPoints: {
+        index: 'src/index.ts',
+    },
+    outDir: 'public/build',
+} );
+```
+
+### All options
+
+All options below are available on `createBasePackageConfig()` and can also be passed to `npmPackageConfig()` and `laravelPackageConfig()`.
+
+| Option | Type | Default | Description |
+| --- | --- | --- | --- |
+| `entryPoints` | `string \| string[] \| Record<string, string>` | required | Entry file(s); supports single, array, or named multi-entry map. |
+| `outDir` | `string` | `'dist'` | Build output directory. |
+| `externals` | `string[]` | `[]` | Packages to exclude from bundle output. |
+| `autoExternal` | `boolean` | `false` | Auto-externalize dependencies from `package.json`. |
+| `wpExternals` | `boolean` | `false` | Adds WordPress externals: `react`, `react-dom`, `@wordpress/element`. |
+| `formats` | `Array<'es' \| 'cjs' \| 'umd' \| 'iife'>` | `[ 'es', 'cjs' ]` | Library output formats passed to Vite/Rollup. |
+| `fileName` | `(format, entryName) => string` | ``(format, entryName) => `${entryName}.${format}.js` `` | Controls generated entry file naming. |
+| `sourcemap` | `boolean \| 'inline' \| 'hidden'` | watch: `'inline'`, build: `false` | Overrides sourcemap behavior per mode. |
+| `dts` | `boolean` | auto-detect | Enables declaration output; auto-on when TS entries are detected. |
+| `packageJsonValidation` | `boolean` | `true` | Warns when `main`, `module`, or `exports` do not match outputs. |
+| `test` | `object` | `{ environment: 'jsdom' }` | Merges Vitest config defaults for package tests. |
+| `manifest` | `boolean` | `false` | Enables Vite manifest output (useful for server-side asset resolution). |
+| `watch` | `boolean` | auto-detect | Force watch mode on/off; otherwise inferred from `--watch` or `WATCH=true`. |
+| `name` | `string` | `undefined` | Optional library name for formats that require a global name. |
+
+Wrapper defaults:
+
+- `npmPackageConfig`: `outDir: 'dist'`, `formats: [ 'es', 'cjs' ]`, `manifest: false`
+- `laravelPackageConfig`: `outDir: 'public/build'`, `formats: [ 'es', 'cjs' ]`, `manifest: true`
+
+### createBasePackageConfig
+
+Both wrappers use `createBasePackageConfig` internally.
+
+```js
+import { createBasePackageConfig } from '@yardinternet/vite-config/packages';
+
+export default createBasePackageConfig( {
+    entryPoints: {
+        gallery: 'src/gallery.ts',
+        slider: 'src/slider.ts',
+    },
+    outDir: 'dist',
+    // Optional
+    formats: [ 'es', 'cjs' ],
+} );
+```
+
+### Opinionated defaults
+
+| Feature | Watch mode | Build mode |
+| --- | --- | --- |
+| minify | off | on |
+| sourcemap | inline | off by default (configurable) |
+| emptyOutDir | false | true |
+
+### Supported package features
+
+- Multi-entry points: object, array, or string input
+- Externals: `externals: [ 'react', 'vue' ]`
+- Auto externals: `autoExternal: true` reads `dependencies`, `peerDependencies`, and `optionalDependencies`
+- WordPress externals preset: `wpExternals: true` adds `react`, `react-dom`, `@wordpress/element`
+- File naming consistency through `fileName( format, entryName )`
+- TypeScript `.d.ts` generation enabled by default when TS entries are detected
+- Asset emission configured for SVG, fonts, and images (`assets/*`)
+- Tree-shaking enabled
+- Vitest default: `test.environment = 'jsdom'`
+- Package metadata validation: warns when `main`, `module`, or `exports` do not match output naming
+
+### Backward compatibility
+
+`braveConfig` and `braveBlocksConfig` remain unchanged and can still be imported from `@yardinternet/vite-config`.
