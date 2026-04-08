@@ -1,14 +1,9 @@
 import fs from 'fs';
 import path from 'path';
 import { defineConfig } from 'vite';
-
-import { getPackageExternals } from '../utils/get-package-externals.js';
 import { getPackageJson } from '../utils/get-package-json.js';
 import { validatePackageOutputFields } from '../utils/validate-package-output-fields.js';
-
-// TODO: just inline this. Wait a minute, format.js? css.js? Let's check this.
-const defaultFileName = ( format, entryName ) =>
-	`${ entryName }.${ format }.js`;
+import dts from 'vite-plugin-dts';
 
 const toEntryObject = ( entryPoints ) => {
 	if ( typeof entryPoints === 'string' ) {
@@ -31,7 +26,6 @@ const toEntryObject = ( entryPoints ) => {
 	);
 };
 
-// TODO simplify to one function, move to helper file
 const toAbsoluteEntries = ( entryPoints, cwd ) =>
 	Object.fromEntries(
 		Object.entries( entryPoints ).map( ( [ entryName, entryPath ] ) => [
@@ -40,85 +34,42 @@ const toAbsoluteEntries = ( entryPoints, cwd ) =>
 		] )
 	);
 
-// TODO: move to TypeScript utils
-const TS_FILE_EXTENSIONS = [ '.ts', '.tsx', '.mts', '.cts' ];
+const normalizeFormats = ( formats = [ 'es' ] ) =>
+	Array.isArray( formats ) && formats.length > 0 ? formats : [ 'es' ];
 
-const hasTypeScriptEntry = ( entryPoints ) =>
-	Object.values( entryPoints ).some( ( entryPath ) =>
-		TS_FILE_EXTENSIONS.includes( path.extname( entryPath ) )
-	);
+const defaultFileName = ( format, entryName ) =>
+	format === 'es' ? `${ entryName }.js` : `${ entryName }.${ format }.js`;
 
-const canUseDeclarationPlugin = async () => {
-	try {
-		// eslint-disable-next-line import/no-unresolved
-		await import( 'vite-plugin-dts' );
-		return true;
-	} catch {
-		return false;
-	}
-};
+const createAssetFileNames =
+	( { withHash } ) =>
+	( assetInfo ) => {
+		const extension = path.extname( assetInfo.name || '' ).slice( 1 );
+		const hashPart = withHash ? '.[hash]' : '';
 
-// Todo: simplify this because vite-plugin-dts is always a dependency of this package.
-const createDeclarationPlugin = async ( { enabled, entryRoot, outDir } ) => {
-	if ( ! enabled ) {
-		return [];
-	}
+		if ( extension === 'css' ) {
+			return `[name]${ hashPart }.${ extension }`;
+		}
 
-	if ( ! ( await canUseDeclarationPlugin() ) ) {
-		process.emitWarning(
-			'[vite-config] d.ts generation is enabled but vite-plugin-dts is not installed. Skipping declaration output.'
-		);
-		return [];
-	}
+		if ( extension ) {
+			return `assets/[name]${ hashPart }.${ extension }`;
+		}
 
-	// eslint-disable-next-line import/no-unresolved
-	const dtsModule = await import( 'vite-plugin-dts' );
-	const dtsPlugin = dtsModule.default;
-
-	return [
-		dtsPlugin( {
-			entryRoot,
-			outDir,
-			skipDiagnostics: false,
-		} ),
-	];
-};
-
-const normalizeFormats = ( formats = [ 'es', 'cjs' ] ) =>
-	Array.isArray( formats ) && formats.length > 0 ? formats : [ 'es', 'cjs' ];
-
-// Todo: simplify, one line function.
-const hasWatchFlag = () =>
-	process.env.WATCH === 'true' || process.argv.includes( '--watch' );
-
-const defaultAssetFileNames = ( assetInfo ) => {
-	const extension = path.extname( assetInfo.name || '' ).slice( 1 );
-
-	if ( extension ) {
-		return `assets/[name].[hash].${ extension }`;
-	}
-
-	return 'assets/[name].[hash][extname]';
-};
+		return `assets/[name]${ hashPart }[extname]`;
+	};
 
 export const createBasePackageConfig = ( {
 	entryPoints,
 	outDir = 'dist',
 	externals = [],
-	autoExternal = false, // TODO: Remove auto externals
-	wpExternals = false,
-	formats = [ 'es', 'cjs' ],
+	formats = [ 'es' ],
 	fileName = defaultFileName,
-	sourcemap,
-	dts, // TODO: remove this because it auto detects
-	packageJsonValidation = true,
+	packageJsonValidation = false,
 	test = {},
-	manifest = false, // TODO: do I really need this? check in Laravel package
-	watch, // TODO: remove, since it auto detects?
+	manifest = false,
 	name, // TODO: remove maybe
 } = {} ) => {
-	const normalizedEntries = toEntryObject( entryPoints );
 	const cwd = process.cwd();
+	const normalizedEntries = toEntryObject( entryPoints );
 	const absoluteEntries = toAbsoluteEntries( normalizedEntries, cwd );
 	const hasMissingEntry = Object.values( absoluteEntries ).some(
 		( entryPath ) => ! fs.existsSync( entryPath )
@@ -130,40 +81,18 @@ export const createBasePackageConfig = ( {
 		);
 	}
 
-	const shouldGenerateTypes =
-		typeof dts === 'boolean' ? dts : hasTypeScriptEntry( absoluteEntries );
 	const resolvedFormats = normalizeFormats( formats );
 	const primaryEntryName = Object.keys( normalizedEntries )[ 0 ];
-	const isWatchMode = typeof watch === 'boolean' ? watch : hasWatchFlag();
-	let resolvedSourcemap = sourcemap;
-
-	if ( typeof resolvedSourcemap === 'undefined' ) {
-		resolvedSourcemap = isWatchMode ? 'inline' : false;
-	}
+	const isWatchMode =
+		process.env.WATCH === 'true' || process.argv.includes( '--watch' );
 
 	return defineConfig( async () => {
 		const { packageJson } = getPackageJson( cwd );
-		// Todo: simplify externals,
-		// Todo: use the wordPress plugin to convert WordPress dependencies to window globals
-		// Todo: React and ReactDOM and @wordpress/element should be externalized by default (see BraveConfig)
-		const { isExternal } = getPackageExternals( {
-			externals,
-			autoExternal,
-			wpExternals,
-			packageJson,
-		} );
 
-		// Todo: simplify this because vite-plugin-dts is always a dependency of this package.
-		const declarationPlugins = await createDeclarationPlugin( {
-			enabled: shouldGenerateTypes,
-			entryRoot: 'src',
-			outDir,
-		} );
-
-		// Todo: check if packageJsonValidation is only npm based
 		if ( packageJsonValidation ) {
 			validatePackageOutputFields( {
 				entryName: primaryEntryName,
+				entryNames: Object.keys( normalizedEntries ),
 				formats: resolvedFormats,
 				outDir,
 				packageJson,
@@ -171,7 +100,10 @@ export const createBasePackageConfig = ( {
 		}
 
 		return {
-			plugins: [ ...declarationPlugins ],
+			// TODO: ability to add more plugins via options.
+			// TODO: add wordPress() that externalizes React, ReactDom
+			// TODO: Only do dts() if there is a TypeScript entry point => is resolved internally
+			plugins: [ dts() ],
 			test: {
 				environment: 'jsdom',
 				...test,
@@ -187,21 +119,18 @@ export const createBasePackageConfig = ( {
 				assetsInlineLimit: 0,
 				manifest,
 				target: 'esnext',
-				sourcemap: resolvedSourcemap,
+				sourcemap: isWatchMode ? 'inline' : false,
 				minify: ! isWatchMode,
 				emptyOutDir: ! isWatchMode,
-				watch: isWatchMode
-					? {
-							include: 'src/**', // TODO: this should be entryoints?
-					  }
-					: undefined,
 				rollupOptions: {
-					external: ( id ) => isExternal( id ),
+					external: externals,
 					treeshake: true,
 					output: {
 						chunkFileNames: ( chunkInfo ) =>
 							`chunks/${ chunkInfo.name }.[hash].js`,
-						assetFileNames: defaultAssetFileNames,
+						assetFileNames: createAssetFileNames( {
+							withHash: manifest,
+						} ),
 					},
 				},
 			},

@@ -87,13 +87,12 @@ Use package-focused presets for npm and Laravel packages. Both wrappers use `cre
 
 ### Scripts in package.json
 
-TODO: add format scripts
 ```json
 {
   "scripts": {
     "start": "vite build --watch",
     "build": "vite build",
-    "test": "vitest",
+    "test": "vitest"
   }
 }
 ```
@@ -111,6 +110,66 @@ export default npmPackageConfig( {
     outDir: 'dist',
 } );
 ```
+
+
+#### Reference build files in package.json
+
+Package configs are ESM-only. Use `exports` as the public API for JS entry points and CSS, and add `types` plus `sideEffects` for TypeScript and safe CSS bundling.
+
+Single entry point:
+
+```json
+{
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/src/index.d.ts",
+      "import": "./dist/gallery.es.js"
+    },
+    "./styles": "./dist/gallery.css"
+  },
+  "types": "./dist/src/index.d.ts",
+  "sideEffects": ["**/*.css"]
+}
+```
+This allows consumers to import JS and CSS like this:
+
+```js
+import { Gallery } from '@yardinternet/gallery'; // imports gallery.es.js
+import '@yardinternet/gallery/styles'; // imports gallery.css
+```
+...or import the CSS in CSS:
+```css
+@import '@yardinternet/gallery/styles'; /* imports gallery.css */
+```
+
+Multiple entry points:
+
+```json
+{
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/src/index.d.ts",
+      "import": "./dist/gallery.es.js"
+    },
+    "./editor": {
+      "import": "./dist/editor.es.js"
+    },
+    "./styles": "./dist/gallery.css"
+  },
+  "types": "./dist/src/index.d.ts",
+  "sideEffects": ["**/*.css"]
+}
+```
+This allows consumers to import like this:
+
+```js
+import { Gallery } from '@yardinternet/gallery'; // imports gallery.es.js
+import { Editor } from '@yardinternet/gallery/editor'; // imports editor.es.js
+import '@yardinternet/gallery/styles'; // imports gallery.css
+```
+
 
 ### laravelPackageConfig
 
@@ -134,41 +193,8 @@ All options below are available on `createBasePackageConfig()` and can also be p
 | `entryPoints` | `string \| string[] \| Record<string, string>` | required | Entry file(s); supports single, array, or named multi-entry map. |
 | `outDir` | `string` | `'dist'` | Build output directory. |
 | `externals` | `string[]` | `[]` | Packages to exclude from bundle output. |
-| `autoExternal` | `boolean` | `false` | Auto-externalize dependencies from `package.json`. |
-| `wpExternals` | `boolean` | `false` | Adds WordPress externals: `react`, `react-dom`, `@wordpress/element`. |
-| `formats` | `Array<'es' \| 'cjs' \| 'umd' \| 'iife'>` | `[ 'es', 'cjs' ]` | Library output formats passed to Vite/Rollup. |
 | `fileName` | `(format, entryName) => string` | ``(format, entryName) => `${entryName}.${format}.js` `` | Controls generated entry file naming. |
-| `sourcemap` | `boolean \| 'inline' \| 'hidden'` | watch: `'inline'`, build: `false` | Overrides sourcemap behavior per mode. |
-| `dts` | `boolean` | auto-detect | Enables declaration output; auto-on when TS entries are detected. |
-| `packageJsonValidation` | `boolean` | `true` | Warns when `main`, `module`, or `exports` do not match outputs. |
+| `packageJsonValidation` | `boolean` | `true` | Warns when package `exports` do not match generated output files. |
 | `test` | `object` | `{ environment: 'jsdom' }` | Merges Vitest config defaults for package tests. |
 | `manifest` | `boolean` | `false` | Enables Vite manifest output (useful for server-side asset resolution). |
-| `watch` | `boolean` | auto-detect | Force watch mode on/off; otherwise inferred from `--watch` or `WATCH=true`. |
-| `name` | `string` | `undefined` | Optional library name for formats that require a global name. |
-
-Wrapper defaults:
-
-- `npmPackageConfig`: `outDir: 'dist'`, `formats: [ 'es', 'cjs' ]`, `manifest: false`
-- `laravelPackageConfig`: `outDir: 'public/build'`, `formats: [ 'es', 'cjs' ]`, `manifest: true`
-
-### Opinionated defaults
-
-| Feature | Watch mode | Build mode |
-| --- | --- | --- |
-| minify | off | on |
-| sourcemap | inline | off by default (configurable) |
-| emptyOutDir | false | true |
-
-### Supported package features
-
-- Multi-entry points: object, array, or string input
-- Externals: `externals: [ 'react', 'vue' ]`
-- Auto externals: `autoExternal: true` reads `dependencies`, `peerDependencies`, and `optionalDependencies`
-- WordPress externals preset: `wpExternals: true` adds `react`, `react-dom`, `@wordpress/element`
-- File naming consistency through `fileName( format, entryName )`
-- TypeScript `.d.ts` generation enabled by default when TS entries are detected
-- Asset emission configured for SVG, fonts, and images (`assets/*`)
-- Tree-shaking enabled
-- Vitest default: `test.environment = 'jsdom'`
-- Package metadata validation: warns when `main`, `module`, or `exports` do not match output naming
 
