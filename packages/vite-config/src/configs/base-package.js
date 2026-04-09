@@ -126,12 +126,9 @@ export const createBasePackageConfig = ( {
 				 * Transforms @wordpress/ dependencies to reference window.wp global
 				 */
 				wordpressGlobals && wordpressPlugin(),
-				/**
-				 * Generates TypeScript declaration files.
-				 */
-				dts(),
-				...plugins,
-			].filter( Boolean ),
+			]
+				.filter( Boolean )
+				.concat( [ dts(), ...plugins ] ),
 			test: {
 				environment: 'jsdom',
 				...test,
