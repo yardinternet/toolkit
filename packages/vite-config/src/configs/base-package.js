@@ -75,9 +75,7 @@ export const createBasePackageConfig = ( {
 	test = {},
 	manifest = false,
 	plugins = [],
-	/** Set to false to skip externalizing React and referencing wp-element globals. */
 	externalizeReact = true,
-	/** Set to false to skip transforming @wordpress/ imports to window.wp globals. */
 	wordpressGlobals = true,
 } = {} ) => {
 	const cwd = process.cwd();
