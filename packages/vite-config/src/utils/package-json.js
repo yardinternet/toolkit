@@ -23,11 +23,10 @@ export const getPackageJson = ( cwd = process.cwd() ) => {
 export const validatePackageOutputFields = ( {
 	entryName,
 	entryNames,
-	formats,
 	outDir,
 	packageJson,
 } ) => {
-	if ( ! packageJson || ! entryName || ! Array.isArray( formats ) ) {
+	if ( ! packageJson || ! entryName ) {
 		return;
 	}
 
@@ -154,14 +153,21 @@ const normalizePath = ( value ) => {
 	return value.replace( /^\.\//, '' ).replaceAll( '\\', '/' );
 };
 
-const warnMismatch = ( { actual, expected } ) => {
+const warnMismatch = ( { actual, expected, fieldName, packageName } ) => {
+	let actualDisplay;
+	if ( actual === undefined || actual === null || actual === '' ) {
+		actualDisplay = '(missing)';
+	} else if ( typeof actual === 'string' ) {
+		actualDisplay = actual;
+	} else {
+		actualDisplay = JSON.stringify( actual );
+	}
+
 	// eslint-disable-next-line no-console
 	console.log(
 		chalk.gray( '[Yard Vite Config]' ),
 		chalk.yellow(
-			`Warning: package.json "exports" is incorrect (got ${
-				actual || '(missing)'
-			}, expected "${ expected }")`
+			`Warning: package.json "${ fieldName }" is incorrect for "${ packageName }" (got ${ actualDisplay }, expected "${ expected }")`
 		)
 	);
 };

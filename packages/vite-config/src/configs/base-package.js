@@ -50,6 +50,9 @@ export const createBasePackageConfig = ( {
 	const resolvedFormats =
 		Array.isArray( formats ) && formats.length > 0 ? formats : [ 'es' ];
 	const primaryEntryName = Object.keys( normalizedEntries )[ 0 ];
+	const hasTsEntries = Object.values( absoluteEntries ).some( ( entry ) =>
+		/\.tsx?$/.test( entry )
+	);
 	const isWatchMode =
 		process.env.WATCH === 'true' || process.argv.includes( '--watch' );
 
@@ -84,7 +87,7 @@ export const createBasePackageConfig = ( {
 				wordpressGlobals && wordpressPlugin(),
 			]
 				.filter( Boolean )
-				.concat( [ dts(), ...plugins ] ),
+				.concat( [ hasTsEntries && dts(), ...plugins ] ),
 			test: {
 				environment: 'jsdom',
 				...test,
@@ -109,7 +112,7 @@ export const createBasePackageConfig = ( {
 						chunkFileNames: ( chunkInfo ) =>
 							`chunks/${ chunkInfo.name }.[hash].js`,
 						assetFileNames: createAssetFileNames( {
-							withHash: manifest,
+							withHash: Boolean( manifest ),
 						} ),
 					},
 				},
