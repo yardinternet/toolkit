@@ -1,3 +1,25 @@
+import chalk from 'chalk';
+import fs from 'fs';
+import path from 'path';
+
+export const getPackageJson = ( cwd = process.cwd() ) => {
+	const packageJsonPath = path.resolve( cwd, 'package.json' );
+
+	if ( ! fs.existsSync( packageJsonPath ) ) {
+		return { packageJson: null, packageJsonPath };
+	}
+
+	try {
+		const packageJson = JSON.parse(
+			fs.readFileSync( packageJsonPath, 'utf8' )
+		);
+
+		return { packageJson, packageJsonPath };
+	} catch {
+		return { packageJson: null, packageJsonPath };
+	}
+};
+
 export const validatePackageOutputFields = ( {
 	entryName,
 	entryNames,
@@ -132,10 +154,14 @@ const normalizePath = ( value ) => {
 	return value.replace( /^\.\//, '' ).replaceAll( '\\', '/' );
 };
 
-const warnMismatch = ( { fieldName, actual, expected, packageName } ) => {
-	process.emitWarning(
-		`[vite-config] ${ packageName } package.json "${ fieldName }" is "${
-			actual || '(missing)'
-		}", expected "${ expected }".`
+const warnMismatch = ( { actual, expected } ) => {
+	// eslint-disable-next-line no-console
+	console.log(
+		chalk.gray( '[Yard Vite Config]' ),
+		chalk.yellow(
+			`Warning: package.json "exports" is incorrect (got ${
+				actual || '(missing)'
+			}, expected "${ expected }")`
+		)
 	);
 };
