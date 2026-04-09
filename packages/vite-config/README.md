@@ -99,15 +99,23 @@ Use package-focused presets for npm and Laravel packages. Both wrappers use `cre
 
 ### npmPackageConfig
 
+Assuming package name is `@yardinternet/gallery`, the config would look like this:
+
 ```js
 import { npmPackageConfig } from '@yardinternet/vite-config/packages';
 
 export default npmPackageConfig( {
     entryPoints: {
-        gallery: 'src/gallery.ts',
-        slider: 'src/slider.ts',
+        gallery: 'src/index.ts',
     },
-    outDir: 'dist',
+} );
+
+// or with multiple entry points:
+export default npmPackageConfig( {
+    entryPoints: {
+        frontend: 'src/frontend.ts',
+        editor: 'src/editor.ts',
+    },
 } );
 ```
 
@@ -123,19 +131,18 @@ Single entry point:
   "type": "module",
   "exports": {
     ".": {
-      "types": "./dist/src/index.d.ts",
-      "import": "./dist/gallery.es.js"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/gallery.js"
     },
     "./styles": "./dist/gallery.css"
   },
-  "types": "./dist/src/index.d.ts",
   "sideEffects": ["**/*.css"]
 }
 ```
 This allows consumers to import JS and CSS like this:
 
 ```js
-import { Gallery } from '@yardinternet/gallery'; // imports gallery.es.js
+import { Gallery } from '@yardinternet/gallery'; // imports gallery.js
 import '@yardinternet/gallery/styles'; // imports gallery.css
 ```
 ...or import the CSS in CSS:
@@ -150,24 +157,24 @@ Multiple entry points:
   "type": "module",
   "exports": {
     ".": {
-      "types": "./dist/src/index.d.ts",
-      "import": "./dist/gallery.es.js"
+      "types": "./dist/frontend.d.ts",
+      "import": "./dist/frontend.js"
     },
     "./editor": {
-      "import": "./dist/editor.es.js"
+      "types": "./dist/editor.d.ts",
+      "import": "./dist/editor.js"
     },
     "./styles": "./dist/gallery.css"
   },
-  "types": "./dist/src/index.d.ts",
   "sideEffects": ["**/*.css"]
 }
 ```
 This allows consumers to import like this:
 
 ```js
-import { Gallery } from '@yardinternet/gallery'; // imports gallery.es.js
-import { Editor } from '@yardinternet/gallery/editor'; // imports editor.es.js
-import '@yardinternet/gallery/styles'; // imports gallery.css
+import { Gallery } from '@yardinternet/gallery'; // imports frontend.js
+import { Editor } from '@yardinternet/gallery/editor'; // imports editor.js
+import '@yardinternet/gallery/styles'; // imports frontend.css
 ```
 
 
@@ -180,21 +187,9 @@ export default laravelPackageConfig( {
     entryPoints: {
         index: 'src/index.ts',
     },
-    outDir: 'public/build',
 } );
 ```
 
 ### All options
 
-All options below are available on `createBasePackageConfig()` and can also be passed to `npmPackageConfig()` and `laravelPackageConfig()`.
-
-| Option | Type | Default | Description |
-| --- | --- | --- | --- |
-| `entryPoints` | `string \| string[] \| Record<string, string>` | required | Entry file(s); supports single, array, or named multi-entry map. |
-| `outDir` | `string` | `'dist'` | Build output directory. |
-| `externals` | `string[]` | `[]` | Packages to exclude from bundle output. |
-| `fileName` | `(format, entryName) => string` | ``(format, entryName) => `${entryName}.${format}.js` `` | Controls generated entry file naming. |
-| `packageJsonValidation` | `boolean` | `true` | Warns when package `exports` do not match generated output files. |
-| `test` | `object` | `{ environment: 'jsdom' }` | Merges Vitest config defaults for package tests. |
-| `manifest` | `boolean` | `false` | Enables Vite manifest output (useful for server-side asset resolution). |
 
