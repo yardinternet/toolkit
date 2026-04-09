@@ -192,4 +192,43 @@ export default laravelPackageConfig( {
 
 ### All options
 
+Both `npmPackageConfig` and `laravelPackageConfig` pass options through to the shared base package config.
+
+```js
+createBasePackageConfig( {
+  entryPoints, 
+  outDir = 'dist',
+  externals = [],
+  formats = [ 'es' ],
+  fileName = defaultFileName,
+  packageJsonValidation = false,
+  test = {},
+  manifest = false,
+  plugins = [],
+  externalizeReact = true,
+  wordpressGlobals = true,
+} )
+```
+
+| Option | Type | Default | Description |
+| --- | --- | --- | --- |
+| `entryPoints` | `Record<string, string> \| string[] \| string` | Required | Entry file(s) for the package build. Supports named object entries (recommended), array entries, or a single entry path. |
+| `outDir` | `string` | `'dist'` | Build output directory. |
+| `externals` | `string[]` | `[]` | Additional Rollup externals that should not be bundled. |
+| `formats` | `Array<'es' \| 'cjs' \| 'umd' \| 'iife'>` | `[ 'es' ]` | Vite library output formats. Package preset is ESM. |
+| `fileName` | `(format: string, entryName: string) => string` | `defaultFileName` | Controls emitted JS filenames per format and entry. |
+| `packageJsonValidation` | `boolean` | `false` | When `true`, validates package.json output fields against configured entries. |
+| `test` | `object` | `{}` | Merged into Vitest config. Default test environment is `jsdom`. |
+| `manifest` | `boolean \| string` | `false` | Enables Vite manifest generation for Vite Laravel helper (`true` for default path, or a string for custom path). |
+| `plugins` | `Array<import('vite').PluginOption>` | `[]` | Extra Vite plugins appended after built-in package plugins. |
+| `externalizeReact` | `boolean` | `true` | Externalizes React, ReactDOM, and `react/jsx-runtime` to globals (`React`, `ReactDOM`, `ReactJSXRuntime`). |
+| `wordpressGlobals` | `boolean` | `true` | Enables `@roots/vite-plugin` WordPress globals transform for `@wordpress/*` imports. |
+
+Notes:
+
+- All resolved entry files must exist. The config throws if any entry path is missing.
+- In watch mode (`WATCH=true` or `vite build --watch`), source maps are inline, minification is disabled, and `emptyOutDir` is disabled to improve iteration.
+
+
+
 
