@@ -83,7 +83,7 @@ export default defineConfig(
 
 ## Package Vite configs
 
-Use package-focused presets for npm and Laravel packages. Both wrappers use `createBasePackageConfig` internally.
+Presets for npm and Laravel packages. Both wrappers use `createBasePackageConfig`.
 
 ### Scripts in package.json
 
@@ -95,6 +95,18 @@ Use package-focused presets for npm and Laravel packages. Both wrappers use `cre
     "test": "vitest"
   }
 }
+```
+
+### laravelPackageConfig
+
+```js
+import { laravelPackageConfig } from '@yardinternet/vite-config/packages';
+
+export default laravelPackageConfig( {
+    entryPoints: {
+        index: 'src/index.ts',
+    },
+} );
 ```
 
 ### npmPackageConfig
@@ -175,19 +187,6 @@ This allows consumers to import like this:
 import { Gallery } from '@yardinternet/gallery'; // imports frontend.js
 import { Editor } from '@yardinternet/gallery/editor'; // imports editor.js
 import '@yardinternet/gallery/styles'; // imports frontend.css
-```
-
-
-### laravelPackageConfig
-
-```js
-import { laravelPackageConfig } from '@yardinternet/vite-config/packages';
-
-export default laravelPackageConfig( {
-    entryPoints: {
-        index: 'src/index.ts',
-    },
-} );
 ```
 
 ### All options
