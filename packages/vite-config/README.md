@@ -100,7 +100,7 @@ Presets for npm and Laravel packages. Both wrappers use `createBasePackageConfig
 ### laravelPackageConfig
 
 ```js
-import { laravelPackageConfig } from '@yardinternet/vite-config/packages';
+import { laravelPackageConfig } from '@yardinternet/vite-config';
 
 export default laravelPackageConfig( {
     entryPoints: {
@@ -114,7 +114,7 @@ export default laravelPackageConfig( {
 Assuming package name is `@yardinternet/gallery`, the config would look like this:
 
 ```js
-import { npmPackageConfig } from '@yardinternet/vite-config/packages';
+import { npmPackageConfig } from '@yardinternet/vite-config';
 
 export default npmPackageConfig( {
     entryPoints: {
