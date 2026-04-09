@@ -1,9 +1,20 @@
+/**
+ * External dependencies
+ */
+import { defineConfig } from 'vite';
+import { viteExternalsPlugin } from 'vite-plugin-externals';
+import { wordpressPlugin } from '@roots/vite-plugin';
+import dts from 'vite-plugin-dts';
 import fs from 'fs';
 import path from 'path';
-import { defineConfig } from 'vite';
-import { getPackageJson } from '../utils/get-package-json.js';
-import { validatePackageOutputFields } from '../utils/validate-package-output-fields.js';
-import dts from 'vite-plugin-dts';
+
+/**
+ * Internal dependencies
+ */
+import {
+	getPackageJson,
+	validatePackageOutputFields,
+} from '../utils/package-json.js';
 
 const toEntryObject = ( entryPoints ) => {
 	if ( typeof entryPoints === 'string' ) {
@@ -22,7 +33,7 @@ const toEntryObject = ( entryPoints ) => {
 	}
 
 	throw new Error(
-		'[createBasePackageConfig] entryPoints must be a string, array, or object map.'
+		'[vite-config] entryPoints must be a string, array, or object map.'
 	);
 };
 
@@ -33,9 +44,6 @@ const toAbsoluteEntries = ( entryPoints, cwd ) =>
 			path.resolve( cwd, entryPath ),
 		] )
 	);
-
-const normalizeFormats = ( formats = [ 'es' ] ) =>
-	Array.isArray( formats ) && formats.length > 0 ? formats : [ 'es' ];
 
 const defaultFileName = ( format, entryName ) =>
 	format === 'es' ? `${ entryName }.js` : `${ entryName }.${ format }.js`;
@@ -66,7 +74,9 @@ export const createBasePackageConfig = ( {
 	packageJsonValidation = false,
 	test = {},
 	manifest = false,
-	name, // TODO: remove maybe
+	plugins = [],
+	externalizeReact = true,
+	wordpressGlobals = true,
 } = {} ) => {
 	const cwd = process.cwd();
 	const normalizedEntries = toEntryObject( entryPoints );
@@ -77,11 +87,12 @@ export const createBasePackageConfig = ( {
 
 	if ( hasMissingEntry ) {
 		throw new Error(
-			'[createBasePackageConfig] One or more entry points do not exist.'
+			'[vite-config] One or more entry points do not exist.'
 		);
 	}
 
-	const resolvedFormats = normalizeFormats( formats );
+	const resolvedFormats =
+		Array.isArray( formats ) && formats.length > 0 ? formats : [ 'es' ];
 	const primaryEntryName = Object.keys( normalizedEntries )[ 0 ];
 	const isWatchMode =
 		process.env.WATCH === 'true' || process.argv.includes( '--watch' );
@@ -100,10 +111,27 @@ export const createBasePackageConfig = ( {
 		}
 
 		return {
-			// TODO: ability to add more plugins via options.
-			// TODO: add wordPress() that externalizes React, ReactDom
-			// TODO: Only do dts() if there is a TypeScript entry point => is resolved internally
-			plugins: [ dts() ],
+			plugins: [
+				/**
+				 * Externalizes React, ReactDOM and ReactJSXRuntime & reference global versions
+				 * provided by WordPress' wp-element (window.React, window.ReactDOM)
+				 */
+				externalizeReact &&
+					viteExternalsPlugin( {
+						react: 'React',
+						'react-dom': 'ReactDOM',
+						'react/jsx-runtime': 'ReactJSXRuntime',
+					} ),
+				/**
+				 * Transforms @wordpress/ dependencies to reference window.wp global
+				 */
+				wordpressGlobals && wordpressPlugin(),
+				/**
+				 * Generates TypeScript declaration files.
+				 */
+				dts(),
+				...plugins,
+			].filter( Boolean ),
 			test: {
 				environment: 'jsdom',
 				...test,
@@ -113,7 +141,6 @@ export const createBasePackageConfig = ( {
 				lib: {
 					entry: absoluteEntries,
 					formats: resolvedFormats,
-					name,
 					fileName,
 				},
 				assetsInlineLimit: 0,
