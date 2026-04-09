@@ -7,7 +7,7 @@
 		"jsx": "react-jsx", // Use the new JSX transform for React 17+
 		"module": "preserve", // Keep the module syntax as-is (e.g. import/export) for bundlers to handle
 		"noEmit": true, // Don't emit any output files. We're only using TypeScript for type-checking, Vite does the bundling.
-		"moduleResolution": "Node",
+		"moduleResolution": "bundler", // Use bundler resolution for better compatibility with modern tools
 		"skipLibCheck": true, // Skips checking the types of .d.ts files. This is important for performance.
 		"target": "es2022", // Version of JS to output.
 		"moduleDetection": "force", // Forces TypeScript to consider all files as modules. Helps avoiding 'cannot redeclare block-scoped variable' errors
