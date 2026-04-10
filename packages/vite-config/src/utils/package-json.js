@@ -165,9 +165,9 @@ const warnMismatch = ( { actual, expected, fieldName, packageName } ) => {
 
 	// eslint-disable-next-line no-console
 	console.log(
-		chalk.gray( '[Yard Vite Config]' ),
-		chalk.yellow(
-			`Warning: package.json "${ fieldName }" is incorrect for "${ packageName }" (got ${ actualDisplay }, expected "${ expected }")`
+		chalk.gray( '[Yard Vite config]' ),
+		chalk.red(
+			`Error: package.json "${ fieldName }" is incorrect for "${ packageName }" (got ${ actualDisplay }, expected "${ expected }")`
 		)
 	);
 };
