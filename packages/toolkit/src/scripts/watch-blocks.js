@@ -41,7 +41,6 @@ export const watchBlocks = async ( configFile = 'vite-blocks.config.js' ) => {
 					FORCE_COLOR: true,
 				},
 				stdio: 'inherit', // stream output directly to terminal
-				shell: true,
 			}
 		);
 
