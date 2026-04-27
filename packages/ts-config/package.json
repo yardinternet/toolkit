@@ -17,13 +17,13 @@
 		"directory": "packages/vite-config"
 	},
 	"dependencies": {
-		"@types/wordpress__block-editor": "^15.0.3",
+		"@types/wordpress__block-editor": "^15.0.6",
 		"@types/wordpress__blocks": "^15.10.0",
 		"@types/wordpress__server-side-render": "^6.15.0",
-		"@wordpress/components": "^32.5.0",
+		"@wordpress/components": "^32.6.0",
 		"@wordpress/data": "^10.40.0",
 		"@wordpress/dom-ready": "^4.40.0",
-		"@wordpress/editor": "^14.43.0",
+		"@wordpress/editor": "^14.44.0",
 		"@wordpress/element": "^6.40.0",
 		"@wordpress/hooks": "^4.40.0",
 		"@wordpress/i18n": "^6.13.0"
