@@ -18,7 +18,6 @@ module.exports = {
 				singleQuote: true,
 				trailingComma: 'es5',
 				bracketSpacing: true,
-				parenSpacing: true,
 				bracketSameLine: false,
 				semi: true,
 				arrowParens: 'always',
