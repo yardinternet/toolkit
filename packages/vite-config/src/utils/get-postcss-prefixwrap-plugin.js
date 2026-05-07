@@ -18,8 +18,8 @@ export function getPostCssPrefixWrapPlugin( config = {} ) {
 		return [];
 	}
 
-	const ignoredSelectors = Array.isArray( config.ignoredSelectors )
-		? [ ...DEFAULT_IGNORED_SELECTORS, ...config.ignoredSelectors ]
+	const ignoredSelectors = Array.isArray( config.additionalIgnoredSelectors )
+		? [ ...DEFAULT_IGNORED_SELECTORS, ...config.additionalIgnoredSelectors ]
 		: DEFAULT_IGNORED_SELECTORS;
 
 	return [
