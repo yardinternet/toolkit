@@ -23,7 +23,7 @@
 		"@vitejs/plugin-react": "^5.1.4",
 		"@yardinternet/vite-plugin-gutenberg-blocks": "^2.5.0",
 		"laravel-vite-plugin": "^2.1.0",
-		"postcss-prefixwrap": "^1.57.2",
+		"postcss-prefixwrap": "^1.58.0",
 		"vite-plugin-checker": "^0.12.0",
 		"vite-plugin-dts": "^4.5.4",
 		"vite-plugin-externals": "^0.6.2"
