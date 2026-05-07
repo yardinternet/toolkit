@@ -12,6 +12,8 @@ const DEFAULT_IGNORED_SELECTORS = [
  * because they need to remain global.
  */
 export function getPostCssPrefixWrapPlugin( config = {} ) {
+	config = config ?? {};
+
 	if ( ! Array.isArray( config.entryPoints ) ) {
 		return [];
 	}
