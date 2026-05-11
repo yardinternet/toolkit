@@ -19,9 +19,9 @@
   "license": "ISC",
   "dependencies": {
     "autoprefixer": "^10.5.0",
-    "cssnano": "^7.1.8",
+    "cssnano": "^7.1.9",
     "path": "^0.12.7",
-    "postcss": "^8.5.9",
+    "postcss": "^8.5.14",
     "postcss-import": "^16.1.1",
     "postcss-mixins": "^12.1.2",
     "postcss-nested": "^7.0.2"
