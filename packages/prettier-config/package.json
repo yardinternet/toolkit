@@ -22,6 +22,6 @@
 		"@shufo/tailwindcss-class-sorter": "^3.0.1",
 		"@wordpress/prettier-config": "^4.46.0",
 		"prettier": "npm:wp-prettier@^3.0.3",
-		"prettier-plugin-tailwindcss": "^0.7.4"
+		"prettier-plugin-tailwindcss": "^0.8.0"
 	}
 }
