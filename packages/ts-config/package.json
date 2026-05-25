@@ -17,7 +17,7 @@
 		"directory": "packages/vite-config"
 	},
 	"dependencies": {
-		"@types/wordpress__block-editor": "^11.5.13",
+		"@types/wordpress__block-editor": "^11.5.17",
 		"@types/wordpress__blocks": "^15.10.0",
 		"@types/wordpress__server-side-render": "^6.15.0",
 		"@wordpress/components": "^33.1.0",
