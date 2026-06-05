@@ -16,7 +16,8 @@
 		"packages/postcss-config",
 		"packages/toolkit",
 		"packages/vite-config",
-		"packages/ts-config"
+		"packages/ts-config",
+		"packages/ts-config-wordpress"
 	],
 	"scripts": {
 		"lint:js": "yard-toolkit lint js -m custom ./packages/**/src/**/*.js",

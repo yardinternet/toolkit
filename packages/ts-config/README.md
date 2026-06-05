@@ -25,10 +25,11 @@ npm or php packages / libraries:
 }
 ```
 
-## Dependencies
+## WordPress projects
 
-Our bundler converts `@wordpress/*` packages to externals in the final bundle (e.g., `@wordpress/components` => `wp.components`). With vanilla JavaScript, we didn't need to list them as dependencies. Because TypeScript requires their type definitions, we include them as dependencies in this package.
+For Brave (WordPress) projects, also install [`@yardinternet/ts-config-wordpress`](../ts-config-wordpress/README.md) to get `@wordpress/*` type definitions:
 
-### Missing types
+```bash
+npm install --save-dev @yardinternet/ts-config @yardinternet/ts-config-wordpress
+```
 
-Some WordPress packages don’t include TypeScript definitions. To verify if a [WordPress package](https://github.com/WordPress/gutenberg/blob/trunk/packages/) provides its own types, check its `package.json` for a "types" field. For those that don't have a types definition, look for a [corresponding `@types/` package](https://github.com/DefinitelyTyped/DefinitelyTyped/).
