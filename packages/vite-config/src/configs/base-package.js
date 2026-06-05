@@ -33,6 +33,7 @@ export const createBasePackageConfig = ( {
 	plugins = [],
 	externalizeReact = true,
 	wordpressGlobals = true,
+	classicJsx = false,
 } = {} ) => {
 	const cwd = process.cwd();
 	const normalizedEntries = toEntryObject( entryPoints );
@@ -88,6 +89,17 @@ export const createBasePackageConfig = ( {
 			]
 				.filter( Boolean )
 				.concat( [ hasTsEntries && dts(), ...plugins ] ),
+			/**
+			 * Use classic JSX transform (React.createElement) so no react/jsx-runtime import is
+			 * generated. Consuming webpack (@wordpress/scripts) only needs window.React.
+			 */
+			esbuild: classicJsx
+				? {
+						jsx: 'transform',
+						jsxFactory: 'React.createElement',
+						jsxFragment: 'React.Fragment',
+				  }
+				: {},
 			test: {
 				environment: 'jsdom',
 				...test,
