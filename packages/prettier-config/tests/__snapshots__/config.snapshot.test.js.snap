@@ -1,0 +1,49 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`prettier config options match snapshot (excludes machine-specific plugin paths) 1`] = `
+{
+  "arrowParens": "always",
+  "bracketSameLine": false,
+  "bracketSpacing": true,
+  "overrides": [
+    {
+      "files": [
+        "*.css",
+        "*.js",
+        "*.jsx",
+        "*.ts",
+        "*.tsx",
+      ],
+      "options": {
+        "arrowParens": "always",
+        "bracketSameLine": false,
+        "bracketSpacing": true,
+        "parenSpacing": true,
+        "printWidth": 80,
+        "semi": true,
+        "singleQuote": true,
+        "trailingComma": "es5",
+        "useTabs": true,
+      },
+    },
+    {
+      "files": [
+        "*.blade.php",
+      ],
+      "options": {
+        "parser": "blade",
+        "printWidth": 120,
+        "sortTailwindcssClasses": true,
+        "tabWidth": 1,
+      },
+    },
+  ],
+  "parenSpacing": true,
+  "printWidth": 80,
+  "semi": true,
+  "singleQuote": true,
+  "tabWidth": 4,
+  "trailingComma": "es5",
+  "useTabs": true,
+}
+`;
