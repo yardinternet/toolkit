@@ -11,6 +11,7 @@
 	"private": true,
 	"packageManager": "pnpm@10.33.0",
 	"scripts": {
+		"test": "vitest run",
 		"lint:js": "yard-toolkit lint js -m custom ./packages/**/src/**/*.js",
 		"format:js": "yard-toolkit format js -m custom ./packages/**/*.js",
 		"dep:check": "syncpack list-mismatches",
@@ -24,6 +25,7 @@
 		"husky": "^9.1.7",
 		"lerna": "^9.0.4",
 		"lint-staged": "^16.2.7",
-		"syncpack": "^14.0.0"
+		"syncpack": "^14.0.0",
+		"vitest": "^4.1.8"
 	}
 }
