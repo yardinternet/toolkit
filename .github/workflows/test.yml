@@ -24,7 +24,7 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
         env:
-          NODE_AUTH_TOKEN: ${{secrets.YARD_BOT_PAT}}
+          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
       - name: Run tests
         run: pnpm test
