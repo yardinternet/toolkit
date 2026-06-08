@@ -105,3 +105,32 @@ describe( 'curated inherited rules', () => {
 		expect( messages.length ).toBeGreaterThan( 0 );
 	} );
 } );
+
+describe( '@wordpress/eslint-plugin/recommended is loaded', () => {
+	test( '@wordpress/no-unsafe-wp-apis flags __experimental imports', () => {
+		// This rule only exists if the WordPress plugin is loaded.
+		// Import of an __experimental export must produce an error.
+		const messages = messagesForRule(
+			`import { __experimentalFoo } from '@wordpress/components';`,
+			'@wordpress/no-unsafe-wp-apis'
+		);
+		expect( messages.length ).toBeGreaterThan( 0 );
+	} );
+
+	test( '@wordpress/no-unsafe-wp-apis flags __unstable imports', () => {
+		const messages = messagesForRule(
+			`import { __unstableBar } from '@wordpress/block-editor';`,
+			'@wordpress/no-unsafe-wp-apis'
+		);
+		expect( messages.length ).toBeGreaterThan( 0 );
+	} );
+
+	test( '@wordpress/no-unsafe-wp-apis allows stable imports', () => {
+		// A stable export from a @wordpress package must not be flagged.
+		const messages = messagesForRule(
+			`import { useSelect } from '@wordpress/data';`,
+			'@wordpress/no-unsafe-wp-apis'
+		);
+		expect( messages ).toHaveLength( 0 );
+	} );
+} );
