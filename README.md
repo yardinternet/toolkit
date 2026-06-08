@@ -36,10 +36,25 @@ pnpm dep:outdated  # Check for outdated dependencies across workspaces
 pnpm dep:update    # Update all dependencies
 ```
 
+## 📝 Testing
+
+```bash
+pnpm test
+```
+
+Added to catch two types of problems:
+- **Dependency updates** silently changing rules
+- **Our own config edits** disabling or weakening rules
+
+Each package has two test files:
+- `config.snapshot.test.js` — snapshots the full config and fails on a change
+- `rules.test.js` / `format.test.js` — behavioral tests that lint/format real code snippets
+
+Tests run on pre-push and in GitHub Actions on every pull request.
+
 ## 🎨 Formatting & Linting
 
-The linting in this monorepo uses the settings defined in the child packages.
-Husky (CaptainHook alternative) ensures that all files are automatically formatted and linted with each commit.
+The linting in this monorepo uses the settings defined in the child packages. Husky ensures that all files are automatically formatted and linted with each commit.
 
 ## About us
 

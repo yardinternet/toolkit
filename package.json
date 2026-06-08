@@ -24,7 +24,7 @@
 	"devDependencies": {
 		"@babel/core": "^7.29.7",
 		"@babel/eslint-parser": "^7.25.7",
-		"@yardinternet/toolkit": "^2.1.9",
+		"@yardinternet/toolkit": "workspace:*",
 		"husky": "^9.1.7",
 		"lerna": "^9.0.4",
 		"lint-staged": "^16.2.7",
