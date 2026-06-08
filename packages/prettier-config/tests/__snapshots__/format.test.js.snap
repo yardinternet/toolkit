@@ -1,0 +1,12 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`blade override options > blade formatted output matches snapshot 1`] = `
+"@if ($show)
+	<div class="z-10 mt-4 bg-white">
+		@foreach ($items as $item)
+			<span>{{ $item }}</span>
+		@endforeach
+	</div>
+@endif
+"
+`;
