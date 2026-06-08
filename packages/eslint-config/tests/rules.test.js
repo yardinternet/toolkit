@@ -48,6 +48,15 @@ describe( 'explicitly configured rules', () => {
 			);
 			expect( messages ).toHaveLength( 0 );
 		} );
+
+		test( 'fires on unresolvable non-@wordpress imports (rule is active)', () => {
+			// Proves the rule is enforcing — not vacuously passing because the plugin is unloaded.
+			const messages = messagesForRule(
+				`import foo from 'definitely-not-installed-xyz-pkg';`,
+				'import/no-unresolved'
+			);
+			expect( messages.length ).toBeGreaterThan( 0 );
+		} );
 	} );
 
 	describe( 'disabled rules', () => {
