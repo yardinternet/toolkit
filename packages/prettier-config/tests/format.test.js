@@ -89,3 +89,37 @@ describe( 'JS override options', () => {
 		expect( output ).toMatch( /=>/ ); // sanity: it's still an arrow function
 	} );
 } );
+
+describe( 'blade override options', () => {
+	test( 'reorders tailwind classes (sortTailwindcssClasses: true)', async () => {
+		const options = await resolveOptions( 'test.blade.php' );
+		// Classes in an unsorted order — the sorter must reorder them.
+		// @shufo/tailwindcss-class-sorter uses Tailwind's utility order, not alphabetical.
+		// We assert the output differs from input rather than hardcoding the exact order.
+		const input = `<div class="text-sm bg-white mt-4 z-10 p-2">content</div>\n`;
+		const output = await prettier.format( input, {
+			...options,
+			parser: 'blade',
+		} );
+		// Sorted output must differ from original class order.
+		expect( output ).not.toContain( 'text-sm bg-white mt-4 z-10 p-2' );
+	} );
+
+	test( 'blade formatted output matches snapshot', async () => {
+		const options = await resolveOptions( 'test.blade.php' );
+		const input = [
+			'@if($show)',
+			'<div class="z-10 mt-4 bg-white">',
+			'@foreach($items as $item)',
+			'<span>{{ $item }}</span>',
+			'@endforeach',
+			'</div>',
+			'@endif',
+		].join( '\n' );
+		const output = await prettier.format( input, {
+			...options,
+			parser: 'blade',
+		} );
+		expect( output ).toMatchSnapshot();
+	} );
+} );
