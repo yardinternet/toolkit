@@ -15,11 +15,11 @@ It is used by the WordPress team for sites and packages.
 
 ## 👷‍♀️ Package Development
 
-Register package: `npm init -w ./packages/[packagename]`
-Install dependencies in package: `npm install [depname] -w ./packages/[packagename]`
+Register package: `pnpm init` (inside `./packages/[packagename]`)
+Install dependencies in package: `pnpm --filter [packagename] add [depname]`
 
-> ℹ️ **Note on pnpm**  
-> The `./packages/toolkit` package requires *all* dependencies from all used configs/packages to be explicitly declared. Unlike npm, pnpm does not automatically hoist undeclared dependencies. More details in the [README of the toolkit package](./packages/toolkit/README.md#note-on-dependencies).
+> ℹ️ **Note on dependencies**  
+> pnpm does not hoist undeclared dependencies. Every package must explicitly declare all its dependencies. More details in the [README of the toolkit package](./packages/toolkit/README.md#note-on-dependencies).
 
 ## 🚀 Releasing packages
 
@@ -30,10 +30,10 @@ lerna publish --no-private
 ## 📦 Dependency Management
 
 ```bash
-npm run dep:check     # List mismatched versions across workspaces
-npm run dep:fix       # Fix mismatched versions
-npm run dep:outdated  # Check for outdated dependencies across workspaces
-npm run dep:update    # Update all dependencies and reinstall
+pnpm dep:check     # List mismatched versions across workspaces
+pnpm dep:fix       # Fix mismatched versions
+pnpm dep:outdated  # Check for outdated dependencies across workspaces
+pnpm dep:update    # Update all dependencies
 ```
 
 ## 🎨 Formatting & Linting
