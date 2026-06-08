@@ -9,6 +9,9 @@
 	},
 	"license": "EUPL-1.2",
 	"private": true,
+	"publishConfig": {
+		"registry": "https://npm.pkg.github.com/@yardinternet"
+	},
 	"packageManager": "pnpm@10.33.0",
 	"scripts": {
 		"test": "vitest run",
