@@ -182,19 +182,6 @@ importers:
       stylelint-config-recommended:
         specifier: ^18.0.0
         version: 18.0.0(stylelint@17.13.0(typescript@5.9.3))
-    optionalDependencies:
-      '@yardinternet/eslint-config':
-        specifier: ^1.2.9
-        version: 1.2.9(@babel/core@7.29.7)(@typescript-eslint/parser@6.21.0(eslint@9.39.4(jiti@2.7.0))(typescript@5.9.3))(eslint@9.39.4(jiti@2.7.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(stylelint@17.13.0(typescript@5.9.3))(typescript@5.9.3)(wp-prettier@3.0.3)
-      '@yardinternet/prettier-config':
-        specifier: ^2.0.9
-        version: 2.0.9(yaml@2.9.0)
-      '@yardinternet/stylelint-config':
-        specifier: ^1.1.7
-        version: 1.1.7(typescript@5.9.3)
-      '@yardinternet/vite-config':
-        specifier: ^1.3.2
-        version: 1.3.2(@types/node@25.9.2)(eslint@9.39.4(jiti@2.7.0))(meow@14.1.0)(optionator@0.9.4)(postcss@8.5.15)(stylelint@17.13.0(typescript@5.9.3))(typescript@5.9.3)(vite@7.3.5(@types/node@25.9.2)(jiti@2.7.0)(lightningcss@1.32.0)(sass@1.100.0)(sugarss@5.0.1(postcss@8.5.15))(terser@5.48.0)(yaml@2.9.0))
 
   packages/ts-config: {}
 
@@ -259,7 +246,7 @@ importers:
         version: 7.3.5(@types/node@25.9.2)(jiti@2.7.0)(lightningcss@1.32.0)(sass@1.100.0)(sugarss@5.0.1(postcss@8.5.15))(terser@5.48.0)(yaml@2.9.0)
       vite-plugin-checker:
         specifier: ^0.12.0
-        version: 0.12.0(eslint@9.39.4(jiti@2.7.0))(meow@14.1.0)(optionator@0.9.4)(stylelint@17.13.0(typescript@5.9.3))(typescript@5.9.3)(vite@7.3.5(@types/node@25.9.2)(jiti@2.7.0)(lightningcss@1.32.0)(sass@1.100.0)(sugarss@5.0.1(postcss@8.5.15))(terser@5.48.0)(yaml@2.9.0))
+        version: 0.12.0(eslint@9.39.4(jiti@2.7.0))(optionator@0.9.4)(stylelint@17.13.0(typescript@5.9.3))(typescript@5.9.3)(vite@7.3.5(@types/node@25.9.2)(jiti@2.7.0)(lightningcss@1.32.0)(sass@1.100.0)(sugarss@5.0.1(postcss@8.5.15))(terser@5.48.0)(yaml@2.9.0))
       vite-plugin-dts:
         specifier: ^4.5.4
         version: 4.5.4(@types/node@25.9.2)(rollup@4.61.1)(typescript@5.9.3)(vite@7.3.5(@types/node@25.9.2)(jiti@2.7.0)(lightningcss@1.32.0)(sass@1.100.0)(sugarss@5.0.1(postcss@8.5.15))(terser@5.48.0)(yaml@2.9.0))
@@ -3729,20 +3716,6 @@ packages:
 
   '@xtuc/long@4.2.2':
     resolution: {integrity: sha512-NuHqBY1PB/D8xU6s/thBgOAiAP7HOYDQ32+BFZILJ8ivkUkAHQnWfn6WhL79Owj1qmUnoN/YPhktdIoucipkAQ==}
-
-  '@yardinternet/eslint-config@1.2.9':
-    resolution: {integrity: sha512-y2g8mNlK4U3kreeakRVcZm6oGce32+o/WyUOuuQEbGlXnkoI10g48+2dghME+pU7OBqSg4GbwZCzJjCaUAqm4w==, tarball: https://npm.pkg.github.com/download/@yardinternet/eslint-config/1.2.9/f5631f87af550c80009d473a00cd88239c92803e}
-
-  '@yardinternet/prettier-config@2.0.9':
-    resolution: {integrity: sha512-pmWgMpzaTxrwiaV06j1O0/VZo0baeAj9jfUz2GvMVL1jFXGtegg+uG6QKiYv8V110mLliLyj8dZPhI8ZNBt+EQ==, tarball: https://npm.pkg.github.com/download/@yardinternet/prettier-config/2.0.9/278ce816ce7477561acc9c917f8ff092088ced3e}
-
-  '@yardinternet/stylelint-config@1.1.7':
-    resolution: {integrity: sha512-FM5eoJp2zVp/hy2hOpjk/slpSOa73gS5/NTExtMYuqXZosJrw+58baVxrHDlW7kB9mz5Z/5gP/WayOcOjdiTFQ==, tarball: https://npm.pkg.github.com/download/@yardinternet/stylelint-config/1.1.7/10767741d600405bdf77b8ab38e1b7ff8da01c5e}
-
-  '@yardinternet/vite-config@1.3.2':
-    resolution: {integrity: sha512-PNACUK/xBkCpjpBFyXB4oaed2seHbhFDg0kMprI5nsJwFnXXEYcR0lA8eonET39yV/KAVqxj7qL1sq1hzPYHGg==, tarball: https://npm.pkg.github.com/download/@yardinternet/vite-config/1.3.2/cece8219aee90cd69beb5f661d52c8ba5d118055}
-    peerDependencies:
-      vite: ^7.1.2
 
   '@yardinternet/vite-plugin-gutenberg-blocks@2.6.1':
     resolution: {integrity: sha512-pMqK65qzVHd8w1wejDPaYC+wZEoc1JYAQX+VF1EV/dqHWWwKwZFZyqTDgzULyo92vSxIVb7BQXrjojkm+J1WKw==, tarball: https://npm.pkg.github.com/download/@yardinternet/vite-plugin-gutenberg-blocks/2.6.1/ae4552d3e7a9fe68c0cac9b4336dcfa5db6d8a3d}
@@ -13351,106 +13324,6 @@ snapshots:
 
   '@xtuc/long@4.2.2': {}
 
-  '@yardinternet/eslint-config@1.2.9(@babel/core@7.29.7)(@typescript-eslint/parser@6.21.0(eslint@9.39.4(jiti@2.7.0))(typescript@5.9.3))(eslint@9.39.4(jiti@2.7.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(stylelint@17.13.0(typescript@5.9.3))(typescript@5.9.3)(wp-prettier@3.0.3)':
-    dependencies:
-      '@babel/preset-react': 7.29.7(@babel/core@7.29.7)
-      '@eslint/compat': 2.1.0(eslint@9.39.4(jiti@2.7.0))
-      '@eslint/eslintrc': 3.3.5
-      '@eslint/js': 9.39.4
-      '@typescript-eslint/eslint-plugin': 8.60.1(@typescript-eslint/parser@6.21.0(eslint@9.39.4(jiti@2.7.0))(typescript@5.9.3))(eslint@9.39.4(jiti@2.7.0))(typescript@5.9.3)
-      '@wordpress/eslint-plugin': 24.5.0(@babel/core@7.29.7)(eslint@9.39.4(jiti@2.7.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(stylelint@17.13.0(typescript@5.9.3))(typescript@5.9.3)(wp-prettier@3.0.3)
-      eslint-config-prettier: 10.1.8(eslint@9.39.4(jiti@2.7.0))
-      eslint-import-resolver-alias: 1.1.2(eslint-plugin-import@2.32.0)
-      eslint-plugin-import: 2.32.0(@typescript-eslint/parser@6.21.0(eslint@9.39.4(jiti@2.7.0))(typescript@5.9.3))(eslint-import-resolver-typescript@4.4.5)(eslint@9.39.4(jiti@2.7.0))
-      eslint-plugin-react-hooks: 7.1.1(eslint@9.39.4(jiti@2.7.0))
-      globals: 17.6.0
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@types/eslint'
-      - '@typescript-eslint/parser'
-      - eslint
-      - eslint-import-resolver-typescript
-      - eslint-import-resolver-webpack
-      - eslint-plugin-import-x
-      - jest
-      - prettier
-      - react
-      - react-dom
-      - stylelint
-      - supports-color
-      - typescript
-    optional: true
-
-  '@yardinternet/prettier-config@2.0.9(yaml@2.9.0)':
-    dependencies:
-      '@shufo/prettier-plugin-blade': 1.16.2(yaml@2.9.0)
-      '@shufo/tailwindcss-class-sorter': 3.0.1(yaml@2.9.0)
-      '@wordpress/prettier-config': 4.48.0(wp-prettier@3.0.3)
-      prettier: wp-prettier@3.0.3
-      prettier-plugin-tailwindcss: 0.7.4(wp-prettier@3.0.3)
-    transitivePeerDependencies:
-      - '@ianvs/prettier-plugin-sort-imports'
-      - '@prettier/plugin-hermes'
-      - '@prettier/plugin-oxc'
-      - '@prettier/plugin-pug'
-      - '@shopify/prettier-plugin-liquid'
-      - '@trivago/prettier-plugin-sort-imports'
-      - '@zackad/prettier-plugin-twig'
-      - prettier-plugin-astro
-      - prettier-plugin-css-order
-      - prettier-plugin-jsdoc
-      - prettier-plugin-marko
-      - prettier-plugin-multiline-arrays
-      - prettier-plugin-organize-attributes
-      - prettier-plugin-organize-imports
-      - prettier-plugin-sort-imports
-      - prettier-plugin-svelte
-      - tsx
-      - yaml
-    optional: true
-
-  '@yardinternet/stylelint-config@1.1.7(typescript@5.9.3)':
-    dependencies:
-      stylelint: 17.13.0(typescript@5.9.3)
-      stylelint-config-idiomatic-order: 10.0.0(stylelint@17.13.0(typescript@5.9.3))
-      stylelint-config-recommended: 18.0.0(stylelint@17.13.0(typescript@5.9.3))
-    transitivePeerDependencies:
-      - supports-color
-      - typescript
-    optional: true
-
-  '@yardinternet/vite-config@1.3.2(@types/node@25.9.2)(eslint@9.39.4(jiti@2.7.0))(meow@14.1.0)(optionator@0.9.4)(postcss@8.5.15)(stylelint@17.13.0(typescript@5.9.3))(typescript@5.9.3)(vite@7.3.5(@types/node@25.9.2)(jiti@2.7.0)(lightningcss@1.32.0)(sass@1.100.0)(sugarss@5.0.1(postcss@8.5.15))(terser@5.48.0)(yaml@2.9.0))':
-    dependencies:
-      '@roots/vite-plugin': 1.3.1(vite@7.3.5(@types/node@25.9.2)(jiti@2.7.0)(lightningcss@1.32.0)(sass@1.100.0)(sugarss@5.0.1(postcss@8.5.15))(terser@5.48.0)(yaml@2.9.0))(webpack@5.107.2(lightningcss@1.32.0)(postcss@8.5.15))
-      '@tailwindcss/vite': 4.3.0(vite@7.3.5(@types/node@25.9.2)(jiti@2.7.0)(lightningcss@1.32.0)(sass@1.100.0)(sugarss@5.0.1(postcss@8.5.15))(terser@5.48.0)(yaml@2.9.0))
-      '@vitejs/plugin-react': 5.2.0(vite@7.3.5(@types/node@25.9.2)(jiti@2.7.0)(lightningcss@1.32.0)(sass@1.100.0)(sugarss@5.0.1(postcss@8.5.15))(terser@5.48.0)(yaml@2.9.0))
-      '@yardinternet/vite-plugin-gutenberg-blocks': 2.6.1(typescript@5.9.3)(vite@7.3.5(@types/node@25.9.2)(jiti@2.7.0)(lightningcss@1.32.0)(sass@1.100.0)(sugarss@5.0.1(postcss@8.5.15))(terser@5.48.0)(yaml@2.9.0))
-      laravel-vite-plugin: 2.1.0(vite@7.3.5(@types/node@25.9.2)(jiti@2.7.0)(lightningcss@1.32.0)(sass@1.100.0)(sugarss@5.0.1(postcss@8.5.15))(terser@5.48.0)(yaml@2.9.0))
-      postcss-prefixwrap: 1.58.0(postcss@8.5.15)
-      vite: 7.3.5(@types/node@25.9.2)(jiti@2.7.0)(lightningcss@1.32.0)(sass@1.100.0)(sugarss@5.0.1(postcss@8.5.15))(terser@5.48.0)(yaml@2.9.0)
-      vite-plugin-checker: 0.12.0(eslint@9.39.4(jiti@2.7.0))(meow@14.1.0)(optionator@0.9.4)(stylelint@17.13.0(typescript@5.9.3))(typescript@5.9.3)(vite@7.3.5(@types/node@25.9.2)(jiti@2.7.0)(lightningcss@1.32.0)(sass@1.100.0)(sugarss@5.0.1(postcss@8.5.15))(terser@5.48.0)(yaml@2.9.0))
-      vite-plugin-dts: 4.5.4(@types/node@25.9.2)(rollup@4.61.1)(typescript@5.9.3)(vite@7.3.5(@types/node@25.9.2)(jiti@2.7.0)(lightningcss@1.32.0)(sass@1.100.0)(sugarss@5.0.1(postcss@8.5.15))(terser@5.48.0)(yaml@2.9.0))
-      vite-plugin-externals: 0.6.2(vite@7.3.5(@types/node@25.9.2)(jiti@2.7.0)(lightningcss@1.32.0)(sass@1.100.0)(sugarss@5.0.1(postcss@8.5.15))(terser@5.48.0)(yaml@2.9.0))
-    optionalDependencies:
-      '@rollup/rollup-linux-x64-gnu': 4.61.1
-    transitivePeerDependencies:
-      - '@biomejs/biome'
-      - '@types/node'
-      - eslint
-      - meow
-      - optionator
-      - oxlint
-      - postcss
-      - rollup
-      - stylelint
-      - supports-color
-      - typescript
-      - vls
-      - vti
-      - vue-tsc
-      - webpack
-    optional: true
-
   '@yardinternet/vite-plugin-gutenberg-blocks@2.6.1(typescript@5.9.3)(vite@7.3.5(@types/node@25.9.2)(jiti@2.7.0)(lightningcss@1.32.0)(sass@1.100.0)(sugarss@5.0.1(postcss@8.5.15))(terser@5.48.0)(yaml@2.9.0))':
     dependencies:
       chalk: 5.6.2
@@ -18837,7 +18710,7 @@ snapshots:
 
   validate-npm-package-name@6.0.2: {}
 
-  vite-plugin-checker@0.12.0(eslint@9.39.4(jiti@2.7.0))(meow@14.1.0)(optionator@0.9.4)(stylelint@17.13.0(typescript@5.9.3))(typescript@5.9.3)(vite@7.3.5(@types/node@25.9.2)(jiti@2.7.0)(lightningcss@1.32.0)(sass@1.100.0)(sugarss@5.0.1(postcss@8.5.15))(terser@5.48.0)(yaml@2.9.0)):
+  vite-plugin-checker@0.12.0(eslint@9.39.4(jiti@2.7.0))(optionator@0.9.4)(stylelint@17.13.0(typescript@5.9.3))(typescript@5.9.3)(vite@7.3.5(@types/node@25.9.2)(jiti@2.7.0)(lightningcss@1.32.0)(sass@1.100.0)(sugarss@5.0.1(postcss@8.5.15))(terser@5.48.0)(yaml@2.9.0)):
     dependencies:
       '@babel/code-frame': 7.29.7
       chokidar: 4.0.3
@@ -18850,7 +18723,6 @@ snapshots:
       vscode-uri: 3.1.0
     optionalDependencies:
       eslint: 9.39.4(jiti@2.7.0)
-      meow: 14.1.0
       optionator: 0.9.4
       stylelint: 17.13.0(typescript@5.9.3)
       typescript: 5.9.3
