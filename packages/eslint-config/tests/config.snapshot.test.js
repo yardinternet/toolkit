@@ -1,28 +1,58 @@
 'use strict';
 
-const config = require( '../src/index.js' );
+const config = require('../src/index.js');
 
-test( 'eslint config array length is stable', () => {
+const normalizeNodeModulesPath = (value) => {
+	if (typeof value !== 'string') {
+		return value;
+	}
+
+	// Normalize absolute plugin/module paths so snapshots are stable across
+	// local machines and CI environments.
+	return value.replace(
+		/^.*[\\/]node_modules[\\/]/,
+		'<PROJECT_ROOT>/node_modules/'
+	);
+};
+
+const sanitizeSnapshotValue = (value) => {
+	if (Array.isArray(value)) {
+		return value.map(sanitizeSnapshotValue);
+	}
+
+	if (value && typeof value === 'object') {
+		return Object.fromEntries(
+			Object.entries(value).map(([key, nested]) => [
+				key,
+				sanitizeSnapshotValue(nested),
+			])
+		);
+	}
+
+	return normalizeNodeModulesPath(value);
+};
+
+test('eslint config array length is stable', () => {
 	// If a plugin adds or removes config objects, this catches it immediately.
-	expect( Array.isArray( config ) ).toBe( true );
+	expect(Array.isArray(config)).toBe(true);
 	// Snapshot the count — fails when @wordpress/eslint-plugin adds/removes config blocks.
-	expect( config.length ).toMatchSnapshot();
-} );
+	expect(config.length).toMatchSnapshot();
+});
 
-test( 'eslint config explicit rules match snapshot', () => {
+test('eslint config explicit rules match snapshot', () => {
 	// Snapshot only the rule maps (serializable). Functions like parsers/plugins
 	// are excluded here — their presence is verified in behavioral tests.
 	const ruleEntries = config
-		.filter( ( c ) => c.rules && Object.keys( c.rules ).length > 0 )
-		.map( ( c ) => c.rules );
-	expect( ruleEntries ).toMatchSnapshot();
-} );
+		.filter((c) => c.rules && Object.keys(c.rules).length > 0)
+		.map((c) => sanitizeSnapshotValue(c.rules));
+	expect(ruleEntries).toMatchSnapshot();
+});
 
-test( 'eslint config files patterns match snapshot', () => {
+test('eslint config files patterns match snapshot', () => {
 	// compat.extends() blocks use function matchers (non-serializable) — filter to strings only.
 	const filePatterns = config
-		.filter( ( c ) => c.files )
-		.map( ( c ) => c.files.filter( ( f ) => typeof f === 'string' ) )
-		.filter( ( patterns ) => patterns.length > 0 );
-	expect( filePatterns ).toMatchSnapshot();
-} );
+		.filter((c) => c.files)
+		.map((c) => c.files.filter((f) => typeof f === 'string'))
+		.filter((patterns) => patterns.length > 0);
+	expect(filePatterns).toMatchSnapshot();
+});
