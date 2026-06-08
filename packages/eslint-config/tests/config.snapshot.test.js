@@ -19,8 +19,10 @@ test( 'eslint config explicit rules match snapshot', () => {
 } );
 
 test( 'eslint config files patterns match snapshot', () => {
+	// compat.extends() blocks use function matchers (non-serializable) — filter to strings only.
 	const filePatterns = config
 		.filter( ( c ) => c.files )
-		.map( ( c ) => c.files );
+		.map( ( c ) => c.files.filter( ( f ) => typeof f === 'string' ) )
+		.filter( ( patterns ) => patterns.length > 0 );
 	expect( filePatterns ).toMatchSnapshot();
 } );
