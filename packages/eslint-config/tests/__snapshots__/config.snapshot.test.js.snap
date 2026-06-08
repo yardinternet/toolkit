@@ -1496,8 +1496,8 @@ exports[`eslint config explicit rules match snapshot 1`] = `
         ],
         "parenSpacing": true,
         "plugins": [
-          "/Users/yvettenikolov/Packages/yard-toolkit/node_modules/.pnpm/@shufo+prettier-plugin-blade@1.16.2_yaml@2.9.0/node_modules/@shufo/prettier-plugin-blade/dist/index.cjs",
-          "/Users/yvettenikolov/Packages/yard-toolkit/node_modules/.pnpm/prettier-plugin-tailwindcss@0.7.4_wp-prettier@3.0.3/node_modules/prettier-plugin-tailwindcss/dist/index.mjs",
+          "<PROJECT_ROOT>/node_modules/@shufo/prettier-plugin-blade/dist/index.cjs",
+          "<PROJECT_ROOT>/node_modules/prettier-plugin-tailwindcss/dist/index.mjs",
         ],
         "printWidth": 80,
         "semi": true,
