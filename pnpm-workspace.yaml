@@ -5,3 +5,8 @@ publicHoistPattern:
   - prettier
   - stylelint
   - eslint
+  - eslint-*
+  - eslint-plugin-*
+  - '@eslint/*'
+  - '@typescript-eslint/*'
+  - '@wordpress/eslint-plugin'
