@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`eslint config array length is stable 1`] = `23`;
+exports[`eslint config array length is stable 1`] = `24`;
 
 exports[`eslint config explicit rules match snapshot 1`] = `
 [
@@ -1906,6 +1906,40 @@ exports[`eslint config explicit rules match snapshot 1`] = `
     ],
     "prettier/prettier": 0,
   },
+  {
+    "@typescript-eslint/ban-ts-comment": "error",
+    "@typescript-eslint/no-array-constructor": "error",
+    "@typescript-eslint/no-duplicate-enum-values": "error",
+    "@typescript-eslint/no-empty-object-type": "error",
+    "@typescript-eslint/no-explicit-any": "error",
+    "@typescript-eslint/no-extra-non-null-assertion": "error",
+    "@typescript-eslint/no-misused-new": "error",
+    "@typescript-eslint/no-namespace": "error",
+    "@typescript-eslint/no-non-null-asserted-optional-chain": "error",
+    "@typescript-eslint/no-require-imports": "error",
+    "@typescript-eslint/no-this-alias": "error",
+    "@typescript-eslint/no-unnecessary-type-constraint": "error",
+    "@typescript-eslint/no-unsafe-declaration-merging": "error",
+    "@typescript-eslint/no-unsafe-function-type": "error",
+    "@typescript-eslint/no-unused-expressions": [
+      "error",
+      {
+        "allowTernary": true,
+      },
+    ],
+    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/no-wrapper-object-types": "error",
+    "@typescript-eslint/prefer-as-const": "error",
+    "@typescript-eslint/prefer-namespace-keyword": "error",
+    "@typescript-eslint/triple-slash-reference": "error",
+    "import/no-extraneous-dependencies": 0,
+    "import/no-unresolved": 0,
+    "jsdoc/require-param": 0,
+    "no-array-constructor": "off",
+    "no-unused-expressions": 0,
+    "no-unused-vars": "off",
+    "prettier/prettier": 0,
+  },
 ]
 `;
 
@@ -1914,6 +1948,10 @@ exports[`eslint config files patterns match snapshot 1`] = `
   [
     "**/*.js",
     "**/*.jsx",
+  ],
+  [
+    "**/*.ts",
+    "**/*.tsx",
   ],
 ]
 `;
