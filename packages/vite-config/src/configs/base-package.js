@@ -4,6 +4,7 @@
 import { defineConfig } from 'vite';
 import { viteExternalsPlugin } from 'vite-plugin-externals';
 import { wordpressPlugin } from '@roots/vite-plugin';
+import checker from 'vite-plugin-checker';
 import dts from 'vite-plugin-dts';
 import fs from 'fs';
 
@@ -88,7 +89,13 @@ export const createBasePackageConfig = ( {
 				wordpressGlobals && wordpressPlugin(),
 			]
 				.filter( Boolean )
-				.concat( [ hasTsEntries && dts(), ...plugins ] ),
+				.concat( [
+					hasTsEntries && dts(),
+					hasTsEntries &&
+						isWatchMode &&
+						checker( { typescript: true } ),
+					...plugins,
+				] ),
 			/**
 			 * Use classic JSX transform (React.createElement) so no react/jsx-runtime import is
 			 * generated. Consuming webpack (@wordpress/scripts) only needs window.React.
