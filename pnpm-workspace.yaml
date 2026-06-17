@@ -10,3 +10,7 @@ publicHoistPattern:
   - '@eslint/*'
   - '@typescript-eslint/*'
   - '@wordpress/eslint-plugin'
+
+minimumReleaseAge: 10080
+minimumReleaseAgeExclude:
+  - '@yardinternet/*'
