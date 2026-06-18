@@ -29,6 +29,10 @@ updates:
     commit-message:
       prefix: "(chore)"
     versioning-strategy: lockfile-only
+    cooldown:
+      default-days: 7
+      exclude:
+        - '@yardinternet/*'
 
 registries:
   github:
