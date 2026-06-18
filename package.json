@@ -17,6 +17,8 @@
 		"test": "vitest run",
 		"lint:js": "yard-toolkit lint js -m custom ./packages/**/src/**/*.js",
 		"format:js": "yard-toolkit format js -m custom ./packages/**/*.js",
+		"format:check:js": "prettier --check \"./packages/**/*.js\"",
+		"verify": "pnpm lint:js && pnpm format:check:js && pnpm test",
 		"dep:check": "syncpack list-mismatches",
 		"dep:fix": "syncpack fix-mismatches",
 		"dep:outdated": "pnpm outdated --recursive",
