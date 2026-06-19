@@ -14,7 +14,8 @@
 	"[javascript][typescript]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode",
 		"editor.codeActionsOnSave": {
-			"source.fixAll.prettier": "explicit"
+			"source.fixAll.prettier": "explicit",
+			"source.fixAll.eslint": "explicit"
 		},
 		"editor.formatOnPaste": false
 	},
