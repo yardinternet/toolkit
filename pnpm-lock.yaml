@@ -221,9 +221,6 @@ importers:
       '@yardinternet/stylelint-config':
         specifier: ^1.1.8
         version: 1.1.8(typescript@5.9.3)
-      '@yardinternet/vite-config':
-        specifier: ^1.3.4
-        version: 1.3.4(@types/node@25.9.2)(eslint@9.39.4(jiti@2.7.0))(meow@14.1.0)(optionator@0.9.4)(postcss@8.5.15)(stylelint@17.13.0(typescript@5.9.3))(typescript@5.9.3)(vite@7.3.5(@types/node@25.9.2)(jiti@2.7.0)(lightningcss@1.32.0)(sass@1.100.0)(sugarss@5.0.1(postcss@8.5.15))(terser@5.48.0)(yaml@2.9.0))
 
   packages/ts-config: {}
 
@@ -288,7 +285,7 @@ importers:
         version: 7.3.5(@types/node@25.9.2)(jiti@2.7.0)(lightningcss@1.32.0)(sass@1.100.0)(sugarss@5.0.1(postcss@8.5.15))(terser@5.48.0)(yaml@2.9.0)
       vite-plugin-checker:
         specifier: ^0.12.0
-        version: 0.12.0(eslint@9.39.4(jiti@2.7.0))(meow@14.1.0)(optionator@0.9.4)(stylelint@17.13.0(typescript@5.9.3))(typescript@5.9.3)(vite@7.3.5(@types/node@25.9.2)(jiti@2.7.0)(lightningcss@1.32.0)(sass@1.100.0)(sugarss@5.0.1(postcss@8.5.15))(terser@5.48.0)(yaml@2.9.0))
+        version: 0.12.0(eslint@9.39.4(jiti@2.7.0))(optionator@0.9.4)(stylelint@17.13.0(typescript@5.9.3))(typescript@5.9.3)(vite@7.3.5(@types/node@25.9.2)(jiti@2.7.0)(lightningcss@1.32.0)(sass@1.100.0)(sugarss@5.0.1(postcss@8.5.15))(terser@5.48.0)(yaml@2.9.0))
       vite-plugin-dts:
         specifier: ^4.5.4
         version: 4.5.4(@types/node@25.9.2)(rollup@4.61.1)(typescript@5.9.3)(vite@7.3.5(@types/node@25.9.2)(jiti@2.7.0)(lightningcss@1.32.0)(sass@1.100.0)(sugarss@5.0.1(postcss@8.5.15))(terser@5.48.0)(yaml@2.9.0))
@@ -3839,11 +3836,6 @@ packages:
 
   '@yardinternet/stylelint-config@1.1.8':
     resolution: {integrity: sha512-7H0HyoXRIqNXl6HD+DJGJsySH6AtM81fT+0wW9Z8T8Y56X/cDmzzTkx68iW3achnkWPlO0uzJE/5nUZGcGuXKg==, tarball: https://npm.pkg.github.com/download/@yardinternet/stylelint-config/1.1.8/17ed13dda4c80a9319925232547784b6baa6ce8d}
-
-  '@yardinternet/vite-config@1.3.4':
-    resolution: {integrity: sha512-fXmZZuCHT1dRlncer2LUKNY3UHiwMrE6xOOkNYTVu7AXPtG5CPjm3p4LhGLgePC5vGiKTfGY5yUNzt2W9n3YhQ==, tarball: https://npm.pkg.github.com/download/@yardinternet/vite-config/1.3.4/649b84d968cf10325b25651fad0ac8cdcaab57b1}
-    peerDependencies:
-      vite: ^7.1.2
 
   '@yardinternet/vite-plugin-gutenberg-blocks@2.6.1':
     resolution: {integrity: sha512-pMqK65qzVHd8w1wejDPaYC+wZEoc1JYAQX+VF1EV/dqHWWwKwZFZyqTDgzULyo92vSxIVb7BQXrjojkm+J1WKw==, tarball: https://npm.pkg.github.com/download/@yardinternet/vite-plugin-gutenberg-blocks/2.6.1/ae4552d3e7a9fe68c0cac9b4336dcfa5db6d8a3d}
@@ -13730,39 +13722,6 @@ snapshots:
       - typescript
     optional: true
 
-  '@yardinternet/vite-config@1.3.4(@types/node@25.9.2)(eslint@9.39.4(jiti@2.7.0))(meow@14.1.0)(optionator@0.9.4)(postcss@8.5.15)(stylelint@17.13.0(typescript@5.9.3))(typescript@5.9.3)(vite@7.3.5(@types/node@25.9.2)(jiti@2.7.0)(lightningcss@1.32.0)(sass@1.100.0)(sugarss@5.0.1(postcss@8.5.15))(terser@5.48.0)(yaml@2.9.0))':
-    dependencies:
-      '@roots/vite-plugin': 1.3.1(vite@7.3.5(@types/node@25.9.2)(jiti@2.7.0)(lightningcss@1.32.0)(sass@1.100.0)(sugarss@5.0.1(postcss@8.5.15))(terser@5.48.0)(yaml@2.9.0))(webpack@5.107.2(lightningcss@1.32.0)(postcss@8.5.15))
-      '@tailwindcss/vite': 4.3.0(vite@7.3.5(@types/node@25.9.2)(jiti@2.7.0)(lightningcss@1.32.0)(sass@1.100.0)(sugarss@5.0.1(postcss@8.5.15))(terser@5.48.0)(yaml@2.9.0))
-      '@vitejs/plugin-react': 5.2.0(vite@7.3.5(@types/node@25.9.2)(jiti@2.7.0)(lightningcss@1.32.0)(sass@1.100.0)(sugarss@5.0.1(postcss@8.5.15))(terser@5.48.0)(yaml@2.9.0))
-      '@yardinternet/vite-plugin-gutenberg-blocks': 2.6.1(typescript@5.9.3)(vite@7.3.5(@types/node@25.9.2)(jiti@2.7.0)(lightningcss@1.32.0)(sass@1.100.0)(sugarss@5.0.1(postcss@8.5.15))(terser@5.48.0)(yaml@2.9.0))
-      chalk: 5.6.2
-      laravel-vite-plugin: 2.1.0(vite@7.3.5(@types/node@25.9.2)(jiti@2.7.0)(lightningcss@1.32.0)(sass@1.100.0)(sugarss@5.0.1(postcss@8.5.15))(terser@5.48.0)(yaml@2.9.0))
-      postcss-prefixwrap: 1.58.0(postcss@8.5.15)
-      vite: 7.3.5(@types/node@25.9.2)(jiti@2.7.0)(lightningcss@1.32.0)(sass@1.100.0)(sugarss@5.0.1(postcss@8.5.15))(terser@5.48.0)(yaml@2.9.0)
-      vite-plugin-checker: 0.12.0(eslint@9.39.4(jiti@2.7.0))(meow@14.1.0)(optionator@0.9.4)(stylelint@17.13.0(typescript@5.9.3))(typescript@5.9.3)(vite@7.3.5(@types/node@25.9.2)(jiti@2.7.0)(lightningcss@1.32.0)(sass@1.100.0)(sugarss@5.0.1(postcss@8.5.15))(terser@5.48.0)(yaml@2.9.0))
-      vite-plugin-dts: 4.5.4(@types/node@25.9.2)(rollup@4.61.1)(typescript@5.9.3)(vite@7.3.5(@types/node@25.9.2)(jiti@2.7.0)(lightningcss@1.32.0)(sass@1.100.0)(sugarss@5.0.1(postcss@8.5.15))(terser@5.48.0)(yaml@2.9.0))
-      vite-plugin-externals: 0.6.2(vite@7.3.5(@types/node@25.9.2)(jiti@2.7.0)(lightningcss@1.32.0)(sass@1.100.0)(sugarss@5.0.1(postcss@8.5.15))(terser@5.48.0)(yaml@2.9.0))
-    optionalDependencies:
-      '@rollup/rollup-linux-x64-gnu': 4.61.1
-    transitivePeerDependencies:
-      - '@biomejs/biome'
-      - '@types/node'
-      - eslint
-      - meow
-      - optionator
-      - oxlint
-      - postcss
-      - rollup
-      - stylelint
-      - supports-color
-      - typescript
-      - vls
-      - vti
-      - vue-tsc
-      - webpack
-    optional: true
-
   '@yardinternet/vite-plugin-gutenberg-blocks@2.6.1(typescript@5.9.3)(vite@7.3.5(@types/node@25.9.2)(jiti@2.7.0)(lightningcss@1.32.0)(sass@1.100.0)(sugarss@5.0.1(postcss@8.5.15))(terser@5.48.0)(yaml@2.9.0))':
     dependencies:
       chalk: 5.6.2
@@ -15112,7 +15071,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-module-utils@2.13.0(@typescript-eslint/parser@6.21.0(eslint@9.39.4(jiti@2.7.0))(typescript@5.9.3))(eslint-import-resolver-node@0.3.10)(eslint-import-resolver-typescript@4.4.5)(eslint@9.39.4(jiti@2.7.0)):
+  eslint-module-utils@2.13.0(@typescript-eslint/parser@6.21.0(eslint@9.39.4(jiti@2.7.0))(typescript@5.9.3))(eslint-import-resolver-node@0.3.10)(eslint-import-resolver-typescript@4.4.5(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.61.1(eslint@9.39.4(jiti@2.7.0))(typescript@5.9.3))(eslint@9.39.4(jiti@2.7.0)))(eslint@9.39.4(jiti@2.7.0)))(eslint@9.39.4(jiti@2.7.0)):
     dependencies:
       debug: 3.2.7
     optionalDependencies:
@@ -15144,7 +15103,7 @@ snapshots:
       doctrine: 2.1.0
       eslint: 9.39.4(jiti@2.7.0)
       eslint-import-resolver-node: 0.3.10
-      eslint-module-utils: 2.13.0(@typescript-eslint/parser@6.21.0(eslint@9.39.4(jiti@2.7.0))(typescript@5.9.3))(eslint-import-resolver-node@0.3.10)(eslint-import-resolver-typescript@4.4.5)(eslint@9.39.4(jiti@2.7.0))
+      eslint-module-utils: 2.13.0(@typescript-eslint/parser@6.21.0(eslint@9.39.4(jiti@2.7.0))(typescript@5.9.3))(eslint-import-resolver-node@0.3.10)(eslint-import-resolver-typescript@4.4.5(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.61.1(eslint@9.39.4(jiti@2.7.0))(typescript@5.9.3))(eslint@9.39.4(jiti@2.7.0)))(eslint@9.39.4(jiti@2.7.0)))(eslint@9.39.4(jiti@2.7.0))
       hasown: 2.0.4
       is-core-module: 2.16.2
       is-glob: 4.0.3
@@ -19280,7 +19239,7 @@ snapshots:
       - tsx
       - yaml
 
-  vite-plugin-checker@0.12.0(eslint@9.39.4(jiti@2.7.0))(meow@14.1.0)(optionator@0.9.4)(stylelint@17.13.0(typescript@5.9.3))(typescript@5.9.3)(vite@7.3.5(@types/node@25.9.2)(jiti@2.7.0)(lightningcss@1.32.0)(sass@1.100.0)(sugarss@5.0.1(postcss@8.5.15))(terser@5.48.0)(yaml@2.9.0)):
+  vite-plugin-checker@0.12.0(eslint@9.39.4(jiti@2.7.0))(optionator@0.9.4)(stylelint@17.13.0(typescript@5.9.3))(typescript@5.9.3)(vite@7.3.5(@types/node@25.9.2)(jiti@2.7.0)(lightningcss@1.32.0)(sass@1.100.0)(sugarss@5.0.1(postcss@8.5.15))(terser@5.48.0)(yaml@2.9.0)):
     dependencies:
       '@babel/code-frame': 7.29.7
       chokidar: 4.0.3
@@ -19293,7 +19252,6 @@ snapshots:
       vscode-uri: 3.1.0
     optionalDependencies:
       eslint: 9.39.4(jiti@2.7.0)
-      meow: 14.1.0
       optionator: 0.9.4
       stylelint: 17.13.0(typescript@5.9.3)
       typescript: 5.9.3
