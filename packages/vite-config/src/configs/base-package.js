@@ -1,7 +1,7 @@
 /**
  * External dependencies
  */
-import { defineConfig } from 'vite';
+import { defineConfig, mergeConfig } from 'vite';
 import { viteExternalsPlugin } from 'vite-plugin-externals';
 import { wordpressPlugin } from '@roots/vite-plugin';
 import checker from 'vite-plugin-checker';
@@ -35,6 +35,7 @@ export const createBasePackageConfig = ( {
 	externalizeReact = true,
 	wordpressGlobals = true,
 	classicJsx = false,
+	...restConfig
 } = {} ) => {
 	const cwd = process.cwd();
 	const normalizedEntries = toEntryObject( entryPoints );
@@ -71,7 +72,7 @@ export const createBasePackageConfig = ( {
 			} );
 		}
 
-		return {
+		const baseConfig = {
 			plugins: [
 				/**
 				 * Externalizes React, ReactDOM and ReactJSXRuntime & reference global versions
@@ -137,5 +138,7 @@ export const createBasePackageConfig = ( {
 				},
 			},
 		};
+
+		return mergeConfig( baseConfig, restConfig );
 	} );
 };
