@@ -1,6 +1,0 @@
-{
-  "*.js": [
-    "npm run format:js",
-    "npm run lint:js"
-  ]
-}
