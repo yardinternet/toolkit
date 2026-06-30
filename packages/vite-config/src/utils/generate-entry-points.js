@@ -5,13 +5,18 @@ import fs from 'fs';
 import path from 'path';
 
 /**
+ * Internal dependencies
+ */
+import { resolveThemeContext } from './resolve-theme-context.js';
+
+/**
  * Returns an array of valid entry point paths for the specified themes.
  */
 export const generateEntryPoints = ( {
 	themesToProcess,
 	entryPoints = [],
 } ) => {
-	const baseDir = process.cwd();
+	const context = resolveThemeContext();
 	const resolvedEntryPoints = [];
 
 	if ( ! themesToProcess || themesToProcess.length === 0 ) {
@@ -21,7 +26,7 @@ export const generateEntryPoints = ( {
 	}
 
 	themesToProcess.forEach( ( themeName ) => {
-		const themeDir = path.join( baseDir, 'web/app/themes', themeName );
+		const themeDir = context.themeDir( themeName );
 
 		// Push valid file paths to the input list
 		entryPoints.forEach( ( entry ) => {
