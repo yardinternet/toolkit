@@ -2,7 +2,13 @@ const fs = require( 'fs' );
 const path = require( 'path' );
 
 function findTailwindStylesheet() {
-	const relative = 'web/app/themes/sage/resources/styles/base/config.css';
+	// Candidate locations of the Tailwind config stylesheet, tried in order:
+	// - brave-root: the sage theme inside `web/app/themes`.
+	// - theme-root: the theme's own resources (cwd is the theme).
+	const relatives = [
+		'web/app/themes/sage/resources/styles/base/config.css',
+		'resources/styles/base/config.css',
+	];
 
 	const roots = [];
 
@@ -21,8 +27,10 @@ function findTailwindStylesheet() {
 	roots.push( process.cwd() );
 
 	for ( const root of roots ) {
-		const candidate = path.resolve( root, relative );
-		if ( fs.existsSync( candidate ) ) return candidate;
+		for ( const relative of relatives ) {
+			const candidate = path.resolve( root, relative );
+			if ( fs.existsSync( candidate ) ) return candidate;
+		}
 	}
 
 	return null;
