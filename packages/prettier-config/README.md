@@ -32,3 +32,10 @@ const prettierSettings = merge(require('@yardinternet/prettier-config'), {
 })
 module.exports = prettierSettings;
 ```
+
+## brave-root vs theme-root
+
+The Tailwind config stylesheet is located automatically, trying both layouts:
+
+- **brave-root** — `web/app/themes/sage/resources/styles/base/config.css`.
+- **theme-root** — the theme's own `resources/styles/base/config.css`.
