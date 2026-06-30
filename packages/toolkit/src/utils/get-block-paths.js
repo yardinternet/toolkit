@@ -7,16 +7,15 @@ import path from 'path';
 /**
  * Internal dependencies
  */
-import { getAllThemeNames } from './get-all-theme-names.js';
+import { resolveThemeContext } from './resolve-theme-context.js';
 
 export const getBlockPaths = async () => {
-	const themeNames = getAllThemeNames();
+	const context = resolveThemeContext();
 
 	const blockPathsPerTheme = await Promise.all(
-		themeNames.map( async ( themeName ) => {
+		context.themes.map( async ( theme ) => {
 			const blocksDir = path.join(
-				'web/app/themes',
-				themeName,
+				theme.relDir,
 				'resources/scripts/blocks'
 			);
 

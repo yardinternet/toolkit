@@ -42,6 +42,15 @@ Options
     --version    Shows version
 ```
 
+### brave-root vs theme-root
+
+`brave` mode auto-detects where the command runs:
+
+- **brave-root** — cwd has `web/app/themes/`. Operates on all themes (lint/format globs, build/watch).
+- **theme-root** — cwd is a single theme (has `style.css`, no `web/app/themes/`). Operates on that one theme.
+
+Same commands either way.
+
 ### Format
 
 For default for brave sites:

@@ -8,6 +8,7 @@ import path from 'path';
  * Internal dependencies
  */
 import { getBlockPaths } from '../utils/get-block-paths.js';
+import { getBlockThemeName } from '../utils/get-block-theme-name.js';
 import { ensureFileExists, setupGracefulShutdown } from '../utils/helpers.js';
 import log from '../utils/logger.js';
 
@@ -27,7 +28,7 @@ export const watchBlocks = async ( configFile = 'vite-blocks.config.js' ) => {
 
 	blocks.forEach( ( blockPath ) => {
 		const blockName = path.basename( blockPath );
-		const themeName = blockPath.split( path.sep ).at( 3 ); // web/app/themes/<themeName>...
+		const themeName = getBlockThemeName( blockPath );
 
 		log.info( `Watching block: ${ blockName } (${ themeName })` );
 
