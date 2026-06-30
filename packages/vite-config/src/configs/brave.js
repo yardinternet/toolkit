@@ -17,6 +17,7 @@
 /**
  * External dependencies
  */
+import path from 'path';
 import { defineConfig, loadEnv } from 'vite';
 import { viteExternalsPlugin } from 'vite-plugin-externals';
 import { wordpressPlugin } from '@roots/vite-plugin';
@@ -31,16 +32,25 @@ import { generateEntryPoints } from '../utils/generate-entry-points.js';
 import { getAllThemeNames } from '../utils/get-all-theme-names.js';
 import { getCheckerPlugin } from '../utils/get-checker-plugin.js';
 import { getPostCssPrefixWrapPlugin } from '../utils/get-postcss-prefixwrap-plugin.js';
+import { resolveThemeContext } from '../utils/resolve-theme-context.js';
 
 export const braveConfig = ( {
 	checker: checkerOption = null,
 	editorStylesPrefixWrap,
 	entryPoints,
 	mode,
-	theme = 'sage',
+	theme,
 } ) => {
 	const env = loadEnv( mode, process.cwd(), '' );
 	const isDev = ! process.argv.includes( 'build' );
+	const context = resolveThemeContext();
+
+	/**
+	 * The theme to build. In build mode the THEME env var is passed per theme;
+	 * in dev/theme-root it falls back to the context's default theme (the only
+	 * theme in theme-root, `sage` in brave-root).
+	 */
+	const resolvedTheme = theme || context.defaultTheme;
 	const allThemes = getAllThemeNames();
 
 	/**
@@ -48,10 +58,20 @@ export const braveConfig = ( {
 	 * - In dev mode: include all themes for a unified dev server
 	 * - In build mode: only process the single specified theme
 	 */
-	const themesToProcess = isDev ? allThemes : [ theme ];
+	const themesToProcess = isDev ? allThemes : [ resolvedTheme ];
+
+	/**
+	 * Production asset base (URL the built files are served from):
+	 * - brave-root: the theme's Bedrock path.
+	 * - theme-root: a standard WordPress theme path so the theme is portable.
+	 */
+	const buildBase =
+		context.mode === 'theme-root'
+			? `/wp-content/themes/${ resolvedTheme }/public/build/`
+			: `/app/themes/${ resolvedTheme }/public/build/`;
 
 	return defineConfig( {
-		base: isDev ? '' : `/app/themes/${ theme }/public/build/`,
+		base: isDev ? '' : buildBase,
 		/**
 		 * Named host required for CSP whitelisting in dev mode.
 		 */
@@ -106,14 +126,23 @@ export const braveConfig = ( {
 				} ),
 				/**
 				 * Public directory:
-				 * - Dev mode: Sage (assumes it hosts the dev server)
+				 * - Dev mode: the default theme (assumes it hosts the dev server)
 				 * - Build mode: output to the specific theme directory
+				 * - theme-root: the theme's own `public` directory
 				 */
-				publicDirectory: `web/app/themes/${ theme }/public`,
+				publicDirectory: path.join(
+					context.themeRelDir( resolvedTheme ),
+					'public'
+				),
 				/**
 				 * Files to watch for changes and trigger a refresh
 				 */
-				refresh: [ 'web/app/themes/**/resources/views/**/*.blade.php' ],
+				refresh:
+					context.mode === 'theme-root'
+						? [ 'resources/views/**/*.blade.php' ]
+						: [
+								'web/app/themes/**/resources/views/**/*.blade.php',
+						  ],
 			} ),
 			/**
 			 * Externalizes React, ReactDOM and ReactJSXRuntime so they reference the global versions provided by WordPress' wp-element (window.React, window.ReactDOM).

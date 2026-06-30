@@ -81,6 +81,15 @@ export default defineConfig(
 );
 ```
 
+### brave-root vs theme-root
+
+`braveConfig` and `braveBlocksConfig` auto-detect where they run:
+
+- **brave-root** — cwd has `web/app/themes/`. Builds every theme; asset base `/app/themes/<theme>/public/build/`.
+- **theme-root** — cwd is a single theme (has `style.css`, no `web/app/themes/`). Builds that one theme; output to its own `public/`, asset base `/wp-content/themes/<theme>/public/build/`.
+
+Same config file either way.
+
 ## Package Vite configs
 
 Presets for npm and Laravel packages. Both wrappers use `createBasePackageConfig`.
