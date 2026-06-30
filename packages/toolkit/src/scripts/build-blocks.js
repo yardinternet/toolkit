@@ -7,6 +7,7 @@ import path from 'path';
  * Internal dependencies
  */
 import { getBlockPaths } from '../utils/get-block-paths.js';
+import { getBlockThemeName } from '../utils/get-block-theme-name.js';
 import {
 	ensureFileExists,
 	execWithEnv,
@@ -29,7 +30,7 @@ export const buildBlocks = async ( configFile = 'vite-blocks.config.js' ) => {
 	Promise.allSettled(
 		blocks.map( async ( blockPath ) => {
 			const blockName = path.basename( blockPath );
-			const themeName = blockPath.split( path.sep ).at( 3 ); // web/app/themes/<themeName>...
+			const themeName = getBlockThemeName( blockPath );
 
 			log.info( `Building block: ${ blockName } (${ themeName })` );
 
