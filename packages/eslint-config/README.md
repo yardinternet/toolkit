@@ -30,3 +30,10 @@ const eslintSettings = merge(require('@yardinternet/eslint-config'), [
 
 module.exports = eslintSettings;
 ```
+
+## brave-root vs theme-root
+
+The `@sage/scripts` import alias auto-detects where ESLint runs:
+
+- **brave-root** — cwd has `web/app/themes/`. `@sage/scripts` → `web/app/themes/sage/resources/scripts`.
+- **theme-root** — cwd is a single theme (has `style.css`, no `web/app/themes/`). `@sage/scripts` and `@<theme>/scripts` → `./resources/scripts`.

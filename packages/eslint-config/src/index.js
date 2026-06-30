@@ -5,6 +5,7 @@ const tsPlugin = require( '@typescript-eslint/eslint-plugin' );
 const { fixupConfigRules } = require( '@eslint/compat' );
 const js = require( '@eslint/js' );
 const { FlatCompat } = require( '@eslint/eslintrc' );
+const resolveImportAliases = require( './utils/resolve-import-aliases' );
 
 const compat = new FlatCompat( {
 	baseDirectory: __dirname,
@@ -73,12 +74,7 @@ module.exports = [
 		settings: {
 			...sharedSettings,
 			'import/resolver': {
-				alias: [
-					[
-						'@sage/scripts',
-						'./web/app/themes/sage/resources/scripts',
-					],
-				],
+				alias: resolveImportAliases(),
 			},
 		},
 	},
