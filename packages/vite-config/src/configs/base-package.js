@@ -123,12 +123,16 @@ export const createBasePackageConfig = ( {
 				sourcemap: isWatchMode ? 'inline' : false,
 				minify: ! isWatchMode,
 				emptyOutDir: ! isWatchMode,
+				cssCodeSplit: Object.keys( normalizedEntries ).length > 1,
 				rollupOptions: {
 					external: externals,
 					treeshake: true,
 					output: {
 						chunkFileNames: ( chunkInfo ) =>
 							`chunks/${ chunkInfo.name }.[hash].js`,
+						assetFileNames: createAssetFileNames( {
+							withHash: false,
+						} ),
 					},
 				},
 			},
