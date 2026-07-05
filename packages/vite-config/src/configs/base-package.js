@@ -30,7 +30,6 @@ export const createBasePackageConfig = ( {
 	fileName = defaultFileName,
 	packageJsonValidation = false,
 	test = {},
-	manifest = false,
 	plugins = [],
 	externalizeReact = true,
 	wordpressGlobals = true,
@@ -120,7 +119,6 @@ export const createBasePackageConfig = ( {
 					fileName,
 				},
 				assetsInlineLimit: 0,
-				manifest,
 				target: 'esnext',
 				sourcemap: isWatchMode ? 'inline' : false,
 				minify: ! isWatchMode,
@@ -131,9 +129,6 @@ export const createBasePackageConfig = ( {
 					output: {
 						chunkFileNames: ( chunkInfo ) =>
 							`chunks/${ chunkInfo.name }.[hash].js`,
-						assetFileNames: createAssetFileNames( {
-							withHash: Boolean( manifest ),
-						} ),
 					},
 				},
 			},
