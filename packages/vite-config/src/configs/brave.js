@@ -110,13 +110,24 @@ export const braveConfig = ( {
 				'@yardinternet/gutenberg-hooks',
 				'@yardinternet/pre-publish-checklist',
 			],
+			/**
+			 * Force JSX to production runtime, since dev runtime (`react/jsx-dev-runtime`) isn't externalized nor provided by wp-element, so it breaks the dependency scan.
+			 */
+			rolldownOptions: {
+				transform: {
+					jsx: {
+						development: false,
+					},
+				},
+			},
 		},
 		/**
-		 * Use the production JSX runtime (`react/jsx-runtime`) in dev too. The dev runtime (`react/jsx-dev-runtime`) isn't externalized nor provided by wp-element,
-		 * so it breaks the dependency scan.
+		 * Force JSX to production runtime, since dev runtime (`react/jsx-dev-runtime`) isn't externalized nor provided by wp-element, so it breaks the dependency scan.
 		 */
-		esbuild: {
-			jsxDev: false,
+		oxc: {
+			jsx: {
+				development: false,
+			},
 		},
 		plugins: [
 			wordpressPlugin(),
