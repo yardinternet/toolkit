@@ -100,13 +100,15 @@ export const createBasePackageConfig = ( {
 			 * Use classic JSX transform (React.createElement) so no react/jsx-runtime import is
 			 * generated. Consuming webpack (@wordpress/scripts) only needs window.React.
 			 */
-			esbuild: classicJsx
-				? {
-						jsx: 'transform',
-						jsxFactory: 'React.createElement',
-						jsxFragment: 'React.Fragment',
-				  }
-				: {},
+			...( classicJsx && {
+				oxc: {
+					jsx: {
+						runtime: 'classic',
+						pragma: 'React.createElement',
+						pragmaFrag: 'React.Fragment',
+					},
+				},
+			} ),
 			test: {
 				environment: 'jsdom',
 				...test,
