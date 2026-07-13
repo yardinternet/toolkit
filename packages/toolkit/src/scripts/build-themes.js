@@ -1,7 +1,7 @@
 /**
  * Internal dependencies
  */
-import { getAllThemeNames } from '../utils/get-all-theme-names.js';
+import { getAllThemeNames } from '@yardinternet/shared-utils';
 import {
 	ensureFileExists,
 	execWithEnv,

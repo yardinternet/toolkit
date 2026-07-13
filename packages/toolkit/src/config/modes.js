@@ -1,5 +1,5 @@
 import { filetypes } from './filetypes.js';
-import { resolveThemeContext } from '../utils/resolve-theme-context.js';
+import { resolveThemeContext } from '@yardinternet/shared-utils';
 
 /**
  * Builds the lint/format globs for the `brave` mode.

@@ -9,8 +9,10 @@ It is used by the WordPress team for sites and packages.
 - [@yardinternet/eslint-config](packages/eslint-config/README.md)
 - [@yardinternet/stylelint-config](packages/stylelint-config/README.md)
 - [@yardinternet/postcss-config](packages/postcss-config/README.md)
+- [@yardinternet/shared-utils](packages/shared-utils/README.md)
 - [@yardinternet/toolkit](packages/toolkit/README.md)
 - [@yardinternet/ts-config](packages/ts-config/README.md)
+- [@yardinternet/ts-config-wordpress](packages/ts-config-wordpress/README.md)
 - [@yardinternet/vite-config](packages/vite-config/README.md)
 
 ## 👷‍♀️ Package Development

@@ -25,6 +25,7 @@
 		"@shufo/tailwindcss-class-sorter": "^3.0.1",
 		"@wordpress/eslint-plugin": "^25.6.0",
 		"@wordpress/prettier-config": "^4.48.0",
+		"@yardinternet/shared-utils": "workspace:*",
 		"chalk": "^5.6.2",
 		"eslint": "^10.6.0",
 		"eslint-import-resolver-alias": "^1.1.2",
