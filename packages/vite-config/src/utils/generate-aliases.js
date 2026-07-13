@@ -6,7 +6,7 @@ import path from 'path';
 /**
  * Internal dependencies
  */
-import { resolveThemeContext } from './resolve-theme-context.js';
+import { resolveThemeContext } from '@yardinternet/shared-utils';
 
 /**
  * Generates the aliases for each theme to use like `@theme-name`.

@@ -1,0 +1,20 @@
+{
+	"name": "@yardinternet/shared-utils",
+	"version": "1.0.0",
+	"description": "Shared utilities used by @yardinternet/toolkit and @yardinternet/vite-config",
+	"main": "src/index.js",
+	"type": "module",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"publishConfig": {
+		"registry": "https://npm.pkg.github.com/"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/yardinternet/toolkit.git",
+		"directory": "packages/shared-utils"
+	},
+	"author": "",
+	"license": "ISC"
+}

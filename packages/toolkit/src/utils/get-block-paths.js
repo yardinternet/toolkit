@@ -7,7 +7,7 @@ import path from 'path';
 /**
  * Internal dependencies
  */
-import { resolveThemeContext } from './resolve-theme-context.js';
+import { resolveThemeContext } from '@yardinternet/shared-utils';
 
 export const getBlockPaths = async () => {
 	const context = resolveThemeContext();

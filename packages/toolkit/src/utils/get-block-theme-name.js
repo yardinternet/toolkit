@@ -6,7 +6,7 @@ import path from 'path';
 /**
  * Internal dependencies
  */
-import { resolveThemeContext } from './resolve-theme-context.js';
+import { resolveThemeContext } from '@yardinternet/shared-utils';
 
 /**
  * Returns the owning theme name for a discovered block path, for logging.

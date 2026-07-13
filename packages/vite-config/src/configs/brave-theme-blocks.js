@@ -18,8 +18,10 @@ import path from 'path';
  * Internal dependencies
  */
 import { generateAliases } from '../utils/generate-aliases.js';
-import { getAllThemeNames } from '../utils/get-all-theme-names.js';
-import { resolveThemeContext } from '../utils/resolve-theme-context.js';
+import {
+	getAllThemeNames,
+	resolveThemeContext,
+} from '@yardinternet/shared-utils';
 
 export const braveBlocksConfig = ( { blockPath } ) => {
 	const context = resolveThemeContext();
