@@ -111,6 +111,13 @@ export const braveConfig = ( {
 				'@yardinternet/pre-publish-checklist',
 			],
 		},
+		/**
+		 * Use the production JSX runtime (`react/jsx-runtime`) in dev too. The dev runtime (`react/jsx-dev-runtime`) isn't externalized nor provided by wp-element,
+		 * so it breaks the dependency scan.
+		 */
+		esbuild: {
+			jsxDev: false,
+		},
 		plugins: [
 			wordpressPlugin(),
 			tailwindcss(),
@@ -158,6 +165,7 @@ export const braveConfig = ( {
 			 */
 			...getCheckerPlugin( { checkerOption } ),
 		],
+
 		css: {
 			devSourcemap: true,
 			postcss: {
