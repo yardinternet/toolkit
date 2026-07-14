@@ -17,8 +17,8 @@
 		"test": "vitest run",
 		"lint:js": "yard-toolkit lint js -m custom ./packages/**/src/**/*.js",
 		"format:js": "yard-toolkit format js -m custom ./packages/**/*.js",
-		"dep:check": "syncpack list-mismatches",
-		"dep:fix": "syncpack fix-mismatches",
+		"dep:check": "syncpack lint",
+		"dep:fix": "syncpack fix",
 		"dep:outdated": "pnpm outdated --recursive",
 		"dep:update": "pnpm up --recursive --latest",
 		"prepare": "husky"
