@@ -1,6 +1,6 @@
 {
 	"name": "@yardinternet/shared-utils",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Shared utilities used by @yardinternet/toolkit and @yardinternet/vite-config",
 	"main": "src/index.js",
 	"type": "module",
