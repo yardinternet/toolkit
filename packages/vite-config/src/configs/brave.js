@@ -29,10 +29,12 @@ import tailwindcss from '@tailwindcss/vite';
  */
 import { generateAliases } from '../utils/generate-aliases.js';
 import { generateEntryPoints } from '../utils/generate-entry-points.js';
-import { getAllThemeNames } from '../utils/get-all-theme-names.js';
 import { getCheckerPlugin } from '../utils/get-checker-plugin.js';
 import { getPostCssPrefixWrapPlugin } from '../utils/get-postcss-prefixwrap-plugin.js';
-import { resolveThemeContext } from '../utils/resolve-theme-context.js';
+import {
+	getAllThemeNames,
+	resolveThemeContext,
+} from '@yardinternet/shared-utils';
 
 export const braveConfig = ( {
 	checker: checkerOption = null,
