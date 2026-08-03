@@ -34,6 +34,7 @@ export const createBasePackageConfig = ( {
 	externalizeReact = true,
 	wordpressGlobals = true,
 	classicJsx = false,
+	minify = false,
 	...restConfig
 } = {} ) => {
 	const cwd = process.cwd();
@@ -57,6 +58,7 @@ export const createBasePackageConfig = ( {
 	);
 	const isWatchMode =
 		process.env.WATCH === 'true' || process.argv.includes( '--watch' );
+	const shouldMinify = minify && ! isWatchMode;
 
 	return defineConfig( async () => {
 		const { packageJson } = getPackageJson( cwd );
@@ -123,7 +125,7 @@ export const createBasePackageConfig = ( {
 				assetsInlineLimit: 0,
 				target: 'esnext',
 				sourcemap: isWatchMode ? 'inline' : false,
-				minify: ! isWatchMode,
+				minify: shouldMinify,
 				emptyOutDir: ! isWatchMode,
 				cssCodeSplit: Object.keys( normalizedEntries ).length > 1,
 				rollupOptions: {
@@ -134,6 +136,14 @@ export const createBasePackageConfig = ( {
 							`chunks/${ chunkInfo.name }.[hash].js`,
 						assetFileNames: createAssetFileNames( {
 							withHash: false,
+						} ),
+						...( shouldMinify && {
+							minify: {
+								compress: true,
+								mangle: true,
+								codegen: { removeWhitespace: true },
+							},
+							comments: false,
 						} ),
 					},
 				},

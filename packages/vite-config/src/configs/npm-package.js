@@ -5,5 +5,6 @@ export const npmPackageConfig = ( options = {} ) =>
 		outDir: 'dist',
 		packageJsonValidation: true,
 		classicJsx: true,
+		minify: false,
 		...options,
 	} );

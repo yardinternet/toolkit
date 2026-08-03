@@ -211,10 +211,11 @@ createBasePackageConfig( {
   fileName = defaultFileName,
   packageJsonValidation = false,
   test = {},
-  manifest = false,
   plugins = [],
   externalizeReact = true,
   wordpressGlobals = true,
+  classicJsx = false,
+  minify = false,
 } )
 ```
 
@@ -227,10 +228,22 @@ createBasePackageConfig( {
 | `fileName` | `(format: string, entryName: string) => string` | `defaultFileName` | Controls emitted JS filenames per format and entry. |
 | `packageJsonValidation` | `boolean` | `false` | When `true`, validates package.json output fields against configured entries. |
 | `test` | `object` | `{}` | Merged into Vitest config. Default test environment is `jsdom`. |
-| `manifest` | `boolean \| string` | `false` | Enables Vite manifest generation for Vite Laravel helper (`true` for default path, or a string for custom path). |
 | `plugins` | `Array<import('vite').PluginOption>` | `[]` | Extra Vite plugins appended after built-in package plugins. |
 | `externalizeReact` | `boolean` | `true` | Externalizes React, ReactDOM, and `react/jsx-runtime` to globals (`React`, `ReactDOM`, `ReactJSXRuntime`). |
 | `wordpressGlobals` | `boolean` | `true` | Enables `@roots/vite-plugin` WordPress globals transform for `@wordpress/*` imports. |
+| `classicJsx` | `boolean` | `false` | Uses the classic JSX transform (`React.createElement`) so no `react/jsx-runtime` import is emitted. Needed when the consumer is webpack/`@wordpress/scripts` and only provides `window.React`. |
+| `minify` | `boolean` | `false` | Minifies JS and CSS, including whitespace removal. Off in watch mode regardless of this value. |
+
+Any other key is forwarded to Vite as-is and merged over the base config.
+
+### Minification
+
+`minify` is off by default and per preset:
+
+| Preset | `minify` | Why |
+| --- | --- | --- |
+| `npmPackageConfig` | `false` | The consuming project bundles and minifies the package itself. Readable output keeps its stack traces and build output debuggable, and minifying twice buys nothing. |
+| `laravelPackageConfig` | `true` | Built files are served straight to the browser, so nothing downstream minifies them. |
 
 Notes:
 
