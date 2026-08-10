@@ -14,6 +14,7 @@ It is used by the WordPress team for sites and packages.
 - [@yardinternet/ts-config](packages/ts-config/README.md)
 - [@yardinternet/ts-config-wordpress](packages/ts-config-wordpress/README.md)
 - [@yardinternet/vite-config](packages/vite-config/README.md)
+- [@yardinternet/wp-scripts-config](packages/wp-scripts-config/README.md)
 
 ## 👷‍♀️ Package Development
 
@@ -43,14 +44,6 @@ pnpm dep:update    # Update all dependencies
 ```bash
 pnpm test
 ```
-
-Added to catch two types of problems:
-- **Dependency updates** silently changing rules
-- **Our own config edits** disabling or weakening rules
-
-Each package has two test files:
-- `config.snapshot.test.js` — snapshots the full config and fails on a change
-- `rules.test.js` / `format.test.js` — behavioral tests that lint/format real code snippets
 
 Tests run on pre-push and in GitHub Actions on every pull request.
 

@@ -1,0 +1,28 @@
+{
+	"name": "@yardinternet/wp-scripts-config",
+	"version": "1.0.0",
+	"description": "The @wordpress/scripts webpack config, with Sass charset output disabled",
+	"main": "src/index.js",
+	"type": "commonjs",
+	"scripts": {
+		"test": "vitest run"
+	},
+	"publishConfig": {
+		"registry": "https://npm.pkg.github.com/"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/yardinternet/toolkit.git",
+		"directory": "packages/wp-scripts-config"
+	},
+	"author": "",
+	"license": "ISC",
+	"peerDependencies": {
+		"@wordpress/scripts": ">=15"
+	},
+	"devDependencies": {
+		"@wordpress/scripts": "^34.0.0",
+		"sass": "^1.102.0",
+		"vitest": "^3.2.6"
+	}
+}
