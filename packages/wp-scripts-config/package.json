@@ -1,6 +1,6 @@
 {
 	"name": "@yardinternet/wp-scripts-config",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "The @wordpress/scripts webpack config, with Sass charset output disabled",
 	"main": "src/index.js",
 	"type": "commonjs",
