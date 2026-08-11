@@ -2,7 +2,7 @@
  * Vite configuration for Brave block theme development.
  *
  * - A Node script runs this config concurrently per theme.
- * - Processes `web/app/themes/<theme>/resources/blocks` directory.
+ * - Processes each theme's `resources/blocks` directory.
  * - Uses the theme's public directory for output, in watch and build modes.
  */
 
@@ -30,17 +30,20 @@ export const braveBlocksConfig = ( { blockPath } ) => {
 	/**
 	 * Block output directory:
 	 * - theme-root: the theme's own `public` directory.
-	 * - brave-root: the owning theme's public directory, derived from the
-	 *   `web/app/themes/<theme>/...` block path.
+	 * - brave-root: the public directory of the theme owning the block path.
 	 */
+	const owningTheme = context.themeForPath( blockPath );
+
+	if ( ! owningTheme ) {
+		throw new Error(
+			`Unable to determine the theme owning block path "${ blockPath }".`
+		);
+	}
+
 	const outDir =
 		context.mode === 'theme-root'
 			? 'public'
-			: path.join(
-					'web/app/themes',
-					blockPath.split( path.sep ).at( 3 ),
-					'public'
-			  );
+			: path.join( owningTheme.relDir, 'public' );
 	const allThemes = getAllThemeNames();
 
 	return defineConfig( {

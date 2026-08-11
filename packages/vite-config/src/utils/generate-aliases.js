@@ -30,12 +30,13 @@ export const generateAliases = ( themeNames ) => {
 	} );
 
 	/**
-	 * In a theme-root build the shared `@sage` alias (used by starter source for
-	 * imports like `@sage/styles/base/config.css`) has no sage theme to point
-	 * at, so map it to the local resources for backwards compatibility.
+	 * Starter source imports the parent theme's resources as `@sage/...` (e.g. `@sage/styles/base/config.css`). Projects that do not name their parent theme `sage` have nothing for that alias to point at, so it falls back to the default theme's resources.
 	 */
-	if ( context.mode === 'theme-root' && ! aliases[ '@sage' ] ) {
-		aliases[ '@sage' ] = path.join( context.themeDir(), 'resources' );
+	if ( ! aliases[ '@sage' ] ) {
+		aliases[ '@sage' ] = path.join(
+			context.themeDir( context.defaultTheme ),
+			'resources'
+		);
 	}
 
 	return aliases;

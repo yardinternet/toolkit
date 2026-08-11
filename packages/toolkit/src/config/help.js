@@ -13,6 +13,8 @@ Actions
     ${ actions.lint.name }          Runs linter for specified filetype
     ${ actions.watch.name }         Runs Vite watcher
     ${ actions.build.name }         Runs Vite build
+    ${ actions.info.name }          Prints the resolved project layout
+    ${ actions.clean.name }         Removes leftover Vite hot files
 
 Filetypes
     ${ filetypes.js.name }            JavaScript files (*${

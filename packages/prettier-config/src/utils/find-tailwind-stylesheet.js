@@ -1,39 +1,132 @@
 const fs = require( 'fs' );
 const path = require( 'path' );
+const { tryResolveThemeContext } = require( '@yardinternet/shared-utils' );
 
-function findTailwindStylesheet() {
-	// Candidate locations of the Tailwind config stylesheet, tried in order:
-	// - brave-root: the sage theme inside `web/app/themes`.
-	// - theme-root: the theme's own resources (cwd is the theme).
-	const relatives = [
-		'web/app/themes/sage/resources/styles/base/config.css',
-		'resources/styles/base/config.css',
-	];
+const STYLESHEET_RELATIVE = path.join(
+	'resources',
+	'styles',
+	'base',
+	'config.css'
+);
 
+/**
+ * Candidate project roots, most reliable first.
+ *
+ * The node_modules boundary comes first because it is the only anchor that
+ * survives the VSCode Prettier extension: the extension host's `process.cwd()`
+ * is `/` when the editor was launched from the Dock, and `VSCODE_CWD` is the
+ * cwd of whatever launched the editor — which points at the wrong project as
+ * soon as two projects are open. Installed as a dependency this package always
+ * lives under the project's own `node_modules`.
+ */
+const projectRoots = () => {
 	const roots = [];
+	const nmIndex = __dirname.indexOf(
+		`${ path.sep }node_modules${ path.sep }`
+	);
 
-	// 1. PWD / VSCODE_CWD env vars — set to the project root by the shell and
-	//    VSCode, and unlike process.cwd() they survive being reset to '/'.
-	if ( process.env.VSCODE_CWD ) roots.push( process.env.VSCODE_CWD );
-	if ( process.env.PWD ) roots.push( process.env.PWD );
-
-	// 2. Installed normally (no symlink): strip at the first node_modules boundary.
-	const nmIndex = __dirname.indexOf( 'node_modules' );
 	if ( nmIndex > 0 ) {
-		roots.push( __dirname.substring( 0, nmIndex - 1 ) );
+		roots.push( __dirname.substring( 0, nmIndex ) );
 	}
 
-	// 3. process.cwd() — correct for standard CLI runs.
+	if ( process.env.VSCODE_CWD ) {
+		roots.push( process.env.VSCODE_CWD );
+	}
+
+	if ( process.env.PWD ) {
+		roots.push( process.env.PWD );
+	}
+
 	roots.push( process.cwd() );
 
-	for ( const root of roots ) {
-		for ( const relative of relatives ) {
-			const candidate = path.resolve( root, relative );
-			if ( fs.existsSync( candidate ) ) return candidate;
+	return [ ...new Set( roots ) ];
+};
+
+const existingFile = ( candidate ) => {
+	try {
+		return fs.statSync( candidate ).isFile() ? candidate : null;
+	} catch {
+		return null;
+	}
+};
+
+/**
+ * Resolves the project context once, from the first root that yields one.
+ */
+const resolveContext = () => {
+	for ( const root of projectRoots() ) {
+		const context = tryResolveThemeContext( { cwd: root } );
+
+		if ( context ) {
+			return context;
 		}
 	}
 
 	return null;
-}
+};
 
-module.exports = findTailwindStylesheet;
+const themeStylesheet = ( theme ) =>
+	existingFile( path.join( theme.dir, STYLESHEET_RELATIVE ) );
+
+/**
+ * The Tailwind config stylesheet used for files outside any theme directory.
+ *
+ * Prefers the default theme, then any other theme that has one.
+ */
+const findTailwindStylesheet = () => {
+	const context = resolveContext();
+
+	if ( context ) {
+		const ordered = [
+			...context.themes.filter(
+				( theme ) => theme.name === context.defaultTheme
+			),
+			...context.themes.filter(
+				( theme ) => theme.name !== context.defaultTheme
+			),
+		];
+
+		for ( const theme of ordered ) {
+			const stylesheet = themeStylesheet( theme );
+
+			if ( stylesheet ) {
+				return stylesheet;
+			}
+		}
+	}
+
+	// No resolvable project layout — fall back to the historical locations.
+	for ( const root of projectRoots() ) {
+		const legacy =
+			existingFile(
+				path.join( root, 'web/app/themes/sage', STYLESHEET_RELATIVE )
+			) || existingFile( path.join( root, STYLESHEET_RELATIVE ) );
+
+		if ( legacy ) {
+			return legacy;
+		}
+	}
+
+	return null;
+};
+
+/**
+ * Per-theme stylesheets, used to build Prettier `overrides` so a file is sorted
+ * against its own theme's Tailwind config rather than a single project-wide one.
+ */
+const findThemeStylesheets = () => {
+	const context = resolveContext();
+
+	if ( ! context || context.themes.length < 2 ) {
+		return [];
+	}
+
+	return context.themes
+		.map( ( theme ) => ( {
+			dir: theme.dir,
+			stylesheet: themeStylesheet( theme ),
+		} ) )
+		.filter( ( theme ) => theme.stylesheet );
+};
+
+module.exports = { findTailwindStylesheet, findThemeStylesheets };

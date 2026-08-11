@@ -4,8 +4,15 @@
 	"description": "Shared utilities used by @yardinternet/toolkit and @yardinternet/vite-config",
 	"main": "src/index.js",
 	"type": "module",
+	"exports": {
+		".": {
+			"require": "./src/resolve-theme-context.cjs",
+			"import": "./src/index.js"
+		},
+		"./package.json": "./package.json"
+	},
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"test": "vitest run"
 	},
 	"publishConfig": {
 		"registry": "https://npm.pkg.github.com/"

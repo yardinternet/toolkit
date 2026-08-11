@@ -1,0 +1,7 @@
+{
+ "name": "agency",
+ "yardToolkit": {
+  "themesDir": "src/themes",
+  "defaultTheme": "zulu"
+ }
+}

@@ -85,10 +85,18 @@ export default defineConfig(
 
 `braveConfig` and `braveBlocksConfig` auto-detect where they run:
 
-- **brave-root** — cwd has `web/app/themes/`. Builds every theme; asset base `/app/themes/<theme>/public/build/`.
-- **theme-root** — cwd is a single theme (has `style.css`, no `web/app/themes/`). Builds that one theme; output to its own `public/`, asset base `/wp-content/themes/<theme>/public/build/`.
+- **brave-root** — cwd is the project root and holds a themes directory. Builds every theme; output to each theme's own `public/`.
+- **theme-root** — cwd is a single theme (has `style.css`, no themes directory). Builds that one theme; asset base `/wp-content/themes/<theme>/public/build/`.
 
 Same config file either way.
+
+The themes directory and the asset base URL are both detected — Bedrock yields `/app/themes/<theme>/public/build/`, classic WordPress `/wp-content/themes/<theme>/public/build/`. See [project layout detection](../shared-utils/README.md#project-layout-detection).
+
+### Hot file and multiple parent themes
+
+Dev runs a single Vite server, hosted by the default theme. Its hot file is copied into every theme's `public/` directory on start and removed on shutdown, so each theme — including a standalone parent theme that is not a child of the default one — resolves the dev server through its own `get_parent_theme_file_path('public/hot')`.
+
+A hard kill (`SIGKILL`) leaves the copies behind, which points the site at a dev server that is no longer running. `yard-toolkit clean` removes them.
 
 ## Package Vite configs
 

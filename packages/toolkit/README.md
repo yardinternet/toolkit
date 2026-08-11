@@ -46,10 +46,20 @@ Options
 
 `brave` mode auto-detects where the command runs:
 
-- **brave-root** — cwd has `web/app/themes/`. Operates on all themes (lint/format globs, build/watch).
-- **theme-root** — cwd is a single theme (has `style.css`, no `web/app/themes/`). Operates on that one theme.
+- **brave-root** — cwd is the project root and holds a themes directory. Operates on all themes (lint/format globs, build/watch).
+- **theme-root** — cwd is a single theme (has `style.css`, no themes directory). Operates on that one theme.
 
 Same commands either way.
+
+The themes directory itself is detected too, so Bedrock (`web/app/themes`), classic WordPress (`wp-content/themes`) and custom layouts all work. See [project layout detection](../shared-utils/README.md#project-layout-detection) for the resolution order and the config keys.
+
+```bash
+# Shows the resolved layout: themes directory, docroot, asset base URL, themes with their parent/child relation, and which layer resolved it.
+yard-toolkit info
+
+# Removes leftover Vite hot files after a dev server was killed hard.
+yard-toolkit clean
+```
 
 ### Format
 
