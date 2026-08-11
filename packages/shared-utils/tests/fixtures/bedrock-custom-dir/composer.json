@@ -1,0 +1,9 @@
+{
+ "extra": {
+  "installer-paths": {
+   "site/wp-content/themes/{$name}/": [
+    "type:wordpress-theme"
+   ]
+  }
+ }
+}

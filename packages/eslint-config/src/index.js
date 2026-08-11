@@ -33,7 +33,7 @@ const sharedRules = {
 module.exports = [
 	...wordpress.configs.recommended,
 	{
-		files: [ '**/*.js', '**/*.jsx' ],
+		files: [ '**/*.js', '**/*.jsx', '**/*.cjs', '**/*.mjs' ],
 		languageOptions: {
 			globals: sharedGlobals,
 		},

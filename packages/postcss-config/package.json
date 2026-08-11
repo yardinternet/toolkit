@@ -1,29 +1,30 @@
 {
-  "name": "@yardinternet/postcss-config",
-  "version": "2.1.6",
-  "description": "PostCSS settings",
-  "main": "src/index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/yardinternet/toolkit.git",
-    "directory": "packages/postcss-config"
-  },
-  "type": "commonjs",
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "autoprefixer": "^10.5.0",
-    "cssnano": "^7.1.9",
-    "path": "^0.12.7",
-    "postcss": "^8.5.15",
-    "postcss-import": "^16.1.1",
-    "postcss-mixins": "^12.1.2",
-    "postcss-nested": "^7.0.2"
-  }
+	"name": "@yardinternet/postcss-config",
+	"version": "2.1.6",
+	"description": "PostCSS settings",
+	"main": "src/index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"publishConfig": {
+		"registry": "https://npm.pkg.github.com/"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/yardinternet/toolkit.git",
+		"directory": "packages/postcss-config"
+	},
+	"type": "commonjs",
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"@yardinternet/shared-utils": "workspace:*",
+		"autoprefixer": "^10.5.0",
+		"cssnano": "^7.1.9",
+		"path": "^0.12.7",
+		"postcss": "^8.5.15",
+		"postcss-import": "^16.1.1",
+		"postcss-mixins": "^12.1.2",
+		"postcss-nested": "^7.0.2"
+	}
 }
