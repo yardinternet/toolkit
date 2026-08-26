@@ -16,10 +16,8 @@ export const laravelPackageConfig = ( {
 		const entry = requireEntry( entryPoints );
 
 		return createBasePackageConfig( {
-			outDir: 'public',
 			minify: true,
 			publicDir: false,
-			dts: false,
 			...options,
 			/*
 			 * Below the spread on purpose: a package must not be able to opt out
@@ -29,6 +27,13 @@ export const laravelPackageConfig = ( {
 			formats: [ 'iife' ],
 			fileName: ( _format, name ) => `${ name }.js`,
 			entryPoints: { [ entry ]: entryPoints[ entry ] },
+			/*
+			 * Locked for the same reason: build-package.js and every consuming
+			 * Assets.php hardcode public/, and nothing loads these bundles as a
+			 * typed library.
+			 */
+			outDir: 'public',
+			dts: false,
 			plugins: [
 				entryMapPlugin( { entry } ),
 				...( options.plugins ?? [] ),
@@ -38,6 +43,16 @@ export const laravelPackageConfig = ( {
 				// The orchestrator clears public/ once up front; a per-build wipe
 				// would delete the sibling entries' output.
 				emptyOutDir: false,
+				rollupOptions: {
+					...options.build?.rollupOptions,
+					// An array-form output makes Vite ignore lib.formats
+					// entirely, warning instead of failing.
+					output: Array.isArray(
+						options.build?.rollupOptions?.output
+					)
+						? {}
+						: options.build?.rollupOptions?.output,
+				},
 				lib: {
 					name: toLibName( entry ),
 					cssFileName: entry,

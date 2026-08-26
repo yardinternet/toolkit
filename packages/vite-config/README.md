@@ -220,10 +220,18 @@ import '@yardinternet/gallery/styles'; // imports frontend.css
 ### All options
 
 `npmPackageConfig` passes options through to the shared base package config.
-`laravelPackageConfig` does too, except for the options that lock its
-single-entry IIFE contract — `formats`, `fileName`, `entryPoints`, and
-`build.lib` — which it always sets itself so the output stays a plain classic
-script with no `import`/`export` statements.
+`laravelPackageConfig` does too, except for the options it always sets itself
+and a package cannot override:
+
+- `formats`, `fileName`, `entryPoints`, `build.lib` and
+  `build.rollupOptions.output` lock the single-entry IIFE contract, so the
+  output stays a plain classic script with no `import`/`export` statements. An
+  array-form `build.rollupOptions.output` is discarded, because Vite ignores
+  `build.lib.formats` entirely as soon as `output` is an array.
+- `outDir` (`public`) and `emptyOutDir` (`false`) are what the toolkit
+  orchestrator and the consuming PHP both expect; the orchestrator clears
+  `public/` once up front so a per-build wipe would delete sibling entries.
+- `dts` is off — nothing loads these bundles as a typed library.
 
 ```js
 createBasePackageConfig( {

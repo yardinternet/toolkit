@@ -11,3 +11,4 @@ build
 .idea
 
 packages/vite-config/tests/fixtures/package/public/
+packages/vite-config/tests/fixtures/build-package-*/

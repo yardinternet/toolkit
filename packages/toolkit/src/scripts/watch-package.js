@@ -31,7 +31,6 @@ export const watchPackage = async ( configFile = 'vite.config.js' ) => {
 			[ 'build', '--watch', '--config', configFile ],
 			{
 				stdio: 'inherit',
-				shell: true,
 				env: { ...process.env, ENTRY: entry, FORCE_COLOR: true },
 			}
 		);

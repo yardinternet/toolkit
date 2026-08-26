@@ -49,7 +49,12 @@ export const createAssetFileNames =
 		return `assets/[name]${ hashPart }[extname]`;
 	};
 
-export const toLibName = ( entry ) => entry.replace( /[^a-zA-Z0-9_$]/g, '_' );
+/*
+ * An entry with exports becomes `var <name> = ...`, so a leading digit is a
+ * parse error that takes the whole file down.
+ */
+export const toLibName = ( entry ) =>
+	entry.replace( /[^a-zA-Z0-9_$]/g, '_' ).replace( /^\d/, '_$&' );
 
 export const requireEntry = ( entryPoints ) => {
 	const entry = process.env.ENTRY;

@@ -69,6 +69,26 @@ describe( 'writeEntryMap', () => {
 		expect( readMap().entries.kept.js ).toBe( 'kept.js' );
 	} );
 
+	it( 'leaves a fragment it cannot parse for the next tick', () => {
+		writeFragment( 'banner', { js: 'banner.js', css: [], deps: [] } );
+		fs.writeFileSync(
+			path.join( dir, '.assets', 'editor.json' ),
+			'{ "js"'
+		);
+
+		writeEntryMap( dir );
+
+		expect( readMap().entries ).toEqual( {
+			banner: { js: 'banner.js', css: [], deps: [] },
+		} );
+		expect(
+			fs.existsSync( path.join( dir, '.assets', 'editor.json' ) )
+		).toBe( true );
+		expect(
+			fs.existsSync( path.join( dir, '.assets', 'banner.json' ) )
+		).toBe( false );
+	} );
+
 	it( 'overlays fragments on existing entries (watch case)', () => {
 		fs.writeFileSync(
 			path.join( dir, 'assets.json' ),

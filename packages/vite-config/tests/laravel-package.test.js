@@ -108,6 +108,22 @@ describe( 'laravelPackageConfig', () => {
 		expect( build.lib.formats ).toEqual( [ 'iife' ] );
 	} );
 
+	it( 'ignores an array-form rollup output, which would void lib.formats', async () => {
+		process.env.ENTRY = 'banner';
+
+		const { build } = await laravelPackageConfig( {
+			entryPoints: ENTRY_POINTS,
+			build: { rollupOptions: { output: [ { format: 'es' } ] } },
+		} )();
+
+		/*
+		 * Vite drops lib.formats as soon as output is an array — with a warning,
+		 * not an error — so iife only holds while output stays an object.
+		 */
+		expect( Array.isArray( build.rollupOptions.output ) ).toBe( false );
+		expect( build.lib.formats ).toEqual( [ 'iife' ] );
+	} );
+
 	it( 'ignores a package attempting to re-enable emptyOutDir', async () => {
 		process.env.ENTRY = 'banner';
 

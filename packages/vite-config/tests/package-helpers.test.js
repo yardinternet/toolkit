@@ -39,4 +39,8 @@ describe( 'toLibName', () => {
 	it( 'leaves a valid identifier untouched', () => {
 		expect( toLibName( 'banner' ) ).toBe( 'banner' );
 	} );
+
+	it( 'prefixes a name that would start with a digit', () => {
+		expect( toLibName( '2d-map' ) ).toBe( '_2d_map' );
+	} );
 } );

@@ -30,22 +30,36 @@ export const writeEntryMap = ( outDir = 'public' ) => {
 		}
 	}
 
-	const fragments = Object.fromEntries(
-		fs
-			.readdirSync( fragmentDir )
-			.filter( ( file ) => file.endsWith( '.json' ) )
-			.map( ( file ) => [
-				path.basename( file, '.json' ),
-				JSON.parse(
-					fs.readFileSync( path.join( fragmentDir, file ), 'utf8' )
-				),
-			] )
-	);
+	const files = fs
+		.readdirSync( fragmentDir )
+		.filter( ( file ) => file.endsWith( '.json' ) );
+
+	for ( const file of files ) {
+		const fragmentPath = path.join( fragmentDir, file );
+
+		/*
+		 * The watch timer can read a fragment Vite is mid-write. Throwing here
+		 * would kill the watcher and orphan its vite children, so an unparseable
+		 * fragment is left on disk for the next tick instead.
+		 */
+		try {
+			entries[ path.basename( file, '.json' ) ] = JSON.parse(
+				fs.readFileSync( fragmentPath, 'utf8' )
+			);
+			fs.unlinkSync( fragmentPath );
+		} catch {
+			// Skipped this tick.
+		}
+	}
 
 	fs.writeFileSync(
 		path.join( outDir, 'assets.json' ),
-		JSON.stringify( { entries: { ...entries, ...fragments } }, null, 2 ) +
-			'\n'
+		JSON.stringify( { entries }, null, 2 ) + '\n'
 	);
-	fs.rmSync( fragmentDir, { recursive: true, force: true } );
+
+	try {
+		fs.rmdirSync( fragmentDir );
+	} catch {
+		// Still holds a fragment that could not be merged yet.
+	}
 };
