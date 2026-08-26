@@ -96,4 +96,26 @@ describe( 'laravelPackageConfig', () => {
 
 		expect( build.lib.formats ).toEqual( [ 'iife' ] );
 	} );
+
+	it( 'ignores a package attempting to widen formats through build.lib', async () => {
+		process.env.ENTRY = 'banner';
+
+		const { build } = await laravelPackageConfig( {
+			entryPoints: ENTRY_POINTS,
+			build: { lib: { formats: [ 'es' ] } },
+		} )();
+
+		expect( build.lib.formats ).toEqual( [ 'iife' ] );
+	} );
+
+	it( 'ignores a package attempting to re-enable emptyOutDir', async () => {
+		process.env.ENTRY = 'banner';
+
+		const { build } = await laravelPackageConfig( {
+			entryPoints: ENTRY_POINTS,
+			build: { emptyOutDir: true },
+		} )();
+
+		expect( build.emptyOutDir ).toBe( false );
+	} );
 } );

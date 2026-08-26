@@ -39,7 +39,6 @@ export const laravelPackageConfig = ( {
 				// would delete the sibling entries' output.
 				emptyOutDir: false,
 				lib: {
-					...options.build?.lib,
 					name: toLibName( entry ),
 					cssFileName: entry,
 				},
