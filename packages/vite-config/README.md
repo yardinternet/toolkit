@@ -96,11 +96,27 @@ Presets for npm and Laravel packages. Both wrappers use `createBasePackageConfig
 
 ### Scripts in package.json
 
+For `npmPackageConfig`:
+
 ```json
 {
   "scripts": {
     "start": "vite build --watch",
     "build": "vite build",
+    "test": "vitest"
+  }
+}
+```
+
+For `laravelPackageConfig`, the build is driven by the toolkit, which runs one
+Vite build per entry. Plain `vite build` throws — it cannot know which entry to
+build.
+
+```json
+{
+  "scripts": {
+    "start": "yard-toolkit watch package",
+    "build": "yard-toolkit build package",
     "test": "vitest"
   }
 }
@@ -117,6 +133,9 @@ export default laravelPackageConfig( {
     },
 } );
 ```
+
+A package with a JS test suite needs its own `vitest.config.mjs` — Vitest
+otherwise falls back to `vite.config.js` and hits the `ENTRY` guard.
 
 ### npmPackageConfig
 
@@ -200,7 +219,11 @@ import '@yardinternet/gallery/styles'; // imports frontend.css
 
 ### All options
 
-Both `npmPackageConfig` and `laravelPackageConfig` pass options through to the shared base package config.
+`npmPackageConfig` passes options through to the shared base package config.
+`laravelPackageConfig` does too, except for the options that lock its
+single-entry IIFE contract — `formats`, `fileName`, `entryPoints`, and
+`build.lib` — which it always sets itself so the output stays a plain classic
+script with no `import`/`export` statements.
 
 ```js
 createBasePackageConfig( {

@@ -11,8 +11,8 @@ Usage
 Actions
     ${ actions.format.name }        Runs formatter for specified filetype
     ${ actions.lint.name }          Runs linter for specified filetype
-    ${ actions.watch.name }         Runs Vite watcher
-    ${ actions.build.name }         Runs Vite build
+    ${ actions.watch.name }         Runs Vite watcher (themes|blocks|package)
+    ${ actions.build.name }         Runs Vite build (themes|blocks|package)
 
 Filetypes
     ${ filetypes.js.name }            JavaScript files (*${
