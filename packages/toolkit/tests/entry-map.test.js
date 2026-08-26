@@ -68,4 +68,36 @@ describe( 'writeEntryMap', () => {
 
 		expect( readMap().entries.kept.js ).toBe( 'kept.js' );
 	} );
+
+	it( 'overlays fragments on existing entries (watch case)', () => {
+		fs.writeFileSync(
+			path.join( dir, 'assets.json' ),
+			JSON.stringify( {
+				entries: {
+					banner: {
+						js: 'banner.js',
+						css: [ 'banner.css' ],
+						deps: [],
+					},
+					editor: {
+						js: 'editor.js',
+						css: [],
+						deps: [ 'wp-components' ],
+					},
+				},
+			} )
+		);
+
+		writeFragment( 'banner', {
+			js: 'banner-v2.js',
+			css: [ 'banner-v2.css' ],
+			deps: [],
+		} );
+
+		writeEntryMap( dir );
+
+		const map = readMap();
+		expect( map.entries.banner.js ).toBe( 'banner-v2.js' );
+		expect( map.entries.editor.js ).toBe( 'editor.js' );
+	} );
 } );
