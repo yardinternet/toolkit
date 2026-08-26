@@ -48,3 +48,18 @@ export const createAssetFileNames =
 
 		return `assets/[name]${ hashPart }[extname]`;
 	};
+
+export const toLibName = ( entry ) => entry.replace( /[^a-zA-Z0-9_$]/g, '_' );
+
+export const requireEntry = ( entryPoints ) => {
+	const entry = process.env.ENTRY;
+
+	if ( ! entry || ! entryPoints[ entry ] ) {
+		throw new Error(
+			'[vite-config] laravelPackageConfig builds one entry per invocation. ' +
+				'Run `yard-toolkit build package` (or `watch package`) instead of `vite build`.'
+		);
+	}
+
+	return entry;
+};
