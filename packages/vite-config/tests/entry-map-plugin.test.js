@@ -18,8 +18,12 @@ const entryChunk = ( overrides = {} ) => ( {
 	isEntry: true,
 	fileName: 'editor.js',
 	code: 'var a = 1;',
-	viteMetadata: { importedCss: new Set( [ 'editor.css' ] ) },
 	...overrides,
+} );
+
+const cssAsset = ( fileName = 'editor.css' ) => ( {
+	type: 'asset',
+	fileName,
 } );
 
 describe( 'entryMapPlugin', () => {
@@ -35,7 +39,10 @@ describe( 'entryMapPlugin', () => {
 	} );
 
 	it( 'records the entry filename and its stylesheets', () => {
-		const { emitted } = run( { 'editor.js': entryChunk() } );
+		const { emitted } = run( {
+			'editor.js': entryChunk(),
+			'editor.css': cssAsset(),
+		} );
 
 		expect( emitted.js ).toBe( 'editor.js' );
 		expect( emitted.css ).toEqual( [ 'editor.css' ] );
