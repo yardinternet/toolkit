@@ -46,8 +46,12 @@ describe( 'laravel package build output', () => {
 		for ( const entry of Object.keys( ENTRY_POINTS ) ) {
 			const code = read( `${ entry }.js` );
 
-			expect( code ).not.toMatch( /(^|[;\s])import\s*[{('"]/ );
-			expect( code ).not.toMatch( /(^|[;\s])export\s*[{*]/ );
+			/*
+			 * The lookahead excludes `import(` — dynamic import is legal in a
+			 * classic script; only the static `import ...from` form breaks it.
+			 */
+			expect( code ).not.toMatch( /(?:^|[};\s])import\b(?!\s*\()/ );
+			expect( code ).not.toMatch( /(?:^|[};\s])export\b/ );
 		}
 	} );
 

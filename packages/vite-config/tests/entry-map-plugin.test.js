@@ -21,9 +21,10 @@ const entryChunk = ( overrides = {} ) => ( {
 	...overrides,
 } );
 
-const cssAsset = ( fileName = 'editor.css' ) => ( {
+const cssAsset = ( name = 'editor.css' ) => ( {
 	type: 'asset',
-	fileName,
+	name,
+	fileName: name,
 } );
 
 describe( 'entryMapPlugin', () => {
@@ -45,6 +46,16 @@ describe( 'entryMapPlugin', () => {
 		} );
 
 		expect( emitted.js ).toBe( 'editor.js' );
+		expect( emitted.css ).toEqual( [ 'editor.css' ] );
+	} );
+
+	it( 'records the entry stylesheet, not some other emitted css asset', () => {
+		const { emitted } = run( {
+			'other.css': cssAsset( 'other.css' ),
+			'editor.js': entryChunk(),
+			'editor.css': cssAsset(),
+		} );
+
 		expect( emitted.css ).toEqual( [ 'editor.css' ] );
 	} );
 

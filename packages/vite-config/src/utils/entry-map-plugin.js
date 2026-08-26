@@ -20,9 +20,13 @@ export const entryMapPlugin = ( { entry } ) => ( {
 			( item ) => 'chunk' === item.type && item.isEntry
 		);
 
+		/*
+		 * Match by name, not extension: a package can emit other .css assets
+		 * (e.g. a `?url` import), and lib.cssFileName guarantees the combined
+		 * stylesheet is named exactly `${entry}.css`.
+		 */
 		const cssAsset = Object.values( bundle ).find(
-			( item ) =>
-				'asset' === item.type && item.fileName?.endsWith( '.css' )
+			( item ) => 'asset' === item.type && `${ entry }.css` === item.name
 		);
 
 		/*
