@@ -35,6 +35,7 @@ export const createBasePackageConfig = ( {
 	wordpressGlobals = true,
 	classicJsx = false,
 	minify = false,
+	dts: dtsOption,
 	...restConfig
 } = {} ) => {
 	const cwd = process.cwd();
@@ -56,6 +57,7 @@ export const createBasePackageConfig = ( {
 	const hasTsEntries = Object.values( absoluteEntries ).some( ( entry ) =>
 		/\.tsx?$/.test( entry )
 	);
+	const shouldEmitDts = dtsOption ?? hasTsEntries;
 	const isWatchMode =
 		process.env.WATCH === 'true' || process.argv.includes( '--watch' );
 	const shouldMinify = minify && ! isWatchMode;
@@ -92,8 +94,8 @@ export const createBasePackageConfig = ( {
 			]
 				.filter( Boolean )
 				.concat( [
-					hasTsEntries && dts(),
-					hasTsEntries &&
+					shouldEmitDts && dts(),
+					shouldEmitDts &&
 						isWatchMode &&
 						checker( { typescript: true } ),
 					...plugins,

@@ -9,3 +9,5 @@ build
 .cache
 .npmrc
 .idea
+
+packages/vite-config/tests/fixtures/package/public/
