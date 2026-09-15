@@ -6,6 +6,12 @@ module.exports = {
 	rules: {
 		'media-query-no-invalid': null,
 		'at-rule-no-unknown': null,
+		'at-rule-prelude-no-invalid': [
+			true,
+			{
+				ignoreAtRules: [ 'media', 'apply' ],
+			},
+		],
 		'function-no-unknown': null,
 		'no-descending-specificity': null,
 		'no-invalid-position-at-import-rule': null,
