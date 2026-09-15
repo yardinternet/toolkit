@@ -2,6 +2,7 @@
  * External dependencies
  */
 import fs from 'fs';
+import os from 'os';
 import util from 'util';
 import { exec, spawn } from 'child_process';
 import { globby } from 'globby';
@@ -110,6 +111,38 @@ export const ensureFileExists = ( filePath, errorMsg = null ) => {
 	if ( ! fs.existsSync( filePath ) ) {
 		log.error( errorMsg || `${ filePath } not found.`, true, 1 );
 	}
+};
+
+/**
+ * Each vite build is a separate node process; running one per block at once
+ * OOMs small CI containers (the kernel SIGKILLs them, leaving an empty stderr).
+ */
+export const mapWithConcurrency = async ( items, task ) => {
+	const limit = Math.max(
+		1,
+		Math.min(
+			Number( process.env.YARD_BUILD_CONCURRENCY ) ||
+				Math.min( os.availableParallelism?.() ?? 2, 4 ),
+			items.length
+		)
+	);
+
+	const results = new Array( items.length );
+	let next = 0;
+
+	const worker = async () => {
+		while ( next < items.length ) {
+			const index = next++;
+			results[ index ] = await task( items[ index ] ).then(
+				( value ) => ( { status: 'fulfilled', value } ),
+				( reason ) => ( { status: 'rejected', reason } )
+			);
+		}
+	};
+
+	await Promise.all( Array.from( { length: limit }, worker ) );
+
+	return results;
 };
 
 export const handleParallelResults = ( results, itemType = 'item' ) => {

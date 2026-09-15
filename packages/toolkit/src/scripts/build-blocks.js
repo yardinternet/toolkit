@@ -12,6 +12,7 @@ import {
 	ensureFileExists,
 	execWithEnv,
 	handleParallelResults,
+	mapWithConcurrency,
 } from '../utils/helpers.js';
 import log from '../utils/logger.js';
 
@@ -27,32 +28,28 @@ export const buildBlocks = async ( configFile = 'vite-blocks.config.js' ) => {
 		log.error( 'No blocks found to build.', true, 0 );
 	}
 
-	Promise.allSettled(
-		blocks.map( async ( blockPath ) => {
-			const blockName = path.basename( blockPath );
-			const themeName = getBlockThemeName( blockPath );
+	const results = await mapWithConcurrency( blocks, async ( blockPath ) => {
+		const blockName = path.basename( blockPath );
+		const themeName = getBlockThemeName( blockPath );
 
-			log.info( `Building block: ${ blockName } (${ themeName })` );
+		log.info( `Building block: ${ blockName } (${ themeName })` );
 
-			try {
-				const { stdout } = await execWithEnv(
-					`vite build --emptyOutDir --config ${ configFile }`,
-					{
-						BLOCK_PATH: blockPath,
-						FORCE_COLOR: true,
-					}
-				);
-				log.info( stdout );
-				log.info( `Block ${ blockName } built successfully.` );
-			} catch ( err ) {
-				const stderr = err.stderr || err.message || 'Unknown error';
-				log.error(
-					`Error building block ${ blockName }:\n${ stderr }`
-				);
-				throw err;
-			}
-		} )
-	).then( ( results ) => {
-		handleParallelResults( results, 'block' );
+		try {
+			const { stdout } = await execWithEnv(
+				`vite build --emptyOutDir --config ${ configFile }`,
+				{
+					BLOCK_PATH: blockPath,
+					FORCE_COLOR: true,
+				}
+			);
+			log.info( stdout );
+			log.info( `Block ${ blockName } built successfully.` );
+		} catch ( err ) {
+			const stderr = err.stderr || err.message || 'Unknown error';
+			log.error( `Error building block ${ blockName }:\n${ stderr }` );
+			throw err;
+		}
 	} );
+
+	handleParallelResults( results, 'block' );
 };
