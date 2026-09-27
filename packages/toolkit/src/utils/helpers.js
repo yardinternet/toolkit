@@ -29,6 +29,7 @@ export const runCommand = ( tool, files, globs, args = [] ) => {
 	);
 
 	child.on( 'exit', ( code ) => {
+		process.exitCode = code ?? 1;
 		if ( code === 0 ) {
 			log.success( `Completed ${ tool } successfully.` );
 		} else {
