@@ -1,6 +1,6 @@
 {
 	"name": "@yardinternet/toolkit",
-	"version": "3.0.8",
+	"version": "3.0.9",
 	"description": "Yard toolkit CLI scripts",
 	"bin": {
 		"yard-toolkit": "./src/index.js"
