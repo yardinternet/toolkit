@@ -162,7 +162,7 @@ export const braveConfig = ( {
 						? [ 'resources/views/**/*.blade.php' ]
 						: [
 								'web/app/themes/**/resources/views/**/*.blade.php',
-						  ],
+							],
 			} ),
 			/**
 			 * Externalizes React, ReactDOM and ReactJSXRuntime so they reference the global versions provided by WordPress' wp-element (window.React, window.ReactDOM).

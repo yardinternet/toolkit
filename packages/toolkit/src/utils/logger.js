@@ -1,14 +1,17 @@
-import chalk from 'chalk';
 import { exit } from 'node:process';
+import { styleText } from 'node:util';
 
 const baseLog = (
 	type = 'info',
 	msg = '',
 	{ bold = false, color = 'white' } = {}
 ) => {
-	const typeColor = chalk[ color ] || chalk.white;
-	const styledType = bold ? typeColor.bold( type ) : typeColor( type );
-	const prefix = chalk.gray( '[Yard toolkit]' );
+	// Nested calls, not a format array: Node 20 ignores isTTY for arrays.
+	const styledType = styleText(
+		color,
+		bold ? styleText( 'bold', type ) : type
+	);
+	const prefix = styleText( 'gray', '[Yard toolkit]' );
 	// eslint-disable-next-line no-console
 	console.log( `${ prefix } [${ styledType }] ${ msg }` );
 };

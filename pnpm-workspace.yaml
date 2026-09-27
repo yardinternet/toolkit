@@ -14,3 +14,6 @@ publicHoistPattern:
 minimumReleaseAge: 10080
 minimumReleaseAgeExclude:
   - '@yardinternet/*'
+
+overrides:
+  stylelint-order: ^8.1.1

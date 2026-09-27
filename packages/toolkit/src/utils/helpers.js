@@ -44,7 +44,9 @@ export const resolveFiles = async ( globs ) => {
 };
 
 export const addQuotesToStrings = ( item ) => {
-	if ( item?.startsWith( "'" ) || item?.startsWith( '"' ) ) return item;
+	if ( item?.startsWith( "'" ) || item?.startsWith( '"' ) ) {
+		return item;
+	}
 	return "'" + item + "'";
 };
 
@@ -54,12 +56,15 @@ const fromString = (
 	errorWhenNotFound,
 	errorSearchName
 ) => {
-	if ( ! nameString ) log.error( `${ errorSearchName } was not set!` );
+	if ( ! nameString ) {
+		log.error( `${ errorSearchName } was not set!` );
+	}
 
 	const result = filterObjectByName( nameString, configObject );
 
-	if ( errorWhenNotFound && result === null )
+	if ( errorWhenNotFound && result === null ) {
 		log.error( `${ errorSearchName } ${ nameString } was not found!` );
+	}
 
 	return result;
 };
@@ -100,10 +105,14 @@ export const getPathByFormatModeAndFiletype = (
 
 	const paths = pathObj?.path ?? null;
 
-	if ( ! paths ) return [ defaultPath ];
+	if ( ! paths ) {
+		return [ defaultPath ];
+	}
 
 	// check if single value
-	if ( ! Array.isArray( paths ) ) return [ paths ];
+	if ( ! Array.isArray( paths ) ) {
+		return [ paths ];
+	}
 
 	return paths;
 };
@@ -166,7 +175,9 @@ export const execWithEnv = async ( command, env = {}, options = {} ) => {
 export const setupGracefulShutdown = ( children ) => {
 	process.on( 'SIGINT', () => {
 		children.forEach( ( child ) => {
-			if ( child && ! child.killed ) child.kill( 'SIGINT' );
+			if ( child && ! child.killed ) {
+				child.kill( 'SIGINT' );
+			}
 		} );
 		process.exit( 0 );
 	} );

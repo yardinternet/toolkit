@@ -18,11 +18,11 @@
 	"author": "",
 	"license": "ISC",
 	"peerDependencies": {
-		"@wordpress/scripts": ">=15"
+		"@wordpress/scripts": "^35.0.0"
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^34.0.0",
-		"sass": "^1.102.0",
-		"vitest": "^3.2.6"
+		"@wordpress/scripts": "^35.0.0",
+		"sass": "^1.104.1",
+		"vitest": "^5.0.1"
 	}
 }

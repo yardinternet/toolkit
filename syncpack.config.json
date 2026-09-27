@@ -1,11 +1,12 @@
 {
 	"$schema": "https://json.schemastore.org/syncpack.json",
-	"dependencyTypes": [
-		"dependencies",
-		"devDependencies",
-		"peerDependencies",
-		"optionalDependencies"
-	],
-	"semverRange": "",
-	"packages": [ "packages/*/package.json" ]
+	"source": [ "package.json", "packages/*/package.json" ],
+	"versionGroups": [
+		{
+			"label": "Peer ranges are intentionally wider than dev/prod ranges",
+			"dependencyTypes": [ "peer" ],
+			"dependencies": [ "**" ],
+			"isIgnored": true
+		}
+	]
 }

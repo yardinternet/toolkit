@@ -1,4 +1,4 @@
-import chalk from 'chalk';
+import { styleText } from 'node:util';
 import fs from 'fs';
 import path from 'path';
 
@@ -165,8 +165,9 @@ const warnMismatch = ( { actual, expected, fieldName, packageName } ) => {
 
 	// eslint-disable-next-line no-console
 	console.log(
-		chalk.gray( '[Yard Vite config]' ),
-		chalk.red(
+		styleText( 'gray', '[Yard Vite config]' ),
+		styleText(
+			'red',
 			`Error: package.json "${ fieldName }" is incorrect for "${ packageName }" (got ${ actualDisplay }, expected "${ expected }")`
 		)
 	);

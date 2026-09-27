@@ -20,8 +20,11 @@ The `@wordpress/*` types are only relevant in WordPress/Brave projects. npm libr
 
 ## Types included
 
+Versions are pinned (`~`) to the `@wordpress/*` releases bundled with WordPress 7.1, so the types match the APIs sites actually run. Bump them together with the WordPress version.
+
 | Package | Source |
 |---|---|
+| `@wordpress/blocks` | bundled types |
 | `@wordpress/components` | bundled types |
 | `@wordpress/data` | bundled types |
 | `@wordpress/dom-ready` | bundled types |
@@ -29,9 +32,8 @@ The `@wordpress/*` types are only relevant in WordPress/Brave projects. npm libr
 | `@wordpress/element` | bundled types |
 | `@wordpress/hooks` | bundled types |
 | `@wordpress/i18n` | bundled types |
+| `@wordpress/server-side-render` | bundled types |
 | `@types/wordpress__block-editor` | DefinitelyTyped |
-| `@types/wordpress__blocks` | DefinitelyTyped |
-| `@types/wordpress__server-side-render` | DefinitelyTyped |
 
 ### Missing types
 
