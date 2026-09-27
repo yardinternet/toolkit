@@ -6,7 +6,6 @@ const baseLog = (
 	msg = '',
 	{ bold = false, color = 'white' } = {}
 ) => {
-	// Nested calls, not a format array: Node 20 ignores isTTY for arrays.
 	const styledType = styleText(
 		color,
 		bold ? styleText( 'bold', type ) : type
