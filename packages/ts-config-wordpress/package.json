@@ -16,15 +16,15 @@
 		"directory": "packages/ts-config-wordpress"
 	},
 	"dependencies": {
-		"@types/wordpress__block-editor": "^11.5.17",
-		"@types/wordpress__blocks": "^15.10.0",
-		"@types/wordpress__server-side-render": "^6.15.0",
-		"@wordpress/components": "^33.1.0",
-		"@wordpress/data": "^10.47.0",
-		"@wordpress/dom-ready": "^4.47.0",
-		"@wordpress/editor": "^14.47.0",
-		"@wordpress/element": "^6.40.0",
-		"@wordpress/hooks": "^4.40.0",
-		"@wordpress/i18n": "^6.13.0"
+		"@types/wordpress__block-editor": "^15.0.6",
+		"@wordpress/blocks": "~15.24.0",
+		"@wordpress/components": "~37.0.0",
+		"@wordpress/data": "~10.51.0",
+		"@wordpress/dom-ready": "~4.51.0",
+		"@wordpress/editor": "~14.51.0",
+		"@wordpress/element": "~8.3.0",
+		"@wordpress/hooks": "~4.51.0",
+		"@wordpress/i18n": "~6.24.0",
+		"@wordpress/server-side-render": "~6.27.0"
 	}
 }

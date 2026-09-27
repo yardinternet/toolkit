@@ -40,7 +40,7 @@ export const braveBlocksConfig = ( { blockPath } ) => {
 					'web/app/themes',
 					blockPath.split( path.sep ).at( 3 ),
 					'public'
-			  );
+				);
 	const allThemes = getAllThemeNames();
 
 	return defineConfig( {

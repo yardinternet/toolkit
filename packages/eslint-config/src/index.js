@@ -55,7 +55,7 @@ module.exports = [
 		},
 	},
 	// Register TS ourselves so it works regardless of whether the consumer has
-	// `typescript` installed. Scoped to TS files to keep the babel parser on JS.
+	// `typescript` installed. Scoped to TS files to keep the default parser on JS.
 	...tseslint.configs.recommended.map( ( config ) => ( {
 		...config,
 		files: [ '**/*.ts', '**/*.tsx' ],

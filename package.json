@@ -15,8 +15,8 @@
 	"packageManager": "pnpm@10.33.0+sha512.10568bb4a6afb58c9eb3630da90cc9516417abebd3fabbe6739f0ae795728da1491e9db5a544c76ad8eb7570f5c4bb3d6c637b2cb41bfdcdb47fa823c8649319",
 	"scripts": {
 		"test": "vitest run",
-		"lint:js": "yard-toolkit lint js -m custom ./packages/**/src/**/*.js",
-		"format:js": "yard-toolkit format js -m custom ./packages/**/*.js",
+		"lint:js": "yard-toolkit lint js -m custom './packages/*/src/**/*.js'",
+		"format:js": "yard-toolkit format js -m custom './packages/**/*.js'",
 		"dep:check": "syncpack lint",
 		"dep:fix": "syncpack fix",
 		"dep:outdated": "pnpm outdated --recursive",
@@ -25,20 +25,14 @@
 	},
 	"type": "commonjs",
 	"devDependencies": {
-		"@babel/core": "^7.29.7",
 		"@yardinternet/eslint-config": "workspace:*",
 		"@yardinternet/prettier-config": "workspace:*",
 		"@yardinternet/toolkit": "workspace:*",
 		"husky": "^9.1.7",
-		"lerna": "^9.0.7",
-		"lint-staged": "^17.0.8",
-		"prettier": "npm:wp-prettier@^3.0.3",
-		"syncpack": "^14.3.1",
-		"vitest": "^3.2.6"
-	},
-	"pnpm": {
-		"overrides": {
-			"stylelint-order": "^8.1.1"
-		}
+		"lerna": "^10.0.1",
+		"lint-staged": "^17.5.1",
+		"prettier": "npm:wp-prettier@^3.9.6",
+		"syncpack": "^15.3.3",
+		"vitest": "^5.0.1"
 	}
 }

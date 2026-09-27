@@ -26,7 +26,9 @@ export const getBlockPaths = async () => {
 
 				const validBlockPaths = await Promise.all(
 					blockEntries.map( async ( entry ) => {
-						if ( ! entry.isDirectory() ) return null;
+						if ( ! entry.isDirectory() ) {
+							return null;
+						}
 
 						const blockPath = path.join( blocksDir, entry.name );
 						const blockJsonPath = path.join(

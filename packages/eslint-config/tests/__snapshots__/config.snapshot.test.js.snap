@@ -2506,8 +2506,8 @@ exports[`eslint config explicit rules match snapshot 1`] = `
 exports[`eslint config files patterns match snapshot 1`] = `
 [
   [
-    "**/*.test.js",
-    "**/test/*.js",
+    "**/*.test.{js,jsx}",
+    "**/test/*.{js,jsx}",
   ],
   [
     "**/*.ts",

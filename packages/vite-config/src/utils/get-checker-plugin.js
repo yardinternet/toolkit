@@ -4,7 +4,9 @@ import checker from 'vite-plugin-checker';
  * Returns the vite-plugin-checker plugin if a valid config is provided.
  */
 export const getCheckerPlugin = ( { checkerOption } ) => {
-	if ( ! checkerOption ) return [];
+	if ( ! checkerOption ) {
+		return [];
+	}
 
 	if ( typeof checkerOption !== 'object' ) {
 		throw new Error(

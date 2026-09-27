@@ -35,10 +35,13 @@ describe( 'runCommand', () => {
 		[ 0, 0 ],
 		[ 1, 1 ],
 		[ null, 1 ],
-	] )( 'sets process.exitCode to %s when the child exits', ( code, expected ) => {
-		runCommand( 'eslint', [], [] );
-		exitHandler( code );
+	] )(
+		'sets process.exitCode to %s when the child exits',
+		( code, expected ) => {
+			runCommand( 'eslint', [], [] );
+			exitHandler( code );
 
-		expect( process.exitCode ).toBe( expected );
-	} );
+			expect( process.exitCode ).toBe( expected );
+		}
+	);
 } );
