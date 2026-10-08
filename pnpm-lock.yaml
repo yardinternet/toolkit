@@ -92,6 +92,9 @@ importers:
             '@wordpress/prettier-config':
                 specifier: ^4.55.0
                 version: 4.55.0(wp-prettier@3.9.6)
+            '@yardinternet/shared-utils':
+                specifier: workspace:*
+                version: link:../shared-utils
             prettier:
                 specifier: npm:wp-prettier@^3.9.6
                 version: wp-prettier@3.9.6

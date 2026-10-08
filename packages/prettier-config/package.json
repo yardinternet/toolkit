@@ -21,6 +21,7 @@
 		"@shufo/prettier-plugin-blade": "^1.16.2",
 		"@shufo/tailwindcss-class-sorter": "^3.0.1",
 		"@wordpress/prettier-config": "^4.55.0",
+		"@yardinternet/shared-utils": "workspace:*",
 		"prettier": "npm:wp-prettier@^3.9.6",
 		"prettier-plugin-tailwindcss": "^0.8.1"
 	},
