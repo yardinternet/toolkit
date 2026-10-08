@@ -6,7 +6,7 @@
  * Development Mode:
  * - Starts a single dev server.
  * - Automatically processes all themes.
- * - Uses `web/app/themes/sage/public` as the public directory.
+ * - Uses the default theme's `public` directory, and fans its hot file out to every other theme.
  *
  * Build Mode:
  * - A Node script runs this config concurrently per theme.
@@ -31,6 +31,7 @@ import { generateAliases } from '../utils/generate-aliases.js';
 import { generateEntryPoints } from '../utils/generate-entry-points.js';
 import { getCheckerPlugin } from '../utils/get-checker-plugin.js';
 import { getPostCssPrefixWrapPlugin } from '../utils/get-postcss-prefixwrap-plugin.js';
+import { writeThemeHotFiles } from '../plugins/write-theme-hot-files.js';
 import {
 	getAllThemeNames,
 	resolveThemeContext,
@@ -71,6 +72,15 @@ export const braveConfig = ( {
 		context.mode === 'theme-root'
 			? `/wp-content/themes/${ resolvedTheme }/public/build/`
 			: `/app/themes/${ resolvedTheme }/public/build/`;
+
+	/**
+	 * The theme hosting the dev server; the hot file laravel-vite-plugin writes
+	 * lives here and is fanned out to the other themes below.
+	 */
+	const publicDirectory = path.join(
+		context.themeRelDir( resolvedTheme ),
+		'public'
+	);
 
 	return defineConfig( {
 		base: isDev ? '' : buildBase,
@@ -150,10 +160,7 @@ export const braveConfig = ( {
 				 * - Build mode: output to the specific theme directory
 				 * - theme-root: the theme's own `public` directory
 				 */
-				publicDirectory: path.join(
-					context.themeRelDir( resolvedTheme ),
-					'public'
-				),
+				publicDirectory,
 				/**
 				 * Files to watch for changes and trigger a refresh
 				 */
@@ -163,6 +170,14 @@ export const braveConfig = ( {
 						: [
 								'web/app/themes/**/resources/views/**/*.blade.php',
 							],
+			} ),
+			/**
+			 * Gives every theme its own `public/hot`, so a standalone parent
+			 * theme no longer has to borrow the dev server theme's hot file.
+			 */
+			writeThemeHotFiles( {
+				context,
+				sourceHotFile: path.join( publicDirectory, 'hot' ),
 			} ),
 			/**
 			 * Externalizes React, ReactDOM and ReactJSXRuntime so they reference the global versions provided by WordPress' wp-element (window.React, window.ReactDOM).

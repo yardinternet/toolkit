@@ -90,6 +90,12 @@ export default defineConfig(
 
 Same config file either way.
 
+### Hot file and multiple parent themes
+
+Dev runs a single Vite server, hosted by the default theme. Its hot file is copied into every theme's `public/` directory on start and removed on shutdown, so each theme — including a standalone parent theme that is not a child of the default one — resolves the dev server through its own `get_parent_theme_file_path('public/hot')`.
+
+A hard kill (`SIGKILL`) leaves the copies behind, which points the site at a dev server that is no longer running. `yard-toolkit clean` removes them.
+
 ## Package Vite configs
 
 Presets for npm and Laravel packages. Both wrappers use `createBasePackageConfig`.

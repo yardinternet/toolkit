@@ -51,6 +51,11 @@ Options
 
 Same commands either way.
 
+```bash
+# Removes leftover Vite hot files after a dev server was killed hard.
+yard-toolkit clean
+```
+
 ### Format
 
 For default for brave sites:
