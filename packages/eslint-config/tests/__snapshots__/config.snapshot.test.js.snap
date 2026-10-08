@@ -2522,6 +2522,8 @@ exports[`eslint config files patterns match snapshot 1`] = `
   [
     "**/*.js",
     "**/*.jsx",
+    "**/*.cjs",
+    "**/*.mjs",
   ],
   [
     "**/*.ts",

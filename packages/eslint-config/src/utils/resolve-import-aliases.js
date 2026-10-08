@@ -1,32 +1,51 @@
-const fs = require( 'fs' );
 const path = require( 'path' );
+const { tryResolveThemeContext } = require( '@yardinternet/shared-utils' );
 
 /**
  * Resolves the `import/resolver` aliases for the current project layout.
  *
- * - brave-root (default): the `@sage/scripts` alias, unchanged.
- * - theme-root (cwd is a theme — no `web/app/themes`, has `style.css`): point
- *   both `@<theme>/scripts` and the `@sage/scripts` at the local
- *   `./resources/scripts` so theme imports resolve.
+ * - brave-root: `@<theme>/scripts` for every theme in the themes directory.
+ * - theme-root (cwd is a theme): `@<theme>/scripts` points at the local
+ *   `./resources/scripts`.
+ *
+ * `@sage/scripts` is kept in both layouts, aliased to the default theme, so
+ * starter code importing it keeps resolving in projects that do not name their
+ * parent theme `sage`.
  */
 const resolveImportAliases = () => {
-	const cwd = process.cwd();
-	const isBraveRoot = fs.existsSync( path.resolve( cwd, 'web/app/themes' ) );
+	const context = tryResolveThemeContext();
 
-	if ( isBraveRoot ) {
+	if ( ! context ) {
+		// Not a WordPress project layout — assume the cwd is the theme.
+		const themeName = path.basename( process.cwd() );
+
 		return [
-			[ '@sage/scripts', './web/app/themes/sage/resources/scripts' ],
+			[ `@${ themeName }/scripts`, './resources/scripts' ],
+			[ '@sage/scripts', './resources/scripts' ],
 		];
 	}
 
-	const themeName = path.basename( cwd );
+	const scriptsPath = ( theme ) =>
+		context.mode === 'theme-root'
+			? './resources/scripts'
+			: `./${ theme.relDirPosix }/resources/scripts`;
 
-	return [
-		[ `@${ themeName }/scripts`, './resources/scripts' ],
-		// Brave-root alias kept so shared/starter code importing `@sage/scripts`
-		// keeps resolving in a theme-root build.
-		[ '@sage/scripts', './resources/scripts' ],
-	];
+	const aliases = context.themes.map( ( theme ) => [
+		`@${ theme.name }/scripts`,
+		scriptsPath( theme ),
+	] );
+
+	if ( ! aliases.some( ( [ alias ] ) => alias === '@sage/scripts' ) ) {
+		const defaultTheme = context.themes.find(
+			( theme ) => theme.name === context.defaultTheme
+		);
+
+		if ( defaultTheme ) {
+			aliases.push( [ '@sage/scripts', scriptsPath( defaultTheme ) ] );
+		}
+	}
+
+	return aliases;
 };
 
 module.exports = resolveImportAliases;

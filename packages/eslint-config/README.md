@@ -31,9 +31,14 @@ const eslintSettings = merge(require('@yardinternet/eslint-config'), [
 module.exports = eslintSettings;
 ```
 
-## brave-root vs theme-root
+## Import aliases
 
-The `@sage/scripts` import alias auto-detects where ESLint runs:
+Every theme gets an `@<theme>/scripts` alias pointing at its own
+`resources/scripts`, in both layouts:
 
-- **brave-root** — cwd has `web/app/themes/`. `@sage/scripts` → `web/app/themes/sage/resources/scripts`.
-- **theme-root** — cwd is a single theme (has `style.css`, no `web/app/themes/`). `@sage/scripts` and `@<theme>/scripts` → `./resources/scripts`.
+- **brave-root** — cwd is the project root; aliases resolve per theme, e.g. `@sage/scripts` → `web/app/themes/sage/resources/scripts`.
+- **theme-root** — cwd is a single theme (has `style.css`, no themes directory); `@<theme>/scripts` → `./resources/scripts`.
+
+`@sage/scripts` is always available: in projects without a theme named `sage` it
+falls back to the default theme, so shared starter code keeps resolving. See
+[project layout detection](../shared-utils/README.md#project-layout-detection).
