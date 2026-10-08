@@ -62,6 +62,9 @@ importers:
 
     packages/postcss-config:
         dependencies:
+            '@yardinternet/shared-utils':
+                specifier: workspace:*
+                version: link:../shared-utils
             autoprefixer:
                 specifier: ^10.6.1
                 version: 10.6.1(postcss@8.5.28)

@@ -19,8 +19,11 @@ const postcssSettings = require('@yardinternet/postcss-config');
 module.exports = postcssSettings(getPathToTheme(), __dirname);
 ```
 
-The default path to the styles is `web/app/themes/sage/resources/styles`.
-You can change this values by passing the paths as an parameter.
+The `@sage` import alias points at the default theme's
+`resources/styles`, resolved from the [project
+layout](../shared-utils/README.md#project-layout-detection). It falls back to
+`web/app/themes/sage/resources/styles` when the layout cannot be resolved.
+You can change this value by passing the path as a parameter.
 
 ```js
 const postcssSettings = require('@yardinternet/postcss-config');
