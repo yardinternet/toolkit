@@ -64,14 +64,12 @@ export const braveConfig = ( {
 	const themesToProcess = isDev ? allThemes : [ resolvedTheme ];
 
 	/**
-	 * Production asset base (URL the built files are served from):
-	 * - brave-root: the theme's Bedrock path.
-	 * - theme-root: a standard WordPress theme path so the theme is portable.
+	 * Production asset base (URL the built files are served from). Derived from
+	 * where the themes directory sits relative to the WordPress docroot, so a
+	 * Bedrock project yields `/app/themes/...` and a classic install
+	 * `/wp-content/themes/...`.
 	 */
-	const buildBase =
-		context.mode === 'theme-root'
-			? `/wp-content/themes/${ resolvedTheme }/public/build/`
-			: `/app/themes/${ resolvedTheme }/public/build/`;
+	const buildBase = `${ context.themesBaseUrl }/${ resolvedTheme }/public/build/`;
 
 	/**
 	 * The theme hosting the dev server; the hot file laravel-vite-plugin writes
@@ -168,7 +166,7 @@ export const braveConfig = ( {
 					context.mode === 'theme-root'
 						? [ 'resources/views/**/*.blade.php' ]
 						: [
-								'web/app/themes/**/resources/views/**/*.blade.php',
+								`${ context.themesRelDirPosix }/**/resources/views/**/*.blade.php`,
 							],
 			} ),
 			/**

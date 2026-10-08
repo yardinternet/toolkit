@@ -11,8 +11,11 @@ import { resolveThemeContext } from '@yardinternet/shared-utils';
  * resolved when brave-mode globs are actually requested.
  */
 const buildBravePaths = () => {
-	const { mode } = resolveThemeContext();
-	const prefix = mode === 'theme-root' ? '.' : './web/app/themes/**';
+	const context = resolveThemeContext();
+	const prefix =
+		context.mode === 'theme-root'
+			? '.'
+			: `./${ context.themesRelDirPosix }/**`;
 
 	return [
 		{
