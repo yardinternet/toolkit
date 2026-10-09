@@ -6,7 +6,7 @@
  * Development Mode:
  * - Starts a single dev server.
  * - Automatically processes all themes.
- * - Uses the default theme's `public` directory, and fans its hot file out to every other theme.
+ * - Uses the default theme's `public` directory + writes its hot file out to every other theme.
  *
  * Build Mode:
  * - A Node script runs this config concurrently per theme.
@@ -74,8 +74,7 @@ export const braveConfig = ( {
 			: `/app/themes/${ resolvedTheme }/public/build/`;
 
 	/**
-	 * The theme hosting the dev server; the hot file laravel-vite-plugin writes
-	 * lives here and is fanned out to the other themes below.
+	 * The theme hosting the dev server; the hot file laravel-vite-plugin writes lives here and is written out to the other themes.
 	 */
 	const publicDirectory = path.join(
 		context.themeRelDir( resolvedTheme ),
@@ -172,8 +171,7 @@ export const braveConfig = ( {
 							],
 			} ),
 			/**
-			 * Gives every theme its own `public/hot`, so a standalone parent
-			 * theme no longer has to borrow the dev server theme's hot file.
+			 * Gives every theme its own `public/hot` file
 			 */
 			writeThemeHotFiles( {
 				context,

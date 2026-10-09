@@ -5,23 +5,13 @@ import fs from 'fs';
 import path from 'path';
 
 /**
- * Fans the dev server's hot file out to every theme.
- *
- * A single dev server means laravel-vite-plugin writes exactly one hot file,
- * into the public directory of the theme hosting the server. Any other parent
- * theme therefore has no `public/hot`, and `get_parent_theme_file_path()` on
- * the PHP side comes up empty — which is why standalone themes ended up
- * hardcoding the path to sage's hot file.
- *
- * This copies that hot file into every theme's public directory on server
- * start and removes the copies on shutdown, so each theme can resolve its own.
+ * Writes the dev server's public/hot file out to every theme.
  */
 const MAX_ATTEMPTS = 20;
 const RETRY_DELAY = 50;
 
 /**
- * Module scope, so a server restart — which builds a new plugin instance —
- * still cleans up the files the previous one wrote.
+ * Module scope, so a server restart still cleans up the files the previous one wrote.
  */
 const written = new Set();
 let exitHandlersBound = false;
@@ -31,7 +21,7 @@ const clean = () => {
 		try {
 			fs.rmSync( target );
 		} catch {
-			// Already gone, or never created.
+			// Already gone, or never created
 		}
 	}
 
@@ -92,17 +82,14 @@ export const writeThemeHotFiles = ( { context, sourceHotFile } ) => {
 			};
 
 			/**
-			 * laravel-vite-plugin writes the hot file from its own `listening`
-			 * handler and is `enforce: 'post'`, so plugin order does not
-			 * guarantee it ran first. Deferring past the current tick does.
+			 * laravel-vite-plugin writes the hot file from its own `listening` handler and is `enforce: 'post'`, so plugin order does not guarantee it ran first. Deferring past the current tick does.
 			 */
 			server.httpServer?.once( 'listening', () =>
 				setImmediate( () => fanOut() )
 			);
 
 			/**
-			 * Vite restarts the server on config changes, running this hook
-			 * again — bind the process handlers only once.
+			 * Vite restarts the server on config changes, running this hook again.
 			 */
 			if ( exitHandlersBound ) {
 				return;
