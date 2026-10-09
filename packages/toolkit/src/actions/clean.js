@@ -11,10 +11,7 @@ import { resolveThemeContext } from '@yardinternet/shared-utils';
 import log from '../utils/logger.js';
 
 /**
- * Removes leftover Vite hot files.
- *
- * The dev server deletes them on shutdown, but a hard kill leaves them behind
- * and the site then points at a dev server that is no longer running.
+ * Removes leftover Vite hot files from themes. A hard kill leaves them behind.
  */
 export const clean = () => {
 	const context = resolveThemeContext();

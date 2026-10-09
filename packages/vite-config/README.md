@@ -92,9 +92,9 @@ Same config file either way.
 
 ### Hot file and multiple parent themes
 
-Dev runs a single Vite server, hosted by the default theme. Its hot file is copied into every theme's `public/` directory on start and removed on shutdown, so each theme — including a standalone parent theme that is not a child of the default one — resolves the dev server through its own `get_parent_theme_file_path('public/hot')`.
+Dev uses one Vite server hosted by the default theme. Its hot file is copied to every theme's `public/` directory on startup and removed on shutdown, allowing standalone parent themes to resolve the server via `get_parent_theme_file_path('public/hot')`.
 
-A hard kill (`SIGKILL`) leaves the copies behind, which points the site at a dev server that is no longer running. `yard-toolkit clean` removes them.
+A `SIGKILL` may leave stale copies behind. Run `yard-toolkit clean` to remove them.
 
 ## Package Vite configs
 
