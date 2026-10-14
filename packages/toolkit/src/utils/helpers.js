@@ -106,7 +106,7 @@ export const getPathByFormatModeAndFiletype = (
 	const paths = pathObj?.path ?? null;
 
 	if ( ! paths ) {
-		return [ defaultPath ];
+		return [].concat( defaultPath );
 	}
 
 	// check if single value

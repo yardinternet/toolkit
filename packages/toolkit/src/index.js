@@ -26,7 +26,7 @@ if ( undefined === actionName ) {
 }
 
 const filetype = cli.input[ 1 ];
-const path = cli.input[ 2 ];
+const paths = cli.input.slice( 2 );
 
 // get action function
 const currentAction = actions[ actionName ];
@@ -36,4 +36,4 @@ if ( undefined === currentAction ) {
 	cli.showHelp( 5 );
 }
 
-currentAction.func( cli.flags, filetype, path );
+currentAction.func( cli.flags, filetype, paths );

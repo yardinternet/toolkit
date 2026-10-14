@@ -4,7 +4,7 @@
 import { watchBlocks } from '../scripts/watch-blocks.js';
 import { watchThemes } from '../scripts/watch-themes.js';
 
-export const watch = async ( options, mode, configFile = undefined ) => {
+export const watch = async ( options, mode, [ configFile ] = [] ) => {
 	switch ( mode ) {
 		case 'themes':
 			watchThemes( configFile );
