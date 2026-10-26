@@ -7,6 +7,9 @@ import { resolveThemeContext } from '@yardinternet/shared-utils';
  * - brave-root: matches `resources/**` across every theme.
  * - theme-root: matches the current theme's own `resources/**`.
  *
+ * CSS also lives under `resources/scripts` (block `style.css` / `editor-style.css`,
+ * reactive-search views), so the css glob covers both folders.
+ *
  * Computed lazily (via the getter below) so the project context is only
  * resolved when brave-mode globs are actually requested.
  */
@@ -28,7 +31,7 @@ const buildBravePaths = () => {
 		},
 		{
 			filetype: filetypes.css.name,
-			path: `${ prefix }/resources/styles/{*,**/*}.css`,
+			path: `${ prefix }/resources/{styles,scripts}/**/*.css`,
 		},
 	];
 };
