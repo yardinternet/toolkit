@@ -86,7 +86,7 @@ export const createBasePackageConfig = ( {
 						'react/jsx-runtime': 'ReactJSXRuntime',
 					} ),
 				/**
-				 * Transforms @wordpress/ dependencies to reference window.wp global
+				 * Transforms `@wordpress/` dependencies to reference window.wp global
 				 */
 				wordpressGlobals && wordpressPlugin(),
 			]

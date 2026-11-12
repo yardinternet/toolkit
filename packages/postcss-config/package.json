@@ -18,11 +18,11 @@
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
-		"autoprefixer": "^10.6.1",
-		"cssnano": "^8.0.10",
-		"postcss": "^8.5.28",
-		"postcss-import": "^17.0.0",
+		"autoprefixer": "^10.6.2",
+		"cssnano": "^9.9.0",
+		"postcss": "^8.5.32",
+		"postcss-import": "^17.0.1",
 		"postcss-mixins": "^12.1.2",
-		"postcss-nested": "^8.0.1"
+		"postcss-nested": "^9.0.1"
 	}
 }

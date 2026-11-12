@@ -109,7 +109,7 @@ export const braveConfig = ( {
 			alias: generateAliases( allThemes ),
 		},
 		/**
-		 * Do not pre-bundle these packages and serve as-is. If we do not do this, Vite pre-bundles these dependencies, causing issues with the import of @wordpress/* packages.
+		 * Do not pre-bundle these packages and serve as-is. If we do not do this, Vite pre-bundles these dependencies, causing issues with the import of `@wordpress/*` packages.
 		 *
 		 * @see https://github.com/roots/vite-plugin/issues/13#issuecomment-2795161910
 		 */

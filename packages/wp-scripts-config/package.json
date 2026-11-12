@@ -21,8 +21,8 @@
 		"@wordpress/scripts": ">=15"
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^35.0.0",
-		"sass": "^1.104.1",
-		"vitest": "^5.0.1"
+		"@wordpress/scripts": "^37.1.0",
+		"sass": "^1.107.1",
+		"vitest": "^5.1.0"
 	}
 }

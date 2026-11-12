@@ -18,8 +18,8 @@
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
-		"stylelint": "^17.15.0",
+		"stylelint": "^18.0.0",
 		"stylelint-config-idiomatic-order": "^10.0.0",
-		"stylelint-config-recommended": "^18.0.0"
+		"stylelint-config-recommended": "^19.0.0"
 	}
 }

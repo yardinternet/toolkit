@@ -19,20 +19,20 @@
 	"description": "Vite configuration used by the WordPress team for sites and packages.",
 	"dependencies": {
 		"@roots/vite-plugin": "^2.2.0",
-		"@tailwindcss/vite": "^4.3.3",
-		"@vitejs/plugin-react": "^6.1.1",
+		"@tailwindcss/vite": "^4.3.4",
+		"@vitejs/plugin-react": "^6.2.1",
 		"@yardinternet/shared-utils": "workspace:*",
-		"@yardinternet/vite-plugin-gutenberg-blocks": "^2.7.1",
-		"laravel-vite-plugin": "^3.2.0",
-		"postcss-prefixwrap": "^1.58.0",
+		"@yardinternet/vite-plugin-gutenberg-blocks": "^2.7.2",
+		"laravel-vite-plugin": "^3.2.1",
+		"postcss-prefixwrap": "^1.59.1",
 		"vite-plugin-checker": "^0.14.5",
-		"vite-plugin-dts": "^5.1.1",
+		"vite-plugin-dts": "^5.1.2",
 		"vite-plugin-externals": "^0.6.2"
 	},
 	"peerDependencies": {
 		"vite": "^8.0.0"
 	},
 	"optionalDependencies": {
-		"@rollup/rollup-linux-x64-gnu": "^4.63.4"
+		"@rollup/rollup-linux-x64-gnu": "^4.67.5"
 	}
 }
