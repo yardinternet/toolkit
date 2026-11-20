@@ -33,8 +33,7 @@ export const watchBlocks = async ( configFile = 'vite-blocks.config.js' ) => {
 		log.info( `Watching block: ${ blockName } (${ themeName })` );
 
 		const child = spawn(
-			'vite',
-			[ 'build', '--emptyOutDir', '--watch', '--config', configFile ],
+			`vite build --emptyOutDir --watch --config ${ configFile }`,
 			{
 				env: {
 					...process.env,

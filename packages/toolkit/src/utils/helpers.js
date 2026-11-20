@@ -20,8 +20,7 @@ export const runCommand = ( tool, files, globs, args = [] ) => {
 	);
 
 	const child = spawn(
-		tool,
-		[ ...files.map( addQuotesToStrings ), ...args ],
+		[ tool, ...files.map( addQuotesToStrings ), ...args ].join( ' ' ),
 		{
 			stdio: 'inherit',
 			shell: true,

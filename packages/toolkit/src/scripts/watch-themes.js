@@ -9,7 +9,7 @@ import { spawn } from 'child_process';
 import log from '../utils/logger.js';
 
 export const watchThemes = ( configFile = 'vite.config.js' ) => {
-	const child = spawn( 'vite', [ '--config', configFile ], {
+	const child = spawn( `vite --config ${ configFile }`, {
 		stdio: 'inherit',
 		shell: true, // resolve vite.cmd on Windows
 	} );
